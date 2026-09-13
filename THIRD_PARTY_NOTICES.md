@@ -24,11 +24,14 @@ textures, audio, or compiled binaries are bundled in this source tree.
 ## Purchased visual content in the preview
 
 - SytaPastel: Northrop YF-23 Black Widow II, CGTrader product 2046482.
-- nobatgeldi: [F-35 Cockpit](https://www.cgtrader.com/3d-models/aircraft/military-aircraft/f-35-cockpit), used for the exterior cockpit geometry and six interior texture maps.
 
 These assets retain their external licenses. They are separate from the GPL
 software and absent from the Git source tree. See
 [LICENSE-ASSETS.md](LICENSE-ASSETS.md) for the draft download's status.
+
+The external cockpit, control panels and displays are from the same licensed
+YF-23 source. The F-35-derived exterior insert and its textures are no longer
+shipped. The Hornet supplies the pilot cockpit from the user's installation.
 
 ## Eagle Dynamics / DCS World
 

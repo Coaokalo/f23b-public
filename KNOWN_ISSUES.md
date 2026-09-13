@@ -12,5 +12,6 @@
 - Block II post-launch datalink/LOAL is not implemented.
 - Flight-model reference tables derive from an F-22 community model. They are
   not measured YF-23 performance data.
-- Public distribution of the private draft's purchased derivatives and artwork
-  remains under review. See [release status](docs/RELEASE_STATUS.md).
+- The restored YF-23 exterior cockpit and new distance models have passed offline
+  geometry, connector, texture and light checks. Pilot-view clearance and LOD
+  transitions still need to be checked inside DCS before public release.

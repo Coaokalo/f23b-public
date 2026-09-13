@@ -14,15 +14,19 @@ draft, not a published public release.
 
 ## Remaining download checks
 
-1. Reconcile the applicable purchase terms for the YF-23 and F-35 cockpit
-   derivatives, including the exact EDM and texture packaging safeguards.
-2. Establish the source rights for the 11 menu, icon, and encyclopedia images,
-   or substitute cleared artwork.
-3. Complete a fresh-user DCS install, spawn/fly, missile verification, and removal
-   check of the final aircraft ZIP.
+1. Check the restored YF-23 external cockpit for pilot-view interference and
+   confirm the medium/far model transitions in DCS.
+2. Complete a fresh-user DCS install, spawn/fly, missile verification, and removal
+   check of the final aircraft ZIP. Confirm the menu graphics and mission text.
 
-The draft preserves the 62 module files from runtime source
-`4c254be08a8d23ba5ad29e4a8cbf7962dc5d340b`, including the retained flight bridge
-from `46cc8cbf387d`. Its documentation and manifests are prepared from this
-repository. Offline source/build checks do not replace the remaining in-game
-check. Nothing in this preparation changes the repository to public.
+The draft uses runtime source `4c254be08a8d23ba5ad29e4a8cbf7962dc5d340b` and
+retains the flight bridge from `46cc8cbf387d`. The F-35 exterior insert and eight
+texture maps are replaced by the licensed YF-23 cockpit; all remaining maps are
+referenced. Two simplified distance models are added. The encyclopedia and all
+three mission briefings are corrected, and eleven original graphics replace the
+old artwork. Software behavior and the native missile installer are unchanged.
+
+The licensed YF-23 remains subject to its external terms; source models and
+purchase evidence remain private. These changes do not invent a broader license
+grant. Offline checks do not replace the remaining in-game checks. The repository
+and its draft release remain private.

@@ -9,6 +9,7 @@ import subprocess
 import zipfile
 
 from verify_source import verify
+from release_assets import branding, fix_mission, F35_TEXTURE_PREFIX
 
 ROOT = Path(__file__).resolve().parents[1]
 NAME = 'F23B-preview-2026-09-13'
@@ -32,6 +33,8 @@ def zip_bytes(files):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--runtime-input', type=Path, required=True)
+    parser.add_argument('--asset-overlay', type=Path, required=True,
+                        help='Private directory containing the three hash-pinned YF-23 visual EDMs')
     args = parser.parse_args()
     if subprocess.check_output(['git', 'status', '--porcelain'], cwd=ROOT).strip():
         raise SystemExit('Commit the source changes before packaging')
@@ -56,10 +59,31 @@ def main():
     source = subprocess.check_output(['git', 'archive', '--format=zip', 'HEAD'], cwd=ROOT)
     with zipfile.ZipFile(io.BytesIO(source)) as z:
         source_files = {n: z.read(n) for n in z.namelist() if not n.endswith('/')}
+    replacements = {'F-23B/Shapes/F-23B.lods', 'F-23B/Encyclopedia/Plane/F-23B.txt'}
     for name, data in module_files.items():
         source_name = 'Mods/aircraft/' + name
-        if source_name in source_files and source_files[source_name] != data:
+        if name not in replacements and source_name in source_files and source_files[source_name] != data:
             raise SystemExit(f'Corresponding Lua/config differs: {name}')
+    for name in replacements:
+        files[name] = source_files['Mods/aircraft/' + name]
+    removed = sorted(n for n in files if n.startswith(F35_TEXTURE_PREFIX))
+    if len(removed) != 8:
+        raise SystemExit('Expected the eight retired V11 cockpit texture maps')
+    for name in removed:
+        del files[name]
+    for name in list(files):
+        if name.endswith('.miz'):
+            files[name] = fix_mission(files[name])
+    graphics = branding()
+    if not graphics.keys() <= files.keys():
+        raise SystemExit('Unexpected branding inventory')
+    files.update(graphics)
+    asset_fixes = json.loads(source_files['config/releases/asset-fixes.json'])
+    for name, expected in asset_fixes['visual_models'].items():
+        data = (args.asset_overlay / Path(name).name).read_bytes()
+        if sha(data) != expected['sha256']:
+            raise SystemExit(f'Visual overlay hash mismatch: {name}')
+        files[name] = data
     if files['native_patch.py'] != source_files['native_patch.py']:
         raise SystemExit('Installer source mismatch')
     for name in ['COPYING', 'LICENSE', 'LICENSE-ASSETS.md', 'THIRD_PARTY_NOTICES.md',
@@ -71,7 +95,7 @@ def main():
         'THIS MATERIAL IS NOT MADE OR SUPPORTED BY EAGLE DYNAMICS SA.\n\n'
         'Requires an installed, activated DCS: F/A-18C Hornet. Read INSTALL.md.\n'
         'Software: GPL-3.0-or-later with retained file-level MIT grants.\n'
-        'Visual derivatives: SytaPastel YF-23 and nobatgeldi F-35 Cockpit, CGTrader.\n'
+        'Visual derivatives: SytaPastel YF-23, CGTrader product 2046482.\n'
         'See THIRD_PARTY_NOTICES.md and LICENSE-ASSETS.md for attribution and terms.\n'
         'Private draft: distribution review and final installation checks are pending.\n'
     ).encode()
@@ -89,9 +113,13 @@ def main():
                     corresponding_source_commit=commit, release_tooling_source=commit,
                     corresponding_source_archive=NAME + '-source.zip',
                     corresponding_source_sha256=sha(source),
+                    asset_revision=asset_fixes,
                     files={n: sha(b) for n, b in sorted(files.items()) if n != 'release.json'})
     files['release.json'] = (json.dumps(manifest, indent=2) + '\n').encode()
-    assert all(files[n] == data for n, data in module_files.items())
+    changed = replacements | graphics.keys() | asset_fixes['visual_models'].keys()
+    changed |= {n for n in module_files if n.endswith('.miz')}
+    assert all(files[n] == data for n, data in module_files.items()
+               if n not in changed and n not in removed)
     output = ROOT / 'dist' / NAME / commit[:12]
     output.mkdir(parents=True, exist_ok=True)
     aircraft = zip_bytes(files)
@@ -104,7 +132,7 @@ def main():
     checksums = ''.join(f'{sha(data)}  {name}\n' for name, data in sorted(assets.items()))
     (output / 'SHA256SUMS.txt').write_text(checksums, encoding='utf-8')
     (output / 'RELEASE_NOTES.md').write_bytes(source_files['docs/RELEASE_NOTES.md'])
-    print(f'PASS: 62 unchanged aircraft files; source commit {commit}')
+    print(f'PASS: asset corrections applied; flight code and installer unchanged; source commit {commit}')
     print(output)
     print(checksums)
 

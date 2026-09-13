@@ -1,8 +1,10 @@
 model = {
 	lods = {
-		{"F-23B-visual.edm", 50000.0};
+		{"F-23B-visual.edm", 1000.0};
+		{"F-23B-visual-medium.edm", 5000.0};
+		{"F-23B-visual-far.edm", 50000.0};
 	};
-	-- Initial Hornet-PFM derivative keeps the Hornet collision/ground contract.
-	-- The F-23 model is a visual shell until a geometry adaptation is proven.
+	-- Distance models preserve the near model's connectors and animation.
+	-- Contact geometry is independent of visual detail selection.
 	collision_shell = "F-23B-contact.edm";
 }

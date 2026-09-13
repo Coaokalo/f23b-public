@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "description": "Licensed YF-23 exterior cockpit replaces the F-35-derived insert. Hornet pilot cockpit, aircraft flight code, contact shell, lights and weapon connectors are preserved.",
+  "visual_models": {
+    "F-23B/Shapes/F-23B-visual.edm": {
+      "sha256": "6d880fc8c2bf9e22499c150d0f49fcf888d8ea6b75ff21de3e91a38a65c0602b",
+      "triangles": 563418,
+      "bytes": 19137138
+    },
+    "F-23B/Shapes/F-23B-visual-medium.edm": {
+      "sha256": "dead85d6159df5658e60549ccb61fd60736b8796d990880f5aa42d75b7dfdac0",
+      "triangles": 149434,
+      "bytes": 5030166
+    },
+    "F-23B/Shapes/F-23B-visual-far.edm": {
+      "sha256": "be152de5227f87855c9197ef70de044917fb54ce038b59005dedeed1e5932b7b",
+      "triangles": 51263,
+      "bytes": 2046405
+    }
+  },
+  "textures_removed_prefix": "F-23B/Textures/F23A_V11_",
+  "all_retained_textures_referenced": true,
+  "cockpit_source_sha256": "e4a07b913b49890a1baa6caca7e673ac210411469075d6282c3902c4d50b70aa",
+  "branding_source": "tools/release_assets.py",
+  "runtime_status": "Offline model validation passed; DCS appearance and LOD transitions require in-game checking."
+}

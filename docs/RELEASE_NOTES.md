@@ -1,7 +1,7 @@
 # F-23B experimental preview
 
-Private draft prepared for the future public release. Asset distribution review
-and the final fresh-user install/fly/remove check are still pending.
+Private draft prepared for the future public release. Final in-game appearance,
+distance-model transitions and fresh-user install/fly/remove checks are pending.
 
 Download `F23B-preview-2026-09-13.zip` for the aircraft and
 `F23B-preview-2026-09-13-source.zip` for the corresponding software source.
@@ -13,20 +13,23 @@ and **Python 3.11+**. Follow the included INSTALL.md, including the native missi
 installer. AIM-120B and AIM-9X change globally; other aircraft and multiplayer
 integrity checks may be affected. Verification and rollback are included.
 
-This draft retains all 62 aircraft module files from the prepared preview.
-It includes the idle/ground-yaw/roll repairs, trigger-operated internal bays,
-combat-mode light blackout, and burner refinement. Packaging updates notices
-and source delivery; it does not change the flight code or visual assets.
+This draft retains the flight-code idle/ground-yaw/roll repairs, trigger-operated
+internal bays, combat-mode light blackout, and burner refinement. It restores the
+licensed YF-23 exterior cockpit, removes the F-35 insert and eight texture maps,
+and adds medium/far distance models. The encyclopedia and all three mission
+briefings now describe the Hornet-based runtime and actual MALICE/Block II loadout.
+Eleven newly drawn project graphics replace the old menu/encyclopedia artwork.
+The flight code and native missile installer are unchanged.
 
 The flight-model source, installer, and tests are included in the companion ZIP.
-Purchased visual derivatives retain their separate licenses. Both suppliers,
-SytaPastel (YF-23) and nobatgeldi (F-35 Cockpit), are identified in the notices.
+Purchased visual derivatives retain their separate licenses. SytaPastel's YF-23
+is now the sole purchased visual source, including the external cockpit.
 Editable vendor sources and extracted Eagle Dynamics resources are excluded.
 
 Full-envelope flight, VR, and multiplayer are unqualified. Block II post-launch
 datalink/LOAL is not implemented. The latest burner refinement has offline checks;
 earlier bounded runtime acceptance does not qualify the entire current preview.
 
-Remaining release work: applicable purchased-asset terms and texture safeguards,
-source rights for menu/encyclopedia artwork, and the final installation/removal
-check. This draft has not been published.
+Remaining release work: in-game cockpit clearance and LOD transitions, plus the
+final installation/removal check. Licensed derivatives remain subject to their
+controlling terms. This draft has not been published.

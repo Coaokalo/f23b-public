@@ -24,7 +24,6 @@
     "Mods/aircraft/F-23B/Liveries/F-23B/Standard/description.lua": "1e78e38a59b5dcd9a8ec923f338d6156946521a2fd0103266ed42465aadcfab7",
     "Mods/aircraft/F-23B/Liveries/F-23B/USA/description.lua": "62c8c149dfa7ab62a25c90e0cd90671da481795a08cc2244d598e34460ac6074",
     "Mods/aircraft/F-23B/Missions/QuickStart/quickstart.lua": "971b42e42925c29c4b7278fb85e643305880e2fe750ba6cbfe87d415a987f342",
-    "Mods/aircraft/F-23B/Shapes/F-23B.lods": "6f0f60d1e5776f034cb6a259863061e00adf5af1b41114248e521a23959eba86",
     "Mods/aircraft/F-23B/UnitPayloads/F-23B.lua": "46b0fd00706469ad17d700d765aad1a728e7fcf0bafadf3a4a172d5106ae47e2",
     "Mods/aircraft/F-23B/Weapons/F23B_AIM424_MALICE.lua": "76c55d17dd927b1bd36ac6c12c8d05507177f9e2b475423b16f0fa2f51017434",
     "Mods/aircraft/F-23B/Weapons/F23B_AIM9X_BLOCKII.lua": "677cb4ad0253e47133de41a31c3cf0c8a7e32bc82124a6a018edcc1de46def3c",
@@ -55,5 +54,11 @@
     "experiments/native-force-bridge/propulsion.hpp": "7d37fb693ec03b22c18f6d9271116cb782cb0128f749f1eb9e97c137aed7f46b",
     "experiments/native-force-bridge/propulsion_tests.cpp": "f79110c676f112b4e9756dd0b4525576cf99c6049e70144001f3d22a3d955a70",
     "native_patch.py": "9035ea9f5774f7f938b64c62781de31a42784070f7b0d9015f1af96f4293169b"
+  },
+  "modified_files": {
+    "Mods/aircraft/F-23B/Shapes/F-23B.lods": {
+      "upstream_sha256": "6f0f60d1e5776f034cb6a259863061e00adf5af1b41114248e521a23959eba86",
+      "reason": "Add medium and far visual models while retaining the contact shell."
+    }
   }
 }
