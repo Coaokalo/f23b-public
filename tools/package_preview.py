@@ -92,7 +92,7 @@ def main():
                     files={n: sha(b) for n, b in sorted(files.items()) if n != 'release.json'})
     files['release.json'] = (json.dumps(manifest, indent=2) + '\n').encode()
     assert all(files[n] == data for n, data in module_files.items())
-    output = ROOT / 'dist' / NAME
+    output = ROOT / 'dist' / NAME / commit[:12]
     output.mkdir(parents=True, exist_ok=True)
     aircraft = zip_bytes(files)
     assets = {NAME + '.zip': aircraft, NAME + '-source.zip': source}

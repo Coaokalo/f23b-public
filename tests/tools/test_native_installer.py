@@ -27,8 +27,11 @@ class NativeInstallerTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
-        self.dcs = Path(self.temp.name) / 'DCS'
-        self.package = Path(self.temp.name) / 'Download'
+        # Windows runners can expose TEMP through an 8.3 alias; match the
+        # installer's canonical paths so the simulated write failure fires.
+        fixture_root = Path(self.temp.name).resolve()
+        self.dcs = fixture_root / 'DCS'
+        self.package = fixture_root / 'Download'
         hornet = self.dcs / 'Mods/aircraft/FA-18C/bin/FA18C.dll'
         hornet.parent.mkdir(parents=True)
         hornet.write_bytes(b'fixture')
