@@ -1,0 +1,32 @@
+name: Source checks
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  offline:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.11'
+      - name: Verify source snapshot
+        run: python -B tools/verify_source.py
+      - name: Installer regression tests
+        run: python -B -m unittest discover -s tests/tools -v
+      - name: Configure flight tests without DCS
+        run: cmake -S experiments/flight-feel -B build/flight
+      - name: Build
+        run: cmake --build build/flight --config Release
+      - name: Test
+        run: ctest --test-dir build/flight -C Release --output-on-failure

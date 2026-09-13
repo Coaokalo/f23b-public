@@ -1,0 +1,2 @@
+# Preserve the byte-identical inherited source snapshot across platforms.
+* -text

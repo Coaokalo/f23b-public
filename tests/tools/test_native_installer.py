@@ -1,0 +1,125 @@
+# SPDX-License-Identifier: MIT
+"""Release boundary tests: stale/partial native patches and archive contamination."""
+import importlib.util
+import io
+import json
+from pathlib import Path
+import sys
+import tempfile
+import unittest
+from unittest.mock import patch
+import zipfile
+
+ROOT = Path(__file__).resolve().parents[2]
+
+
+def load(name, path):
+    spec = importlib.util.spec_from_file_location(name, ROOT / path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+installer = load('public_native', 'native_patch.py')
+
+
+class NativeInstallerTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.dcs = Path(self.temp.name) / 'DCS'
+        self.package = Path(self.temp.name) / 'Download'
+        hornet = self.dcs / 'Mods/aircraft/FA-18C/bin/FA18C.dll'
+        hornet.parent.mkdir(parents=True)
+        hornet.write_bytes(b'fixture')
+        self.targets, self.bases, self.specs = {}, {}, {}
+        files = {}
+        for kind, (family, project, _, boundary, alias) in installer.SPECS.items():
+            base = (b'-- other native definitions\nlocal AIM9X = {}\n' if kind == 'ir' else b'local AIM_120B = {}\n') + boundary + b'\n-- untouched remaining family\n'
+            target = self.dcs / 'CoreMods/aircraft/AircraftWeaponPack' / family
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(base)
+            self.targets[kind], self.bases[kind] = target, base
+            self.specs[kind] = (family, project, installer.sha(base), boundary, alias)
+            relative = 'F-23B/Weapons/' + project
+            definition = self.package / relative
+            definition.parent.mkdir(parents=True, exist_ok=True)
+            definition.write_bytes(b'local weapon = {}\n-- F23B_NATIVE_DEFINITION_END\n')
+            files[relative] = installer.sha(definition.read_bytes())
+        (self.package / 'release.json').write_text(json.dumps(dict(files=files)))
+        patched = patch.object(installer, 'SPECS', self.specs)
+        patched.start()
+        self.addCleanup(patched.stop)
+
+    def run_action(self, action):
+        return installer.run(action, self.dcs, self.package)
+
+    def test_install_verify_idempotence_and_restore(self):
+        self.run_action('install')
+        self.run_action('install')
+        self.run_action('verify')
+        self.run_action('restore')
+        self.run_action('restore')
+        for kind, target in self.targets.items():
+            self.assertEqual(target.read_bytes(), self.bases[kind])
+
+    def test_second_family_invalid_changes_neither(self):
+        self.targets['ir'].write_bytes(b'new DCS version')
+        with self.assertRaises(ValueError):
+            self.run_action('install')
+        self.assertEqual(self.targets['radar'].read_bytes(), self.bases['radar'])
+        self.assertFalse((self.dcs / 'F23B-native-backup').exists())
+
+    def test_restore_refuses_updated_file_without_touching_other(self):
+        self.run_action('install')
+        radar = self.targets['radar'].read_bytes()
+        self.targets['ir'].write_bytes(b'updated by DCS')
+        with self.assertRaises(ValueError):
+            self.run_action('restore')
+        self.assertEqual(self.targets['radar'].read_bytes(), radar)
+
+    def test_second_write_failure_rolls_back_first(self):
+        original = installer.atomic_write
+
+        def fail_second(path, data):
+            if path == self.targets['ir']:
+                raise PermissionError('simulated locked second family')
+            original(path, data)
+
+        with patch.object(installer, 'atomic_write', side_effect=fail_second):
+            with self.assertRaises(PermissionError):
+                self.run_action('install')
+        for kind, target in self.targets.items():
+            self.assertEqual(target.read_bytes(), self.bases[kind])
+        self.run_action('install')  # saved originals allow a successful retry
+
+    def test_corrupt_backup_refused(self):
+        self.run_action('install')
+        (self.dcs / 'F23B-native-backup/aim9_family.lua').write_bytes(b'corrupted')
+        before = {k: p.read_bytes() for k, p in self.targets.items()}
+        with self.assertRaises(ValueError):
+            self.run_action('restore')
+        self.assertEqual(before, {k: p.read_bytes() for k, p in self.targets.items()})
+
+    def test_package_definition_tampering_refused(self):
+        (self.package / 'F-23B/Weapons/F23B_AIM9X_BLOCKII.lua').write_bytes(b'tampered')
+        with self.assertRaises(ValueError):
+            self.run_action('install')
+        self.assertEqual(self.targets['radar'].read_bytes(), self.bases['radar'])
+
+    def test_different_release_requires_restore_then_installs(self):
+        self.run_action('install')
+        self.run_action('restore')
+        name = 'F-23B/Weapons/F23B_AIM9X_BLOCKII.lua'
+        definition = self.package / name
+        definition.write_bytes(b'local weapon = {changed=true}\n-- F23B_NATIVE_DEFINITION_END\n')
+        release = json.loads((self.package / 'release.json').read_text())
+        release['files'][name] = installer.sha(definition.read_bytes())
+        (self.package / 'release.json').write_text(json.dumps(release))
+        self.run_action('install')
+        self.run_action('verify')
+        self.run_action('restore')
+
+
+if __name__ == "__main__":
+    unittest.main()
