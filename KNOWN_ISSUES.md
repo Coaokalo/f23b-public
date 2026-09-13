@@ -1,17 +1,17 @@
 # Preview limitations
 
-- Qualified target: DCS 2.9.29.27468 on Windows with an activated F/A-18C Hornet.
-  Other versions are unqualified; the installer refuses unknown native files.
-- The latest burner refinement has offline checks. Earlier bounded runtime
-  acceptance does not establish complete flight qualification for this revision.
-- Full-envelope flight, VR, multiplayer, and fresh-user installation/removal
-  remain unqualified.
-- The missile installer changes AIM-120B and AIM-9X globally. Other aircraft and
-  multiplayer integrity checks may be affected. Follow [INSTALL.md](INSTALL.md)
-  for verification and restoration.
+- This preview targets Windows and DCS 2.9.29.27468 with an installed and activated
+  F/A-18C Hornet. The missile installer refuses unknown native weapon files.
+- Intended for single-player use. VR and multiplayer compatibility are not
+  established; the missile patch may fail multiplayer integrity checks.
+- The required patch changes AIM-120B and AIM-9X globally, including other aircraft.
+  DCS updates or repair may remove it. See [install, verify, and restore](INSTALL.md).
+- Flight behavior is experimental. Full-envelope accuracy is not established;
+  reference tables derive from a community F-22 model rather than measured YF-23 data.
 - Block II post-launch datalink/LOAL is not implemented.
-- Flight-model reference tables derive from an F-22 community model. They are
-  not measured YF-23 performance data.
-- The restored YF-23 exterior cockpit and new distance models have passed offline
-  geometry, connector, texture and light checks. Pilot-view clearance and LOD
-  transitions still need to be checked inside DCS before public release.
+- The restored external cockpit, distance models, and latest burner refinement
+  have offline checks; their final appearance has not been verified in DCS.
+- A complete fresh-user installation, flight, and removal cycle has not been verified.
+
+[Report a bug](https://github.com/Coaokalo/f23b-public/issues/new?template=bug_report.yml)
+with the build ID from `release.json`, DCS version, and steps to reproduce it.

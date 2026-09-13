@@ -28,6 +28,10 @@ this source repository or the preview downloads.
 
 ## Other preview content
 
+The two documentation screenshots in `docs/images/` are DCS development captures.
+They illustrate the aircraft in use; depicted game content and third-party visuals
+retain their respective rights and are not relicensed by the software license.
+
 The procedural MALICE model and four generated engine texture maps have
 project-original provenance. All eleven menu, icon, and encyclopedia graphics
 are newly drawn from the original geometric layout in `tools/release_assets.py`.

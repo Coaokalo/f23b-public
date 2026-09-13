@@ -1,35 +1,45 @@
-# F-23B experimental preview
+# F-23B Black Widow II — experimental preview
 
-Private draft prepared for the future public release. Final in-game appearance,
-distance-model transitions and fresh-user install/fly/remove checks are pending.
+Fly the F-23B in DCS World with a custom flight model, the F/A-18C Hornet cockpit
+and avionics, and trigger-operated internal weapon bays.
 
-Download `F23B-preview-2026-09-13.zip` for the aircraft and
-`F23B-preview-2026-09-13-source.zip` for the corresponding software source.
-Verify both against `SHA256SUMS.txt`. GitHub's automatic source archives are not
-the installable aircraft package.
+## Download
 
-Requires Windows, DCS **2.9.29.27468**, an installed and activated **F/A-18C Hornet**,
-and **Python 3.11+**. Follow the included INSTALL.md, including the native missile
-installer. AIM-120B and AIM-9X change globally; other aircraft and multiplayer
-integrity checks may be affected. Verification and rollback are included.
+Choose **F23B-preview-2026-09-13.zip** from the assets below for the aircraft.
+`F23B-preview-2026-09-13-source.zip` contains the corresponding software source;
+`SHA256SUMS.txt` provides checksums for both downloads.
 
-This draft retains the flight-code idle/ground-yaw/roll repairs, trigger-operated
-internal bays, combat-mode light blackout, and burner refinement. It restores the
-licensed YF-23 exterior cockpit, removes the F-35 insert and eight texture maps,
-and adds medium/far distance models. The encyclopedia and all three mission
-briefings now describe the Hornet-based runtime and actual MALICE/Block II loadout.
-Eleven newly drawn project graphics replace the old menu/encyclopedia artwork.
-The flight code and native missile installer are unchanged.
+**Requires Windows, DCS World 2.9.29.27468, an installed and activated
+DCS: F/A-18C Hornet, and Python 3.11+.**
 
-The flight-model source, installer, and tests are included in the companion ZIP.
-Purchased visual derivatives retain their separate licenses. SytaPastel's YF-23
-is now the sole purchased visual source, including the external cockpit.
-Editable vendor sources and extracted Eagle Dynamics resources are excluded.
+## What's included
 
-Full-envelope flight, VR, and multiplayer are unqualified. Block II post-launch
-datalink/LOAL is not implemented. The latest burner refinement has offline checks;
-earlier bounded runtime acceptance does not qualify the entire current preview.
+- F-23 exterior and custom flight forces with Hornet controls and avionics.
+- Internal weapon bays, MALICE, and project AIM-9X Block II.
+- Exterior lighting, combat-mode light blackout, and afterburner effects.
+- Caucasus Cold Start, Hot Start, and Free Flight Quick Start missions.
+- Missile installation, verification, and restoration tools.
 
-Remaining release work: in-game cockpit clearance and LOD transitions, plus the
-final installation/removal check. Licensed derivatives remain subject to their
-controlling terms. This draft has not been published.
+## Install
+
+Extract the aircraft ZIP, copy **both** `F-23B` and `F-23B-Player` into your
+Saved Games aircraft folder, then run the included missile installer and verify
+command. Follow the included `INSTALL.md` or the
+[online installation and removal guide](https://github.com/Coaokalo/f23b-public/blob/main/INSTALL.md).
+
+**The required missile patch changes AIM-120B and AIM-9X globally**, including
+their use on other aircraft, and may affect multiplayer integrity checks.
+Restoration commands are included.
+
+## Preview limitations and feedback
+
+Intended for single-player use. Full-envelope flight accuracy, VR, and multiplayer
+compatibility are not established. Block II post-launch datalink/LOAL is not
+implemented. Other DCS versions are unsupported by this preview's missile installer.
+
+[Known limitations](https://github.com/Coaokalo/f23b-public/blob/main/KNOWN_ISSUES.md) ·
+[Report a bug](https://github.com/Coaokalo/f23b-public/issues/new?template=bug_report.yml)
+
+Include the build ID from `release.json`, your DCS version, and reproduction steps.
+
+THIS MATERIAL IS NOT MADE OR SUPPORTED BY EAGLE DYNAMICS SA.

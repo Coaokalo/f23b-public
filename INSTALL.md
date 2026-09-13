@@ -1,18 +1,23 @@
-# F-23B Black Widow II — experimental preview
+# Install or remove the F-23B preview
 
 Requires Windows, **DCS World 2.9.29.27468**, an installed and activated
 **DCS: F/A-18C Hornet**, and **Python 3.11 or later** for the missile installer.
 Other DCS versions are not qualified. The installer checks the actual native
 weapon files and refuses unknown versions.
 
-This preview uses the Hornet cockpit and avionics with experimental F-23 flight
-forces, internal bays, MALICE and project AIM-9X Block II. It is intended for
-single-player testing. Full-envelope flight, VR and multiplayer are unqualified.
-Block II post-launch datalink/LOAL is not implemented.
+Installation has two required parts: **copy both aircraft folders**, then
+**install and verify the missile patch**. The patch changes **AIM-120B and AIM-9X
+globally**, including other aircraft, and may fail multiplayer integrity checks.
+AIM-120C remains unchanged. Removal instructions are below.
+
+This is an experimental preview for single-player use. See
+[known limitations](https://github.com/Coaokalo/f23b-public/blob/main/KNOWN_ISSUES.md)
+for flight, VR, multiplayer, and weapon limitations.
 
 ## Install
 
-1. Download the **F23B-preview-…zip** release asset and extract it completely.
+1. Download **F23B-preview-2026-09-13.zip** from
+   [Releases](https://github.com/Coaokalo/f23b-public/releases) and extract it completely.
    GitHub's automatic “Source code” archives are not the aircraft download.
 2. Close DCS, its updater and ModelViewer. Move any existing `F-23B` and
    `F-23B-Player` folders to a backup location outside `Mods/aircraft`.
@@ -35,12 +40,9 @@ Block II post-launch datalink/LOAL is not implemented.
    controls apply. Selecting a missile leaves the bay closed; one trigger press
    opens the bay, sends the native release command and closes the bay.
 
-The two missile patches are required. They replace **AIM-120B and AIM-9X globally**,
-including their use on other aircraft. AIM-120C remains unchanged. This changes
-DCS installation files and can fail multiplayer integrity checks. DCS repair or
-updates may remove the patches; verify again afterward. Do not force installation
-on an unsupported version or replace a missing patch with an old downloaded ED file.
-No ED native source or binary is included: the installer uses your own installation.
+DCS repair or updates may remove the missile patches; run verification again
+afterward. The installer checks your local DCS files and refuses unknown versions.
+No ED native source or binary is included: it uses your own installation.
 
 ## Remove or roll back
 
@@ -65,7 +67,8 @@ complete; a different F-23B weapon revision requires restoring the old release f
   a matching F-23B payload. Installing Saved Games folders alone is insufficient.
 - Unsupported native file: restore other missile modifications or use DCS repair,
   then check whether your DCS version is supported. Do not bypass the checksum.
-- Bug reports: include the build ID from `release.json`, DCS version, mission,
+- [Bug reports](https://github.com/Coaokalo/f23b-public/issues/new?template=bug_report.yml):
+  include the build ID from `release.json`, DCS version, mission,
   steps to reproduce and the relevant `Saved Games/DCS/Logs/dcs.log` excerpt.
   Remove personal paths or account details before posting.
 

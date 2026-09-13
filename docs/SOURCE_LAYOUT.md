@@ -10,12 +10,14 @@
 | `tools/` | Source verification and draft packaging |
 | `config/licensing/` | Attribution for included third-party-derived software |
 | `config/releases/` | Exact private runtime-input inventory and hashes |
+| `docs/images/` | Two curated DCS development screenshots for the project page |
 
 The `experiments` paths are retained so the corresponding source can be built
 without changing the accepted runtime code. They describe the source's origin,
 not a second installation method.
 
-The Git tree contains software and documentation. Runtime images, textures,
+The Git tree contains software, documentation, and the two documentation screenshots
+listed in `config/releases/documentation-images.json`. Runtime images, textures,
 models, missions, and the DLL belong to the separately prepared aircraft ZIP.
 Development history, private working assets, old releases, and agent instruction
 files are absent from this repository.

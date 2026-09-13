@@ -31,10 +31,19 @@ def verify():
     if not names:
         failures.append('No source files found')
     excluded = {'.edm', '.blend', '.fbx', '.dds', '.png', '.jpg', '.wav', '.ogg', '.miz', '.dll', '.exe', '.zip', '.7z', '.pdb'}
+    documentation_images = json.loads(
+        (ROOT / 'config/releases/documentation-images.json').read_text())['files']
+    for name, expected in documentation_images.items():
+        path = Path(name)
+        if (path.parent.as_posix() != 'docs/images' or path.suffix != '.jpg'
+                or name not in names or not (ROOT / name).is_file()
+                or hashlib.sha256((ROOT / name).read_bytes()).hexdigest() != expected):
+            failures.append(f'Documentation screenshot mismatch: {name}')
     instructions = {'agents.md', 'claude.md', 'copilot-instructions.md', 'current_project.md'}
     for name in names:
         path = Path(name)
-        if path.suffix.lower() in excluded or path.name.lower() in instructions:
+        if ((path.suffix.lower() in excluded and name not in documentation_images)
+                or path.name.lower() in instructions):
             failures.append(f'Unexpected source-tree member: {name}')
         if any(p in {'vendor-private', '.devstate', '.runtime', '.cursor', '.codex'} for p in path.parts):
             failures.append(f'Private directory in source tree: {name}')

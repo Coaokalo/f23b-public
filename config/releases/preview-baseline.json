@@ -1,7 +1,7 @@
 {
-  "blockers": [
-    "Restored YF-23 exterior cockpit clearance and medium/far model transitions need an in-game DCS check.",
-    "Fresh-user installation, flight, missile verification and removal of the final download remain unqualified."
+  "validation_limits": [
+    "The restored exterior cockpit and distance models have offline checks; final appearance has not been verified in DCS.",
+    "A complete fresh-user installation, flight, missile verification and removal cycle has not been verified."
   ],
   "files": {
     "COPYING": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",

@@ -1,0 +1,32 @@
+name: Bug report
+description: Report a problem with the F-23B preview.
+title: "[Bug] "
+body:
+  - type: input
+    id: build
+    attributes:
+      label: Preview build
+      description: Release name or corresponding_source_commit from the download's release.json.
+      placeholder: preview-2026-09-13
+  - type: input
+    id: dcs-version
+    attributes:
+      label: DCS version
+      placeholder: 2.9.29.27468
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Describe what you expected and what happened instead.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: How can we reproduce it?
+      description: Include the mission, payload, and steps if you know them.
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Screenshots or log excerpt (optional)
+      description: Include relevant dcs.log lines or installer output. Remove personal paths and account details before posting.

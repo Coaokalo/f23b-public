@@ -97,7 +97,7 @@ def main():
         'Software: GPL-3.0-or-later with retained file-level MIT grants.\n'
         'Visual derivatives: SytaPastel YF-23, CGTrader product 2046482.\n'
         'See THIRD_PARTY_NOTICES.md and LICENSE-ASSETS.md for attribution and terms.\n'
-        'Private draft: distribution review and final installation checks are pending.\n'
+        'Experimental preview. See INSTALL.md for requirements, limitations, and rollback.\n'
     ).encode()
     files['SOURCE.md'] = (
         '# Corresponding software source\n\n'
