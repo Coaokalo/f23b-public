@@ -45,6 +45,8 @@ the three revised models are pinned in `config/releases/asset-fixes.json`.
 It preserves the flight code and installer bytes, verifies the committed source,
 and creates aircraft/source ZIPs and SHA-256 checksums in an ignored output folder.
 Pillow renders the original menu graphics from code; no old artwork is used.
+Quick Start mission corrections update the briefing and required Core/Player
+plugin identities while preserving the payloads, triggers and other mission data.
 
 ```powershell
 python -m pip install -r requirements-release.txt

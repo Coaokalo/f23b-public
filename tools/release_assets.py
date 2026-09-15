@@ -6,16 +6,22 @@ import zipfile
 F35_TEXTURE_PREFIX = 'F-23B/Textures/F23A_V11_'
 MISSION_TEXT_OLD = 'Coffin load: 2x AIM-9X, 3x AIM-120C'
 MISSION_TEXT_NEW = 'Bay load: 2x AIM-9X Block II, 3x AIM-424 MALICE'
+MISSION_MODULES_OLD = '["requiredModules"] = { ["F-23B"] = "F-23B" }'
+MISSION_MODULES_NEW = ('["requiredModules"] = { ["F-23B Core"] = "F-23B Core", '
+                       '["F-23B Player"] = "F-23B Player" }')
 
 
 def fix_mission(data):
-    """Change briefing text only; retain every other mission member verbatim."""
+    """Correct briefing and plugin requirements; preserve other mission content."""
     output = io.BytesIO()
     with zipfile.ZipFile(io.BytesIO(data)) as source:
         text = source.read('mission').decode('utf-8')
         if text.count(MISSION_TEXT_OLD) != 2:
             raise ValueError('Unexpected Quick Start briefing; refusing a broad replacement')
+        if text.count(MISSION_MODULES_OLD) != 1:
+            raise ValueError('Unexpected Quick Start module requirements')
         text = text.replace(MISSION_TEXT_OLD, MISSION_TEXT_NEW)
+        text = text.replace(MISSION_MODULES_OLD, MISSION_MODULES_NEW)
         with zipfile.ZipFile(output, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as target:
             for item in source.infolist():
                 target.writestr(item, text.encode('utf-8') if item.filename == 'mission'
