@@ -87,7 +87,7 @@ def main():
         if sha(data) != expected['sha256']:
             raise SystemExit(f'Visual overlay hash mismatch: {name}')
         files[name] = data
-    # Retain the existing setup requirement until copy-only integration passes.
+    # Setup reuses this unchanged native patcher with a bundled Python runtime.
     files['native_patch.py'] = source_files['native_patch.py']
     for name in ['COPYING', 'LICENSE', 'LICENSE-ASSETS.md', 'THIRD_PARTY_NOTICES.md',
                  'INSTALL.md', 'LICENSES/MIT.txt', 'config/licensing/third-party-code-reuse.json',

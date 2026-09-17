@@ -62,3 +62,21 @@ private; it is not corresponding software source for the flight bridge.
 Packaging produces a draft candidate; it does not change GitHub visibility or
 publish a release. A different compiler may produce a different DLL hash from
 the retained preview binary even when building the corresponding source.
+
+## Windows setup executable
+
+After committing the source and packaging the aircraft as above:
+
+```powershell
+python -m venv .venv
+.venv/Scripts/python.exe -m pip install -r requirements-setup.txt
+.venv/Scripts/python.exe tools/build_setup.py --aircraft-zip "PATH/TO/F23B-preview-2026-09-17.zip"
+```
+
+The build uses [PyInstaller](https://pyinstaller.org/en/stable/usage.html) to bundle
+Python, Tk, the existing patcher and the exact aircraft ZIP into one setup EXE.
+Only builders install these dependencies. The EXE and its checksum are placed
+beside the aircraft/source archives. The payload must match the committed source.
+The GUI requests administrator access; command-line fixture runs can operate
+without elevation in temporary folders. Setup never downloads code at runtime.
+The executable is unsigned unless a release maintainer signs it separately.

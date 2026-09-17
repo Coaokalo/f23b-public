@@ -6,6 +6,8 @@
 | `experiments/native-force-bridge/` | Windows native bridge, callback generators, propulsion and control tests |
 | `experiments/flight-feel/` | Flight-model library, adapter, tests, and performance report |
 | `native_patch.py` | Local missile installer, verification, and rollback |
+| `setup_f23b.py` | Single-window aircraft setup, repair and removal |
+| `tools/build_setup.py` | Bundle the Windows setup executable |
 | `tests/tools/` | Installer regression tests using temporary fixtures |
 | `tools/` | Source verification and draft packaging |
 | `config/licensing/` | Attribution for included third-party-derived software |

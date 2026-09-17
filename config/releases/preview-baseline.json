@@ -1,6 +1,6 @@
 {
   "validation_limits": [
-    "Fresh copy-only installation is not yet verified; native missile setup remains required by this candidate.",
+    "Native missile changes remain required and are applied by the self-contained setup executable.",
     "Accepted burner geometry has preservation checks in the curated model; no new in-game check of the curated model combination."
   ],
   "files": {

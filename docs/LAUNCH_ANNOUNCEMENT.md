@@ -8,7 +8,8 @@ afterburner effects, and three Caucasus Quick Start missions to get flying.
 ![F-23B above the clouds](images/f23b-exterior.jpg)
 
 **Requires Windows, DCS 2.9.29.27468, an installed and activated F/A-18C Hornet,
-and Python 3.11+.** Install both aircraft folders and the included missile patch.
+with no separate Python installation needed.** Run setup to install the aircraft
+and custom weapons together.
 The patch changes AIM-120B and AIM-9X globally and may affect other aircraft
 and multiplayer integrity checks; undo instructions are included.
 

@@ -1,22 +1,22 @@
 # Release staging
 
 The repository remains private. The September 13 draft is retained for recovery.
-Current source and packaging inputs now use the aircraft accepted September 15
-and flown September 16. The current candidate is `F23B-preview-2026-09-17`.
+The current candidate uses the aircraft accepted September 15 and flown September
+16, with the existing curated asset and Quick Start corrections preserved.
 
-The preview's scope and limitations are described in
-[the release notes](RELEASE_NOTES.md) and [known limitations](../KNOWN_ISSUES.md).
-The [launch announcement](LAUNCH_ANNOUNCEMENT.md) is prepared copy; it has not been posted.
+The owner authorized an installer on September 17. The player download is
+`F23B-preview-2026-09-17-Setup.exe`: one setup window installs both aircraft folders
+and applies the existing custom missile changes. No separate Python installation
+or patch command is required. The same executable provides repair and removal.
+The native patcher and accepted flight/weapon code are unchanged.
 
-Launch preparation is incomplete: the required copy-and-paste installation must
-retain the custom weapons without asking players to run the native missile
-installer. The September 17 candidate still requires that installer and is not
-the requested launch deliverable. Do not describe it as copy-only or publish it
-as the completed installation improvement.
-
+Setup verification uses isolated temporary game/profile folders. It does not
+reopen the owner's aircraft acceptance or claim a fresh flight test. See the
+candidate's `setup-verification.json` for the exact executable and result.
 The accepted burner source has been carried into the curated visual model while
-preserving the existing licensed cockpit correction, distance models and mission
-fixes. The rebuilt combination has model preservation checks; no new in-game
-visual acceptance is claimed. Source verification and the 11 existing release
-tests pass. Publication awaits the completed installation change and owner launch
-instruction.
+preserving its licensed cockpit correction and distance models; the combination
+has preservation checks, with no additional in-game visual acceptance claimed.
+
+Publication still requires the owner's launch instruction. No announcement has
+been sent. See [release notes](RELEASE_NOTES.md), [installation](../INSTALL.md),
+and [known limitations](../KNOWN_ISSUES.md).

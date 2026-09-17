@@ -1,19 +1,19 @@
 # F-23B Black Widow II — experimental preview
 
-Internal September 17 candidate. Copy-and-paste installation work remains
-incomplete; the missile installer is still required. This candidate is not published.
+Internal September 17 installer candidate. Not yet published.
 
 Fly the F-23B in DCS World with a custom flight model, the F/A-18C Hornet cockpit
 and avionics, and trigger-operated internal weapon bays.
 
 ## Download
 
-The aircraft candidate is **F23B-preview-2026-09-17.zip**.
+The player download is **F23B-preview-2026-09-17-Setup.exe**.
+The aircraft ZIP is retained as a packaging input.
 `F23B-preview-2026-09-17-source.zip` contains the corresponding software source;
-`SHA256SUMS.txt` provides checksums for both downloads.
+`SHA256SUMS.txt` provides checksums for the installer, aircraft and source downloads.
 
 **Requires Windows, DCS World 2.9.29.27468, an installed and activated
-DCS: F/A-18C Hornet, and Python 3.11+.**
+DCS: F/A-18C Hornet. No separate Python installation is needed.**
 
 ## What's included
 
@@ -25,14 +25,13 @@ DCS: F/A-18C Hornet, and Python 3.11+.**
 
 ## Install
 
-Extract the aircraft ZIP, copy **both** `F-23B` and `F-23B-Player` into your
-Saved Games aircraft folder, then run the included missile installer and verify
-command. Follow the included `INSTALL.md` or the
+Run setup, confirm the DCS game folder and Saved Games profile, then click
+**Install / Repair**. Aircraft and custom weapons are installed together. See the
 [online installation and removal guide](https://github.com/Coaokalo/f23b-public/blob/main/INSTALL.md).
 
 **The required missile patch changes AIM-120B and AIM-9X globally**, including
 their use on other aircraft, and may affect multiplayer integrity checks.
-Restoration commands are included.
+Run the same setup and choose **Remove** to restore the original files.
 
 ## Preview limitations and feedback
 

@@ -3,12 +3,12 @@
 An experimental community aircraft for DCS World: an F-23 airframe and custom
 flight model paired with the F/A-18C Hornet cockpit and avionics.
 
-**[Download the aircraft](https://github.com/Coaokalo/f23b-public/releases)** ·
-[Installation & removal](INSTALL.md) ·
+**[Download the aircraft](https://github.com/Coaokalo/f23b-public/releases)** Â·
+[Installation & removal](INSTALL.md) Â·
 [Report a bug](https://github.com/Coaokalo/f23b-public/issues/new?template=bug_report.yml)
 
 **Requires Windows, DCS World 2.9.29.27468, an installed and activated
-DCS: F/A-18C Hornet, and Python 3.11+.**
+DCS: F/A-18C Hornet. No separate Python installation is needed.**
 
 ![F-23B above the clouds at sunset](docs/images/f23b-exterior.jpg)
 
@@ -21,16 +21,16 @@ DCS: F/A-18C Hornet, and Python 3.11+.**
 
 ## Get flying
 
-1. Open [Releases](https://github.com/Coaokalo/f23b-public/releases) and download
-   **F23B-preview-2026-09-13.zip**. The source ZIP is for development.
-2. Extract it and copy **both** `F-23B` and `F-23B-Player` into your
-   `Saved Games/DCS/Mods/aircraft` folder.
-3. Run the included missile installer and verification commands in
-   [INSTALL.md](INSTALL.md), then select an F-23B Quick Start mission in DCS.
+1. Download **F23B-preview-2026-09-17-Setup.exe** from
+   [Releases](https://github.com/Coaokalo/f23b-public/releases).
+2. Run setup, confirm your DCS game folder and Saved Games profile, then click
+   **Install / Repair**. Setup installs the aircraft and custom weapons together.
+3. Start DCS and select an F-23B Quick Start mission.
 
-**The required missile installer changes AIM-120B and AIM-9X globally**, including
-their use on other aircraft, and may affect multiplayer integrity checks.
-[Installation and undo instructions](INSTALL.md) cover both parts of the mod.
+**Setup changes AIM-120B and AIM-9X globally**, including their use on other
+aircraft, and may affect multiplayer integrity checks. Keep the installer;
+run it again and choose **Remove** to restore the original missile files.
+See [installation and removal](INSTALL.md).
 
 ![Hornet pilot cockpit used by the F-23B above sunset clouds](docs/images/f23b-cockpit.jpg)
 
@@ -48,9 +48,9 @@ with your preview build, DCS version, and steps to reproduce it.
 
 ## Source and credits
 
-[Build and test](BUILDING.md) · [Source layout](docs/SOURCE_LAYOUT.md) ·
-[Contributing](CONTRIBUTING.md) · [Software license](LICENSE) ·
-[Third-party notices](THIRD_PARTY_NOTICES.md) · [Asset licensing](LICENSE-ASSETS.md)
+[Build and test](BUILDING.md) Â· [Source layout](docs/SOURCE_LAYOUT.md) Â·
+[Contributing](CONTRIBUTING.md) Â· [Software license](LICENSE) Â·
+[Third-party notices](THIRD_PARTY_NOTICES.md) Â· [Asset licensing](LICENSE-ASSETS.md)
 
 This repository includes the flight-model source, Lua, installer, tests, and
 documentation. Runtime models and textures are in the aircraft download under

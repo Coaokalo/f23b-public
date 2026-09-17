@@ -1,75 +1,67 @@
 # Install or remove the F-23B preview
 
-Requires Windows, **DCS World 2.9.29.27468**, an installed and activated
-**DCS: F/A-18C Hornet**, and **Python 3.11 or later** for the missile installer.
-Other DCS versions are not qualified. The installer checks the actual native
-weapon files and refuses unknown versions.
-
-Installation has two required parts: **copy both aircraft folders**, then
-**install and verify the missile patch**. The patch changes **AIM-120B and AIM-9X
-globally**, including other aircraft, and may fail multiplayer integrity checks.
-AIM-120C remains unchanged. Removal instructions are below.
-
-This is an experimental preview for single-player use. See
-[known limitations](https://github.com/Coaokalo/f23b-public/blob/main/KNOWN_ISSUES.md)
-for flight, VR, multiplayer, and weapon limitations.
+Requires Windows, **DCS World 2.9.29.27468**, and an installed and activated
+**DCS: F/A-18C Hornet**. No separate Python installation or patch command is needed.
+Other DCS versions are not qualified; setup refuses unknown native weapon files.
 
 ## Install
 
-1. Download **F23B-preview-2026-09-13.zip** from
-   [Releases](https://github.com/Coaokalo/f23b-public/releases) and extract it completely.
-   GitHub's automatic “Source code” archives are not the aircraft download.
-2. Close DCS, its updater and ModelViewer. Move any existing `F-23B` and
-   `F-23B-Player` folders to a backup location outside `Mods/aircraft`.
-   Copy both new folders into `%USERPROFILE%\Saved Games\DCS\Mods\aircraft`.
-   Use your actual Saved Games profile if it is named `DCS.openbeta` or differs.
-   Do not merge old files into the new folders. Keep your `Config/Input` mappings.
-3. In the extracted download, open a terminal and run the following, replacing
-   the DCS path with your installation directory:
+1. Download **F23B-preview-2026-09-17-Setup.exe** from
+   [Releases](https://github.com/Coaokalo/f23b-public/releases).
+2. Close DCS, its updater and ModelViewer. Run setup and allow its Windows
+   administrator prompt.
+3. Confirm your **DCS game folder** and **Saved Games DCS profile**. The profile
+   is normally `%USERPROFILE%\Saved Games\DCS` and contains `Config` or `Logs`.
+   Use Browse for Steam, a custom location or a different profile.
+4. Click **Install / Repair**. Wait for the installed message, then start DCS
+   and select an F-23B Quick Start mission. Your existing Hornet controls apply.
 
-   ```powershell
-   python native_patch.py install --dcs-root "D:\Eagle Dynamics\DCS World"
-   python native_patch.py verify --dcs-root "D:\Eagle Dynamics\DCS World"
-   ```
+Setup installs both aircraft folders and the required custom weapon changes.
+**These changes affect AIM-120B and AIM-9X globally, including other aircraft,
+and can affect multiplayer integrity checks.** AIM-120C is unchanged.
+Original native files are retained in `F23B-native-backup` inside the DCS folder.
+No Eagle Dynamics native source or binaries are distributed with setup.
 
-   Both commands must report PASS. If Windows denies access to the DCS folder,
-   run the terminal as administrator and repeat. Keep this extracted release
-   for verification and rollback.
-4. Start DCS normally. Select the F-23B and an included Quick Start mission,
-   or use an F-23B mission with the MALICE/Block II payload. Existing Hornet
-   controls apply. Selecting a missile leaves the bay closed; one trigger press
-   opens the bay, sends the native release command and closes the bay.
+Keep this installer for repair and removal. The source ZIP is for developers;
+the aircraft ZIP is a packaging input, not an additional installation step.
+This preview is intended for single-player use; see [known limitations](KNOWN_ISSUES.md).
 
-DCS repair or updates may remove the missile patches; run verification again
-afterward. The installer checks your local DCS files and refuses unknown versions.
-No ED native source or binary is included: it uses your own installation.
+## Repair or change versions
 
-## Remove or roll back
+After a DCS update or repair, close DCS and run **Install / Repair** again.
+Setup reapplies the weapon changes only when the DCS files are supported.
+If an update introduces unknown files, wait for a compatible F-23B release.
 
-Close DCS and run this from the original extracted release:
+For a different F-23B release, use the original installer to **Remove** the old
+release first. For an earlier manual installation, preserve its aircraft folders
+outside `Mods/aircraft` and follow its original missile-restoration instructions
+before installing. Setup refuses unmanaged folders and development junctions.
 
-```powershell
-python native_patch.py restore --dcs-root "D:\Eagle Dynamics\DCS World"
-```
+Use one Saved Games profile per patched DCS installation. The missile changes
+are shared by all profiles using that game folder.
 
-Then remove the two F-23B module folders from Saved Games, or restore your prior
-module backup and its matching native patch. Original native files and checksums
-are retained in `F23B-native-backup` inside the DCS installation. The script
-refuses to overwrite files changed by an update or another mod. If DCS already
-restored the stock files, restore is harmless. Keep backups until rollback is
-complete; a different F-23B weapon revision requires restoring the old release first.
+## Remove
+
+Close DCS, run the same installer, select the same folders, and click **Remove**.
+Setup restores the original missile files and removes its two aircraft folders.
+Your profile's controls and missions remain. Native rollback backups are retained.
+
+If you added liveries or changed module files, move those files somewhere safe
+before removal. Setup refuses to delete added or changed files, or overwrite
+native files modified by an update or another mod. Do not bypass these checks.
 
 ## Troubleshooting
 
-- Aircraft absent: check that both folders sit directly inside `Mods/aircraft`,
-  with `entry.lua` immediately inside each; check Hornet installation/activation.
-- Aircraft present but missiles wrong: run native patch verification and choose
-  a matching F-23B payload. Installing Saved Games folders alone is insufficient.
-- Unsupported native file: restore other missile modifications or use DCS repair,
-  then check whether your DCS version is supported. Do not bypass the checksum.
-- [Bug reports](https://github.com/Coaokalo/f23b-public/issues/new?template=bug_report.yml):
-  include the build ID from `release.json`, DCS version, mission,
-  steps to reproduce and the relevant `Saved Games/DCS/Logs/dcs.log` excerpt.
-  Remove personal paths or account details before posting.
+- Aircraft absent: confirm you selected the profile DCS actually uses and have
+  installed and activated the Hornet.
+- Folder not detected: use Browse; the DCS game folder and Saved Games profile
+  are two different folders.
+- Unsupported missile file: restore conflicting weapon mods or use DCS repair,
+  then check whether your DCS version is supported.
+- Build details and instructions are retained in `.f23b-install` inside your
+  selected profile. Include its `release.json` build ID when reporting a bug.
+- [Report a bug](https://github.com/Coaokalo/f23b-public/issues/new?template=bug_report.yml)
+  with the build ID, DCS version, mission, reproduction steps and relevant
+  `Logs/dcs.log` excerpt. Remove account details and personal paths first.
 
 THIS MATERIAL IS NOT MADE OR SUPPORTED BY EAGLE DYNAMICS SA.
