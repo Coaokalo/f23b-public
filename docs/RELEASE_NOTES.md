@@ -1,12 +1,15 @@
 # F-23B Black Widow II — experimental preview
 
+Internal September 17 candidate. Copy-and-paste installation work remains
+incomplete; the missile installer is still required. This candidate is not published.
+
 Fly the F-23B in DCS World with a custom flight model, the F/A-18C Hornet cockpit
 and avionics, and trigger-operated internal weapon bays.
 
 ## Download
 
-Choose **F23B-preview-2026-09-13.zip** from the assets below for the aircraft.
-`F23B-preview-2026-09-13-source.zip` contains the corresponding software source;
+The aircraft candidate is **F23B-preview-2026-09-17.zip**.
+`F23B-preview-2026-09-17-source.zip` contains the corresponding software source;
 `SHA256SUMS.txt` provides checksums for both downloads.
 
 **Requires Windows, DCS World 2.9.29.27468, an installed and activated

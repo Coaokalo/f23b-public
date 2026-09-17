@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "description": "Fresh source snapshot for the experimental preview; no development Git history imported. These inherited source files are byte-identical to the prepared corresponding-source archive.",
-  "runtime_source": "4c254be08a8d23ba5ad29e4a8cbf7962dc5d340b",
+  "description": "Curated software source with accepted September 15 aircraft registration and visual configuration. Flight bridge and weapon definitions retain the prior source bytes. No private development history imported.",
+  "runtime_source": "0eab91677b32a08bfff8022b92ff598eaa7f9dbe",
   "flight_source": "46cc8cbf387d",
   "source_archive_sha256": "8b1adea9247ea36e6cc542b90f0cb1db02fc3ab2aab9d012c91322535894cc81",
   "unchanged_files": {
@@ -9,7 +9,7 @@
     "LICENSE": "83ecf0e27062074fface00de7fce3bfc492a15a679c4a0574a534a13f87e259c",
     "LICENSES/MIT.txt": "b2ffc91f892b8977a39d4c5e592cea65a29c43c119eb9ec88bda34ce618f7c75",
     "Mods/aircraft/F-23B-Player/Cockpit/ExteriorVisuals/BridgeCommands.lua": "8d196bf834f0c340c0265abe512cc923be00fca2da1130a0dfddc794059335b0",
-    "Mods/aircraft/F-23B-Player/Cockpit/ExteriorVisuals/BuildInfo.lua": "56698daa99f1c7575545f1f8ac3929df61b43f630e9d9c4acc912b21230bd708",
+    "Mods/aircraft/F-23B-Player/Cockpit/ExteriorVisuals/BuildInfo.lua": "26327013918b0db07cfa65a6abf479017be85527aaef8025edf9e958c5b49ddd",
     "Mods/aircraft/F-23B-Player/Cockpit/ExteriorVisuals/ExteriorVisualAdapter.lua": "1dace036d5e6fb7da011fe1785803081643f0183b7d91ac81b2b29b042f6f143",
     "Mods/aircraft/F-23B-Player/Cockpit/ExteriorVisuals/device_init.lua": "ea83bca0fd4c71f30d31299df4fd5fdee005f6f01821225ec6c50d566046d28a",
     "Mods/aircraft/F-23B-Player/Cockpit/ExteriorVisuals/mainpanel_init.lua": "97dfa1765db99940be84955b322d8fb286c04dfb316eb46d3a7debb81d674d18",
@@ -19,8 +19,8 @@
     "Mods/aircraft/F-23B-Player/Input/F-23B/name.lua": "405c6cc3cf823c968aa675464c05326f96e5fb5ad0057ad54cf96c3429accfa3",
     "Mods/aircraft/F-23B-Player/entry.lua": "590816711cf686e33e160f97aa090f3f6390181e1d7848ef2b953b72b2fac497",
     "Mods/aircraft/F-23B-Player/ground_config.lua": "79b1230ec988e1ad02424d22791b50c6a2b8a5d6d21c104d5894cc64cc48589e",
-    "Mods/aircraft/F-23B/Entry/VisualConfig.lua": "9c3684de4d8e5b44c8bdfb4c63d4cb66180e0325df32fd71c421ee696c3b0024",
-    "Mods/aircraft/F-23B/F-23B.lua": "b1dd483677f6f5f332a3a80fa56a05d90edf96d784c68589e7bbe34be0828670",
+    "Mods/aircraft/F-23B/Entry/VisualConfig.lua": "f82e70b75b1f0320e3561192746cf5fa863c5a7ee4fb655a94fd7b3e8bbd4f18",
+    "Mods/aircraft/F-23B/F-23B.lua": "d919f37eb697185ac0792b0f3eec427bdda65876ffe01740fdc5e6220f63e7fd",
     "Mods/aircraft/F-23B/Liveries/F-23B/Standard/description.lua": "1e78e38a59b5dcd9a8ec923f338d6156946521a2fd0103266ed42465aadcfab7",
     "Mods/aircraft/F-23B/Liveries/F-23B/USA/description.lua": "62c8c149dfa7ab62a25c90e0cd90671da481795a08cc2244d598e34460ac6074",
     "Mods/aircraft/F-23B/Missions/QuickStart/quickstart.lua": "971b42e42925c29c4b7278fb85e643305880e2fe750ba6cbfe87d415a987f342",
@@ -53,12 +53,15 @@
     "experiments/native-force-bridge/native_loader.cpp": "939a8da65be3b4e27a828c231370494615e4b1e8fa19036b9d4286d4cac38ff6",
     "experiments/native-force-bridge/propulsion.hpp": "7d37fb693ec03b22c18f6d9271116cb782cb0128f749f1eb9e97c137aed7f46b",
     "experiments/native-force-bridge/propulsion_tests.cpp": "f79110c676f112b4e9756dd0b4525576cf99c6049e70144001f3d22a3d955a70",
-    "native_patch.py": "9035ea9f5774f7f938b64c62781de31a42784070f7b0d9015f1af96f4293169b"
+    "native_patch.py": "9035ea9f5774f7f938b64c62781de31a42784070f7b0d9015f1af96f4293169b",
+    "Mods/aircraft/F-23B/HORNET-VISUAL-DEPENDENCY.md": "270373c04334117e5ff0c9a6c97aae6a3af3be0d45716b1bfb63084bc36bb82c"
   },
   "modified_files": {
     "Mods/aircraft/F-23B/Shapes/F-23B.lods": {
       "upstream_sha256": "6f0f60d1e5776f034cb6a259863061e00adf5af1b41114248e521a23959eba86",
       "reason": "Add medium and far visual models while retaining the contact shell."
     }
-  }
+  },
+  "prior_runtime_source": "4c254be08a8d23ba5ad29e4a8cbf7962dc5d340b",
+  "accepted_runtime_archive_sha256": "9e46867abcd899cf4577956e017f953bb6363dfd00a1839fc5b3c0a679f80a7c"
 }

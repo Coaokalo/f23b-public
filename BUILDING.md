@@ -40,7 +40,8 @@ real SDK checks require a local Windows installation.
 
 `tools/package_preview.py` combines an exact previously prepared runtime ZIP
 with the committed source, content corrections and a private visual-model
-overlay. The input hash is pinned in `config/releases/preview-baseline.json`;
+overlay. The input is the September 15 accepted aircraft archive, pinned in
+`config/releases/preview-baseline.json`;
 the three revised models are pinned in `config/releases/asset-fixes.json`.
 It preserves the flight code and installer bytes, verifies the committed source,
 and creates aircraft/source ZIPs and SHA-256 checksums in an ignored output folder.
@@ -50,9 +51,11 @@ plugin identities while preserving the payloads, triggers and other mission data
 
 ```powershell
 python -m pip install -r requirements-release.txt
-python -B tools/package_preview.py --runtime-input "PATH/TO/F23B-preview-4c254be08a8d.zip" --asset-overlay "PATH/TO/YF23-VISUAL-OUTPUT"
+python -B tools/package_preview.py --runtime-input "PATH/TO/F23B-Burner-Assemblies-0eab91677b32.zip" --asset-overlay "PATH/TO/YF23-HORNET-VISUAL-OUTPUT"
 ```
 
+Only the two aircraft folders are read from the private runtime archive; private
+source archives and development receipts are excluded from the public download.
 The runtime input and revised visual models are private release inputs and are
 not downloaded by CI. The Blender source for these licensed derivatives remains
 private; it is not corresponding software source for the flight bridge.

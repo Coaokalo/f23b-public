@@ -1,12 +1,11 @@
 {
   "validation_limits": [
-    "The restored exterior cockpit and distance models have offline checks; final appearance has not been verified in DCS.",
-    "A complete fresh-user installation, flight, missile verification and removal cycle has not been verified."
+    "Fresh copy-only installation is not yet verified; native missile setup remains required by this candidate.",
+    "Accepted burner geometry has preservation checks in the curated model; no new in-game check of the curated model combination."
   ],
   "files": {
-    "COPYING": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
     "F-23B-Player/Cockpit/ExteriorVisuals/BridgeCommands.lua": "8d196bf834f0c340c0265abe512cc923be00fca2da1130a0dfddc794059335b0",
-    "F-23B-Player/Cockpit/ExteriorVisuals/BuildInfo.lua": "56698daa99f1c7575545f1f8ac3929df61b43f630e9d9c4acc912b21230bd708",
+    "F-23B-Player/Cockpit/ExteriorVisuals/BuildInfo.lua": "26327013918b0db07cfa65a6abf479017be85527aaef8025edf9e958c5b49ddd",
     "F-23B-Player/Cockpit/ExteriorVisuals/ExteriorVisualAdapter.lua": "1dace036d5e6fb7da011fe1785803081643f0183b7d91ac81b2b29b042f6f143",
     "F-23B-Player/Cockpit/ExteriorVisuals/device_init.lua": "ea83bca0fd4c71f30d31299df4fd5fdee005f6f01821225ec6c50d566046d28a",
     "F-23B-Player/Cockpit/ExteriorVisuals/mainpanel_init.lua": "97dfa1765db99940be84955b322d8fb286c04dfb316eb46d3a7debb81d674d18",
@@ -19,8 +18,9 @@
     "F-23B-Player/ground_config.lua": "79b1230ec988e1ad02424d22791b50c6a2b8a5d6d21c104d5894cc64cc48589e",
     "F-23B/Encyclopedia/Plane/F-23B.txt": "df4a6aad4bf526d83f2446d48371f63c198618bf7ae1261cad87cf9853aabd80",
     "F-23B/Encyclopedia/Plane/F-23B/F-23B.png": "5b0006c9df50c1b35a7f3a9fc3b6c3223b8bcc4caf6dade5daf3952894576f7d",
-    "F-23B/Entry/VisualConfig.lua": "9c3684de4d8e5b44c8bdfb4c63d4cb66180e0325df32fd71c421ee696c3b0024",
-    "F-23B/F-23B.lua": "b1dd483677f6f5f332a3a80fa56a05d90edf96d784c68589e7bbe34be0828670",
+    "F-23B/Entry/VisualConfig.lua": "f82e70b75b1f0320e3561192746cf5fa863c5a7ee4fb655a94fd7b3e8bbd4f18",
+    "F-23B/F-23B.lua": "d919f37eb697185ac0792b0f3eec427bdda65876ffe01740fdc5e6220f63e7fd",
+    "F-23B/HORNET-VISUAL-DEPENDENCY.md": "270373c04334117e5ff0c9a6c97aae6a3af3be0d45716b1bfb63084bc36bb82c",
     "F-23B/Liveries/F-23B/Standard/description.lua": "1e78e38a59b5dcd9a8ec923f338d6156946521a2fd0103266ed42465aadcfab7",
     "F-23B/Liveries/F-23B/USA/description.lua": "62c8c149dfa7ab62a25c90e0cd90671da481795a08cc2244d598e34460ac6074",
     "F-23B/Missions/.gitkeep": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
@@ -30,7 +30,7 @@
     "F-23B/Missions/QuickStart/quickstart.lua": "971b42e42925c29c4b7278fb85e643305880e2fe750ba6cbfe87d415a987f342",
     "F-23B/README.md": "e9b71a2328c19d0be0a4a7241397c48b9ceb4415b89450ebc8fe04ce71525ae2",
     "F-23B/Shapes/F-23B-contact.edm": "d1524455c968ec9e919b9f91e2d3b6303ff8d07b22b5df2e8a74c3cfd6ac9cf1",
-    "F-23B/Shapes/F-23B-visual.edm": "883022b9ced1deb343f572c803287eaf4957ad8030149e6aab0db4c18257b073",
+    "F-23B/Shapes/F-23B-visual.edm": "622d5cd34d87a296d6f1106f009e5ab7c94bf6675f750d3f481c938a10160c5d",
     "F-23B/Shapes/F-23B.lods": "6f0f60d1e5776f034cb6a259863061e00adf5af1b41114248e521a23959eba86",
     "F-23B/Shapes/F23B_MALICE.edm": "9d4862639b12a77c97654fd0d775bba29e7f60d86ae3d32970a5dbfb7f2a4e15",
     "F-23B/Textures/F23A_V11_DISPLAY_Diff.png": "906877aa560abfac6be49de411a25f913240b69d038cf6b440011e718223f435",
@@ -41,7 +41,6 @@
     "F-23B/Textures/F23A_V11_INT_2_Diff.png": "7bbc3bfedce9ad9cbf5ef77b268fff38a6f93684c8302d3cc17951804c38f6ec",
     "F-23B/Textures/F23A_V11_INT_2_Normal.png": "9527eb645bd16652f97a08e2f536a7ff070ac8f2a5c2a5a868b3d3ec759d20e9",
     "F-23B/Textures/F23A_V11_INT_2_RoughMet.png": "e1378ae0df72b6c62173d7cc2ab3fddc2c826b879d859815eec536840d5cb418",
-    "F-23B/Textures/F23B_Engine_Burner.png": "a6486958fde8f8af6c26282c7a97cd7501bcd4f7eb5fd58852b9274457e8de48",
     "F-23B/Textures/F23B_Engine_Metal.png": "38f474ce396d83c32ca9952ab7fb5816915438e1bd6a264b05d978a6f80f1f37",
     "F-23B/Textures/F23B_Engine_Metal_Normal.png": "d937fd78930c21d64cb788c86ea8e45bcb24ce07f6969772f648054457e74828",
     "F-23B/Textures/F23B_Engine_Metal_RoughMet.png": "1135e63b0d1179c35c4b10b5e45b58321ce66db2382f8a5d953be5c43eab4fec",
@@ -66,23 +65,15 @@
     "F-23B/UnitPayloads/F-23B.lua": "46b0fd00706469ad17d700d765aad1a728e7fcf0bafadf3a4a172d5106ae47e2",
     "F-23B/Weapons/F23B_AIM424_MALICE.lua": "76c55d17dd927b1bd36ac6c12c8d05507177f9e2b475423b16f0fa2f51017434",
     "F-23B/Weapons/F23B_AIM9X_BLOCKII.lua": "677cb4ad0253e47133de41a31c3cf0c8a7e32bc82124a6a018edcc1de46def3c",
-    "F-23B/entry.lua": "8bcdf76922f6484216679b7af5b3d1d737cf4a5116b79a97d5e3fea69c02ec2a",
-    "INSTALL.md": "000d3402ce306aca6ff4a8142b6b4955551e78df2308827ebadd52a381bce475",
-    "LICENSE": "83ecf0e27062074fface00de7fce3bfc492a15a679c4a0574a534a13f87e259c",
-    "LICENSE-ASSETS.md": "0574fb1858c43a65c50b4860876973efbc9964c7681c3682cf80fbf1771df3e8",
-    "LICENSES/MIT.txt": "b2ffc91f892b8977a39d4c5e592cea65a29c43c119eb9ec88bda34ce618f7c75",
-    "NOTICES.md": "a89d9a47285ea5a407f71956b1d84770304af1041ec2aff4973d1e2c71b67fcb",
-    "SOURCE.md": "27a39cb6c78cd924d1aff7d1c78430e158686868d79491f1a0e441115e055fd8",
-    "THIRD_PARTY_NOTICES.md": "b2d8ae479041a451247de792d2c62e1559154d2d4072ffe114efdc6f8f182a34",
-    "native_patch.py": "9035ea9f5774f7f938b64c62781de31a42784070f7b0d9015f1af96f4293169b"
+    "F-23B/entry.lua": "8bcdf76922f6484216679b7af5b3d1d737cf4a5116b79a97d5e3fea69c02ec2a"
   },
   "flight_source": "46cc8cbf387d",
   "kind": "PRIVATE-RELEASE-CANDIDATE",
   "publication_status": "HOLD",
   "release_tooling_source": "aa5532d88d3ce52ac4e61af52c1253366597089b",
-  "runtime_source": "4c254be08a8d23ba5ad29e4a8cbf7962dc5d340b",
-  "runtime_status": "OPEN: latest burner refinement has offline package evidence; bounded runtime acceptance belongs to dbae89e0083e",
+  "runtime_source": "0eab91677b32a08bfff8022b92ff598eaa7f9dbe",
+  "runtime_status": "Accepted September 15; owner flew September 16. Copy-only installation integration remains under test.",
   "schema_version": 1,
   "tested_dcs_version": "2.9.29.27468",
-  "input_archive_sha256": "a18fc919c04da31b8de0e86486d02e188aa29dcf41ad67eeacbedb78af885312"
+  "input_archive_sha256": "9e46867abcd899cf4577956e017f953bb6363dfd00a1839fc5b3c0a679f80a7c"
 }

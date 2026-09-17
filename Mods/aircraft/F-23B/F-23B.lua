@@ -14,6 +14,7 @@ local function hornet_nozzle(position)
         exhaust_length_ab_K = profile.exhaust_length_ab_K,
         smokiness_level = profile.smokiness_level,
         afterburner_effect_texture = profile.afterburner_effect_texture,
+        afterburner_circles_count = profile.afterburner_circles_count,
         afterburner_light_color = profile.afterburner_light_color
     }
 end

@@ -20,25 +20,27 @@ return {
     },
 
     -- Presentation only. The installed Hornet owns engine state and sounds.
-    -- Native plume joins the authored burner tail inside the measured channel.
+    -- Native plume meets the short recessed collar inside the measured channel.
     -- Positions use DCS {X,Z,Y}; dimensions are fitted to the F-23B aperture.
     engine_effects_enabled = true,
     engine_effects = {
         profile = "F23B_LICENSED_ENGINE_NATIVE_EFFECTS",
         origins = {
-            { -6.90, -0.351090653, -1.307693511 },
-            { -6.90, -0.351090758,  1.314346552 }
+            { -6.03, -0.328308940, -1.307693511 },
+            { -6.03, -0.328309045,  1.314346552 }
         },
         elevation = -1.5,
         -- Diameter is fitted to the measured channel gap (~0.508 m), not Hornet 0.765 m.
-        -- Length is unchanged so the nominal plume stays inside the tiled trough.
+        -- The recessed source sits well forward of the channel exit. Give the
+        -- Hornet plume enough length to remain visible beyond the exhaust trough.
         diameter = 0.50,
-        exhaust_length_ab = 2.405228758,
-        exhaust_length_ab_K = 0.707,
+        exhaust_length_ab = 6.5,
+        exhaust_length_ab_K = 1.0,
         smokiness_level = 0.05,
-        -- Texture and native plume/haze rendering resolve from installed DCS.
+        -- Installed Hornet flame and shock artwork; the model references
+        -- F18C_afterburn for its staged source. No stock texture is bundled.
         afterburner_effect_texture = "afterburner_f-18c",
-        -- Circle settings are omitted, retaining the installed Hornet defaults.
+        afterburner_circles_count = 8,
         -- White native light on both outlets floods this pale enclosed trough.
         -- Explicit zeros suppress DCS's default point light; BANO owns the core.
         afterburner_light_color = { 0.0, 0.0, 0.0 }

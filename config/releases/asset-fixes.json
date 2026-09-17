@@ -1,26 +1,24 @@
 {
   "schema_version": 1,
-  "description": "Licensed YF-23 exterior cockpit replaces the F-35-derived insert. Hornet pilot cockpit, aircraft flight code, contact shell, lights and weapon connectors are preserved.",
+  "description": "Accepted September 15 Hornet burner visuals with the curated licensed YF-23 exterior cockpit and distance models. Existing flight, lights and weapon connectors are preserved.",
   "visual_models": {
     "F-23B/Shapes/F-23B-visual.edm": {
-      "sha256": "6d880fc8c2bf9e22499c150d0f49fcf888d8ea6b75ff21de3e91a38a65c0602b",
-      "triangles": 563418,
-      "bytes": 19137138
+      "sha256": "38dc6fc131b1f6b520ba1e1db55e6ffce3b19e0b34d0aa2db49f927c5b2cb94c",
+      "bytes": 18822206
     },
     "F-23B/Shapes/F-23B-visual-medium.edm": {
-      "sha256": "dead85d6159df5658e60549ccb61fd60736b8796d990880f5aa42d75b7dfdac0",
-      "triangles": 149434,
-      "bytes": 5030166
+      "sha256": "1093dde404e31a9c5134e9eca02a6831bfcb960c5c6d0e3731044890b38ae159",
+      "bytes": 4715234
     },
     "F-23B/Shapes/F-23B-visual-far.edm": {
-      "sha256": "be152de5227f87855c9197ef70de044917fb54ce038b59005dedeed1e5932b7b",
-      "triangles": 51263,
-      "bytes": 2046405
+      "sha256": "383bf760f26bdb99400b93498552e6fd900702fd1eb2c403dd88fe44b4ae1c61",
+      "bytes": 1731473
     }
   },
   "textures_removed_prefix": "F-23B/Textures/F23A_V11_",
   "all_retained_textures_referenced": true,
   "cockpit_source_sha256": "e4a07b913b49890a1baa6caca7e673ac210411469075d6282c3902c4d50b70aa",
   "branding_source": "tools/release_assets.py",
-  "runtime_status": "Offline model validation passed; DCS appearance and LOD transitions require in-game checking."
+  "runtime_status": "Burner design accepted September 15 and flown September 16; rebuilt curated cockpit/distance model combination has preservation checks but no new flight verification.",
+  "accepted_visual_source": "0eab91677b32a08bfff8022b92ff598eaa7f9dbe"
 }
