@@ -1,6 +1,7 @@
 # F-23B Black Widow II — experimental preview
 
-Internal September 17 installer candidate. Not yet published.
+September 17 [friend test prerelease](https://github.com/Coaokalo/f23b-public/releases/tag/test-2026-09-17).
+Publicly accessible for the first testers; no general launch announcement.
 
 Fly the F-23B in DCS World with a custom flight model, the F/A-18C Hornet cockpit
 and avionics, and trigger-operated internal weapon bays.

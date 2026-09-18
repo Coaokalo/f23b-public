@@ -1,6 +1,8 @@
 # Release staging
 
-The repository remains private. The September 13 draft is retained for recovery.
+The repository is public so invited friends can download without a GitHub account.
+The owner authorized this on September 17; no public announcement has been made.
+The September 13 draft is retained for recovery.
 The current candidate uses the aircraft accepted September 15 and flown September
 16, with the existing curated asset and Quick Start corrections preserved.
 
@@ -17,6 +19,7 @@ The accepted burner source has been carried into the curated visual model while
 preserving its licensed cockpit correction and distance models; the combination
 has preservation checks, with no additional in-game visual acceptance claimed.
 
-Publication still requires the owner's launch instruction. No announcement has
-been sent. See [release notes](RELEASE_NOTES.md), [installation](../INSTALL.md),
-and [known limitations](../KNOWN_ISSUES.md).
+The [friend test release](https://github.com/Coaokalo/f23b-public/releases/tag/test-2026-09-17)
+is available as a prerelease, targeting source `35a471ede1df`. Share that page
+with the first testers; there is no general launch announcement. The EXE is
+unsigned. See [installation](../INSTALL.md) and [known limitations](../KNOWN_ISSUES.md).
