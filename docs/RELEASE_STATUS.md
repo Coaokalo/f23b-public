@@ -1,30 +1,20 @@
-# Release staging
+# Independent weapons friend-test release
 
-**Friend testing is held for correction.** The published installer applies global
-missile replacements and does not meet the independent-weapon requirement.
-Do not recommend it for a new installation. Its files and restoration instructions
-remain available for existing users. A corrected version has not been released.
+The corrected September 18 candidate registers MALICE and project AIM-9X Block II
+independently. Stock AIM-120B and AIM-9X are unchanged. The original September 17
+release remains held for recovery.
 
-The repository is public so invited friends can download without a GitHub account.
-The owner authorized this on September 17; no public announcement has been made.
-The September 13 draft is retained for recovery.
-The current candidate uses the aircraft accepted September 15 and flown September
-16, with the existing curated asset and Quick Start corrections preserved.
+Both independent weapons have launched through the normal trigger/bay sequence,
+received the selected target, and scored hits in isolated DCS missions. The HUD
+and radar page show correct remaining project ammunition. These checks reuse the
+accepted IR control scenario; they do not reopen the aircraft's flight acceptance
+or establish the complete engagement envelope.
 
-The owner authorized an installer on September 17. The player download is
-`F23B-preview-2026-09-17-Setup.exe`: one setup window installs both aircraft folders
-and applies the existing custom missile changes. No separate Python installation
-or patch command is required. The same executable provides repair and removal.
-The native patcher and accepted flight/weapon code are unchanged.
+The corrected setup installs the complete aircraft, adds an F-23B-only cockpit
+connection, and restores verified global replacements from the old installer.
+It includes repair and removal; players do not install Python. Setup is unsigned.
+The release's setup-verification.json records checks of the actual executable.
 
-Setup verification uses isolated temporary game/profile folders. It does not
-reopen the owner's aircraft acceptance or claim a fresh flight test. See the
-candidate's `setup-verification.json` for the exact executable and result.
-The accepted burner source has been carried into the curated visual model while
-preserving its licensed cockpit correction and distance models; the combination
-has preservation checks, with no additional in-game visual acceptance claimed.
-
-The [friend test release](https://github.com/Coaokalo/f23b-public/releases/tag/test-2026-09-17)
-is available as a prerelease, targeting source `35a471ede1df`. Share that page
-with the first testers; there is no general launch announcement. The EXE is
-unsigned. See [installation](../INSTALL.md) and [known limitations](../KNOWN_ISSUES.md).
+The curated repo is public for invited friends without GitHub accounts. There is
+no general announcement. Use the corrected release linked from Releases and read
+[installation](../INSTALL.md) and [preview limits](../KNOWN_ISSUES.md).

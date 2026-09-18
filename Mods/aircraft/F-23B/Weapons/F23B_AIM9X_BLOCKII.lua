@@ -1,14 +1,14 @@
 -- SPDX-License-Identifier: MIT
--- Project-original Block II approximation using the native Hornet AIM-9X slot.
--- Requires first-registration native patch. No late declare_weapon permitted.
+-- Project-original, independently registered Block II approximation.
+-- The stock AIM-9X definition remains unchanged.
 -- F-22 v2.1 benchmark: same 84.46 kg mass, drag and 8 s / 6 kg/s burn;
 -- project thrust is 15542.1 N (+5%). Simulation values, not real motor data.
 -- IR tracking remains native. Weapon-datalink/LOAL capability is not established.
 local weapon = {
-    category = CAT_AIR_TO_AIR, name = "AIM_9X",
+    category = CAT_AIR_TO_AIR, name = "F23B_AIM9X_BLOCKII",
     user_name = _("AIM-9X Block II (F-23B project-defined)"),
     display_name_short = "AIM-9XII",
-    wsTypeOfWeapon = {4, 4, 7, AIM_9X},
+    wsTypeOfWeapon = {4, 4, 7, WSTYPE_PLACEHOLDER},
     Escort = 0, Head_Type = 1, sigma = {1, 1, 1},
     M = 84.46, mass = 84.46, H_max = 18000, H_min = -1, Diam = 127,
     Cx_pil = 1.03, D_max = 20000, D_min = 50, Head_Form = 0,
@@ -24,8 +24,8 @@ local weapon = {
     X_back = -1.6, Y_back = 0, Z_back = 0, Reflection = 0.03, KillDistance = 9,
     SeekerGen = 4, SeekerSensivityDistance = 29000, ccm_k0 = 0.001,
     SeekerCooled = true, x_wing_anim = -1, PN_gain = 6,
-    shape_table_data = {{name = "aim-9x", file = "aim-9x", life = 1,
-        fire = {0, 1}, username = "AIM-9XII", index = AIM_9X}},
+    shape_table_data = {{name = "F23B_AIM9X_BLOCKII", file = "aim-9x", life = 1,
+        fire = {0, 1}, username = "AIM-9XII", index = WSTYPE_PLACEHOLDER}},
     supersonic_A_coef_skew = 0.3, nozzle_exit_area = 0.0068,
     -- Native legacy solver: area/drag/lift, stage times, flow, force, guidance,
     -- then launch-zone estimates. Entries 16/23/30 are the boost contract.
@@ -41,6 +41,7 @@ local weapon = {
     },
 }
 -- F23B_NATIVE_DEFINITION_END
+declare_weapon(weapon)
 declare_loadout({
     category = CAT_AIR_TO_AIR, CLSID = "{F23B-AIM9X-BLOCKII}",
     Picture = "AIM-9XX.png", displayName = weapon.user_name,

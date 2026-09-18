@@ -1,48 +1,29 @@
-# F-23B Black Widow II — experimental preview
+# F-23B Black Widow II — independent weapons friend test
 
-September 17 [friend test prerelease](https://github.com/Coaokalo/f23b-public/releases/tag/test-2026-09-17).
-Publicly accessible for the first testers; no general launch announcement.
+The September 18 candidate replaces global missile changes with independent
+MALICE and project AIM-9X Block II weapons. It preserves the accepted aircraft's
+flight bridge, missile tuning, bay sequence, and curated visual assets.
 
-Fly the F-23B in DCS World with a custom flight model, the F/A-18C Hornet cockpit
-and avionics, and trigger-operated internal weapon bays.
+Download **F23B-preview-2026-09-18-Setup.exe**, confirm the DCS and Saved Games
+folders, and click **Install / Repair**. No separate Python or patch command.
+Requires Windows, **DCS 2.9.29.27468**, and an activated **F/A-18C Hornet**.
 
-## Download
+- Stock AIM-120B and AIM-9X remain stock.
+- Normal missile selection and trigger controls operate the custom weapons.
+- HUD and radar-page weapon names/counts reflect actual project stores.
+- Upgrading the September 17 setup restores its verified original stock files.
+- Setup provides repair and removal while preserving profile controls and missions.
 
-The player download is **F23B-preview-2026-09-17-Setup.exe**.
-The aircraft ZIP is retained as a packaging input.
-`F23B-preview-2026-09-17-source.zip` contains the corresponding software source;
-`SHA256SUMS.txt` provides checksums for the installer, aircraft and source downloads.
+An F-23B-only connection is added to the installed Hornet cockpit. It may affect
+multiplayer integrity checks. Intended for single-player; this is an experimental
+friend test, not full-envelope qualification. HMD cueing of the independent IR
+seeker and Block II post-launch datalink/LOAL are not implemented.
 
-**Requires Windows, DCS World 2.9.29.27468, an installed and activated
-DCS: F/A-18C Hornet. No separate Python installation is needed.**
+The aircraft and corresponding source ZIPs and SHA256SUMS.txt accompany setup.
+The previous release remains held for recovery; use this corrected installer.
 
-## What's included
-
-- F-23 exterior and custom flight forces with Hornet controls and avionics.
-- Internal weapon bays, MALICE, and project AIM-9X Block II.
-- Exterior lighting, combat-mode light blackout, and afterburner effects.
-- Caucasus Cold Start, Hot Start, and Free Flight Quick Start missions.
-- Missile installation, verification, and restoration tools.
-
-## Install
-
-Run setup, confirm the DCS game folder and Saved Games profile, then click
-**Install / Repair**. Aircraft and custom weapons are installed together. See the
-[online installation and removal guide](https://github.com/Coaokalo/f23b-public/blob/main/INSTALL.md).
-
-**The required missile patch changes AIM-120B and AIM-9X globally**, including
-their use on other aircraft, and may affect multiplayer integrity checks.
-Run the same setup and choose **Remove** to restore the original files.
-
-## Preview limitations and feedback
-
-Intended for single-player use. Full-envelope flight accuracy, VR, and multiplayer
-compatibility are not established. Block II post-launch datalink/LOAL is not
-implemented. Other DCS versions are unsupported by this preview's missile installer.
-
-[Known limitations](https://github.com/Coaokalo/f23b-public/blob/main/KNOWN_ISSUES.md) ·
+[Installation](https://github.com/Coaokalo/f23b-public/blob/main/INSTALL.md) |
+[Known limitations](https://github.com/Coaokalo/f23b-public/blob/main/KNOWN_ISSUES.md) |
 [Report a bug](https://github.com/Coaokalo/f23b-public/issues/new?template=bug_report.yml)
-
-Include the build ID from `release.json`, your DCS version, and reproduction steps.
 
 THIS MATERIAL IS NOT MADE OR SUPPORTED BY EAGLE DYNAMICS SA.

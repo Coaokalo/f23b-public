@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: MIT
-"""Self-contained F-23B setup; uses the existing native missile installer."""
+"""Self-contained F-23B setup with independent weapons and legacy restoration."""
 import argparse
 import json
 import os
@@ -13,6 +13,40 @@ import native_patch
 
 MODULES = ('F-23B', 'F-23B-Player')
 STATE = '.f23b-install'
+LEGACY_RELEASE = '35a471ede1df312a8af8ca10283a7cd7cf7ba95f'
+COCKPIT_SCRIPT = 'Mods/aircraft/FA-18C/Cockpit/Scripts/device_init.lua'
+HOOK = b'''
+-- BEGIN F23B INDEPENDENT WEAPONS
+if get_aircraft_type() == 'F-23B' then
+    local path = require('lfs').writedir() .. 'Mods/aircraft/F-23B-Player/Cockpit/Weapons/device_setup.lua'
+    local script = loadfile(path)
+    if script then script() end
+end
+-- END F23B INDEPENDENT WEAPONS
+'''
+
+
+def cockpit_changes(action, dcs, config):
+    target = dcs / COCKPIT_SCRIPT
+    regular_tree(target)
+    current = target.read_bytes()
+    marker = b'-- BEGIN F23B INDEPENDENT WEAPONS'
+    if marker in current and (current.count(marker) != 1 or not current.endswith(HOOK)):
+        raise ValueError('The F-23B cockpit connection was modified; preserve it before continuing')
+    base = current[:-len(HOOK)] if current.endswith(HOOK) else current
+    if action == 'install':
+        for name, expected in config['binaries'].items():
+            path = dcs / name
+            regular_tree(path)
+            if native_patch.sha(path.read_bytes()) != expected:
+                raise ValueError('This preview requires DCS ' + config['version'] + ': ' + name)
+        if native_patch.sha(base) != config['cockpit_script_sha256']:
+            raise ValueError('Unsupported or modified Hornet cockpit script')
+        desired = base + HOOK
+    else:
+        # Removal also works after DCS updates; never replace its new script.
+        desired = base
+    return [(target, current, desired)] if desired != current else []
 
 
 def unpack(archive, destination):
@@ -89,8 +123,12 @@ def perform(action, dcs, profile, archive):
         package = work / 'package'
         package.mkdir()
         release = unpack(archive, package)
-        if receipt and receipt['source_commit'] != release['corresponding_source_commit']:
+        if receipt and receipt['source_commit'] not in (release['corresponding_source_commit'], LEGACY_RELEASE):
             raise ValueError('Remove the previous release with its original installer before changing releases')
+        config = json.loads((package / 'independent-weapons.json').read_text())
+        changes = cockpit_changes(action, dcs, config)
+        if action == 'install' or receipt['source_commit'] == LEGACY_RELEASE:
+            changes = native_patch.legacy_changes(dcs) + changes
         if action == 'install':
             staged_state = work / STATE
             staged_state.mkdir()
@@ -110,8 +148,8 @@ def perform(action, dcs, profile, archive):
             if runtime_notices.is_dir():
                 shutil.copytree(runtime_notices, staged_state / 'runtime-notices')
         aircraft.mkdir(parents=True, exist_ok=True)
-        # Retain the existing installation until BOTH native files pass preflight.
-        # If the patcher refuses or a move fails, put every old folder back.
+        # Preflight all game files first; retain old module folders until the
+        # stock-restoration/cockpit transaction has succeeded.
         try:
             for target in [aircraft / n for n in MODULES] + [state]:
                 if target.exists():
@@ -125,16 +163,7 @@ def perform(action, dcs, profile, archive):
                     installed.append(target)
                 staged_state.rename(state)
                 installed.append(state)
-                # Weapon definitions are now in their installed location.
-                patch_package = work / 'patch'
-                (patch_package / 'F-23B/Weapons').mkdir(parents=True)
-                shutil.copy2(package / 'release.json', patch_package / 'release.json')
-                for _, project, *_ in native_patch.SPECS.values():
-                    shutil.copy2(aircraft / 'F-23B/Weapons' / project,
-                                 patch_package / 'F-23B/Weapons' / project)
-                native_patch.run('install', dcs, patch_package)
-            else:
-                native_patch.run('restore', dcs, package)
+            native_patch.transact(changes)
         except Exception:
             # A failed rollback must leave the retained folders available to recover.
             cleanup = False
@@ -148,7 +177,7 @@ def perform(action, dcs, profile, archive):
         if cleanup:
             shutil.rmtree(work, ignore_errors=True)
     if action == 'remove':
-        return 'F-23B removed and original missile files restored. Your controls and missions were kept.'
+        return 'F-23B and its cockpit connection removed. Your controls and missions were kept.'
     return 'F-23B installed, including custom weapons. Start DCS and select an F-23B Quick Start mission.'
 
 
@@ -201,7 +230,7 @@ def gui(archive):
                 field.insert(0, folder)
         ttk.Button(frame, text='Browse…', command=browse).grid(row=3 + row * 2, column=1, padx=(10, 0), pady=(4, 12))
         entries.append(entry)
-    ttk.Label(frame, wraplength=550, text='Requires DCS 2.9.29.27468 and an installed, activated F/A-18C Hornet. Close DCS before continuing.\n\nInstalls custom missiles by changing AIM-120B and AIM-9X for all aircraft. Original files are backed up. This can affect multiplayer integrity checks.').grid(row=6, column=0, columnspan=2, sticky='w', pady=(0, 18))
+    ttk.Label(frame, wraplength=550, text='Requires DCS 2.9.29.27468 and an installed, activated F/A-18C Hornet. Close DCS before continuing.\n\nInstalls independent MALICE and AIM-9X Block II weapons. Stock missiles stay unchanged. Adds an F-23B-only cockpit connection; this can affect multiplayer integrity checks.').grid(row=6, column=0, columnspan=2, sticky='w', pady=(0, 18))
     status = tk.StringVar(value='Ready. No separate Python installation is needed.')
     ttk.Label(frame, textvariable=status, wraplength=550).grid(row=8, column=0, columnspan=2, sticky='w', pady=(16, 0))
     results = queue.Queue()
@@ -224,7 +253,7 @@ def gui(archive):
         if not all(paths):
             messagebox.showerror('F-23B Setup', 'Select both folders first.', parent=root)
             return
-        if action == 'remove' and not messagebox.askyesno('Remove F-23B', 'Remove both aircraft folders and restore the original missile files?', parent=root):
+        if action == 'remove' and not messagebox.askyesno('Remove F-23B', 'Remove both aircraft folders and their cockpit connection?', parent=root):
             return
         busy = True
         install.config(state='disabled')
@@ -260,7 +289,7 @@ def main():
             if not ctypes.windll.shell32.IsUserAnAdmin():
                 result = ctypes.windll.shell32.ShellExecuteW(None, 'runas', sys.executable, None, None, 1)
                 if result <= 32:
-                    ctypes.windll.user32.MessageBoxW(None, 'Setup needs administrator permission to update the DCS weapon files. Run setup again to continue.', 'F-23B Setup', 0x10)
+                    ctypes.windll.user32.MessageBoxW(None, 'Setup needs administrator permission to install the DCS cockpit connection. Run setup again to continue.', 'F-23B Setup', 0x10)
                 return
         gui(archive)
         return

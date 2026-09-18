@@ -1,18 +1,17 @@
 -- SPDX-License-Identifier: MIT
 -- Project-original MALICE simulation; public dimensions, project-defined flight tune.
--- Hornet native B identity is replaced BEFORE registration by the reviewed patch.
--- Saved Games declares only a loadout. AIM-120C remains stock.
+-- Independent project weapon; stock AIM-120 definitions remain unchanged.
 -- The 680.4 kg body uses MAKO's propellant fractions and burn schedule, with
 -- higher specific impulse (280/245 versus 254/170 s). This is a gameplay
 -- benchmark, not a claim about the real MALICE motor or classified performance.
--- Network designation and midcourse support remain native Hornet MSI services.
+-- Target handoff uses the installed primary cockpit; guidance uses the DCS solver.
 -- Model is a full-scale project approximation, not an official MALICE drawing.
 -- See docs/design/F23B_MALICE_BLOCKII.md for limits and verification.
-local MALICE_NAME = "AIM_120"
+local MALICE_NAME = "F23B_AIM424_MALICE"
 local MALICE_CLSID = F23B_MALICE_CLSID or "{F23B-AIM424-MALICE}"
 local MALICE_MODEL = "F23B_MALICE"
 local MALICE_SHAPE = "F23B_MALICE"
-local MALICE_TYPE = { 4, 4, 7, AIM_120 }
+local MALICE_TYPE = { 4, 4, 7, WSTYPE_PLACEHOLDER }
 local MALICE_MASS_KG = 680.4
 local MALICE_ACTIVE_SEARCH_RANGE_M = 16.0 * 1852.0
 local MALICE_SENSOR_FAR_RANGE_M = 40000.0
@@ -82,12 +81,12 @@ local F23B_AIM424_MALICE = {
 
     shape_table_data = {
         {
-            name = "AIM-120B",
+            name = "F23B_AIM424_MALICE",
             file = MALICE_SHAPE,
             life = 1,
             fire = { 0, 1 },
             username = MALICE_NAME,
-            index = AIM_120,
+            index = WSTYPE_PLACEHOLDER,
         },
     },
     controller = {
@@ -326,6 +325,7 @@ for _, field in ipairs({"Cx0", "CxB"}) do
     end
 end
 -- F23B_NATIVE_DEFINITION_END
+declare_weapon(F23B_AIM424_MALICE)
 
 declare_loadout({
     category = CAT_AIR_TO_AIR,

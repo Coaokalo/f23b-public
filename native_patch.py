@@ -82,6 +82,49 @@ def transact(changes):
         raise
 
 
+def legacy_changes(dcs):
+    """Restore verified old global replacements before independent weapons load.
+
+    A clean installation needs no backup and causes no game-file writes. Keep
+    old receipts/originals for recovery; never derive originals from new weapons.
+    """
+    dcs = dcs.resolve(strict=True)
+    if not (dcs / 'Mods/aircraft/FA-18C/bin/FA18C.dll').is_file():
+        raise ValueError('Install the DCS F/A-18C Hornet first')
+    backup = dcs / 'F23B-native-backup'
+    changes = []
+    for kind, (family, _, stock_hash, _, _) in SPECS.items():
+        target = dcs / 'CoreMods/aircraft/AircraftWeaponPack' / family
+        if target.resolve(strict=True) != target:
+            raise ValueError('Native files must not be redirected: ' + family)
+        current = target.read_bytes()
+        if sha(current) == stock_hash:
+            continue
+        if backup.resolve() != backup or backup.is_symlink():
+            raise ValueError('Backup directory must not be a link')
+        receipt_path = backup / 'receipt.json'
+        if not receipt_path.is_file():
+            raise ValueError('Unsupported or modified DCS missile file: ' + family)
+        receipt = json.loads(receipt_path.read_text())
+        original_path = backup / family
+        if original_path.resolve(strict=True) != original_path:
+            raise ValueError('Backup file must not be a link: ' + family)
+        original = original_path.read_bytes()
+        record = receipt['files'][kind]
+        if (receipt['dcs_root'] != str(dcs)
+                or sha(original) != stock_hash
+                or record['original_sha256'] != stock_hash
+                or sha(current) != record['patched_sha256']):
+            raise ValueError('Cannot verify the original F-23B replacement: ' + family)
+        changes.append((target, current, original))
+    return changes
+
+
+def restore_legacy(dcs):
+    transact(legacy_changes(dcs))
+    return 'PASS: stock missile definitions retained; verified legacy replacements restored'
+
+
 def run(action, dcs, package):
     dcs, package = dcs.resolve(strict=True), package.resolve(strict=True)
     if not (dcs / 'Mods/aircraft/FA-18C/bin/FA18C.dll').is_file():

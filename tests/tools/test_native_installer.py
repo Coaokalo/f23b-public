@@ -66,6 +66,43 @@ class NativeInstallerTests(unittest.TestCase):
         for kind, target in self.targets.items():
             self.assertEqual(target.read_bytes(), self.bases[kind])
 
+    def test_independent_install_leaves_clean_game_untouched(self):
+        with patch.object(installer, 'atomic_write') as write:
+            installer.restore_legacy(self.dcs)
+        write.assert_not_called()
+        self.assertFalse((self.dcs / 'F23B-native-backup').exists())
+
+    def test_independent_install_restores_legacy_without_new_definitions(self):
+        self.run_action('install')
+        # Recovery must not attempt to manufacture old bytes from new weapons.
+        for path in (self.package / 'F-23B/Weapons').iterdir():
+            path.write_bytes(b'independent weapon definition')
+        installer.restore_legacy(self.dcs)
+        for kind, path in self.targets.items():
+            self.assertEqual(path.read_bytes(), self.bases[kind])
+        self.assertTrue((self.dcs / 'F23B-native-backup/receipt.json').is_file())
+
+    def test_independent_restore_refuses_unknown_second_family_atomically(self):
+        self.run_action('install')
+        before = self.targets['radar'].read_bytes()
+        self.targets['ir'].write_bytes(b'another modification')
+        with self.assertRaises(ValueError):
+            installer.restore_legacy(self.dcs)
+        self.assertEqual(self.targets['radar'].read_bytes(), before)
+
+    def test_independent_restore_rolls_back_failed_second_write(self):
+        self.run_action('install')
+        before = {k: p.read_bytes() for k, p in self.targets.items()}
+        original_write = installer.atomic_write
+        def fail_second(path, data):
+            if path == self.targets['ir']:
+                raise PermissionError('simulated locked file')
+            original_write(path, data)
+        with patch.object(installer, 'atomic_write', side_effect=fail_second):
+            with self.assertRaises(PermissionError):
+                installer.restore_legacy(self.dcs)
+        self.assertEqual(before, {k: p.read_bytes() for k, p in self.targets.items()})
+
     def test_second_family_invalid_changes_neither(self):
         self.targets['ir'].write_bytes(b'new DCS version')
         with self.assertRaises(ValueError):

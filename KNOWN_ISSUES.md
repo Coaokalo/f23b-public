@@ -1,17 +1,21 @@
 # Preview limitations
 
-- This preview targets Windows and DCS 2.9.29.27468 with an installed and activated
-  F/A-18C Hornet. The missile installer refuses unknown native weapon files.
-- Intended for single-player use. VR and multiplayer compatibility are not
-  established; the missile patch may fail multiplayer integrity checks.
-- The required patch changes AIM-120B and AIM-9X globally, including other aircraft.
-  DCS updates or repair may remove it. See [install, verify, and restore](INSTALL.md).
-- Flight behavior is experimental. Full-envelope accuracy is not established;
-  reference tables derive from a community F-22 model rather than measured YF-23 data.
-- Block II post-launch datalink/LOAL is not implemented.
-- The restored external cockpit, distance models, and latest burner refinement
-  have offline checks; their final appearance has not been verified in DCS.
-- A complete fresh-user installation, flight, and removal cycle has not been verified.
+- Windows and DCS 2.9.29.27468 with an installed, activated F/A-18C Hornet are required.
+  The independent weapon connection uses a version-specific cockpit interface;
+  both setup and the connection reject unsupported binaries.
+- Intended for single-player. VR and multiplayer compatibility are not established.
+  The F-23B-only cockpit connection may fail multiplayer integrity checks.
+- The Hornet's remaining SMS pages and launch-zone calculations retain donor logic.
+  Use the project weapon names and counts on the HUD and radar page. Weapon-specific
+  launch envelopes and the full long-range engagement envelope are not qualified.
+- Independent Block II radar cueing is implemented. HMD cueing is not connected to
+  the independent seeker. Post-launch datalink/LOAL is not implemented.
+- Flight behavior remains experimental; full-envelope accuracy is not established.
+  Reference tables derive from a community F-22 model rather than measured YF-23 data.
+- DCS repair can remove the cockpit connection. Rerun setup on a supported version;
+  after a game update, wait for a compatible build. See [installation](INSTALL.md).
+- The installer is unsigned. A friend's full installation and flight report remains
+  the purpose of this preview; automated checks are not that user's acceptance.
 
 [Report a bug](https://github.com/Coaokalo/f23b-public/issues/new?template=bug_report.yml)
-with the build ID from `release.json`, DCS version, and steps to reproduce it.
+with the build ID, DCS version, mission, and reproduction steps.

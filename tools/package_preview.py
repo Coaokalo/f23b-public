@@ -12,7 +12,7 @@ from verify_source import verify
 from release_assets import branding, fix_mission, F35_TEXTURE_PREFIX
 
 ROOT = Path(__file__).resolve().parents[1]
-NAME = 'F23B-preview-2026-09-17'
+NAME = 'F23B-preview-2026-09-18'
 
 
 def sha(data):
@@ -35,6 +35,8 @@ def main():
     parser.add_argument('--runtime-input', type=Path, required=True)
     parser.add_argument('--asset-overlay', type=Path, required=True,
                         help='Private directory containing the three hash-pinned YF-23 visual EDMs')
+    parser.add_argument('--weapons-dll', type=Path, required=True,
+                        help='F23B_Weapons.dll built from the corresponding source')
     args = parser.parse_args()
     if subprocess.check_output(['git', 'status', '--porcelain'], cwd=ROOT).strip():
         raise SystemExit('Commit the source changes before packaging')
@@ -62,13 +64,25 @@ def main():
     source = subprocess.check_output(['git', 'archive', '--format=zip', 'HEAD'], cwd=ROOT)
     with zipfile.ZipFile(io.BytesIO(source)) as z:
         source_files = {n: z.read(n) for n in z.namelist() if not n.endswith('/')}
-    replacements = {'F-23B/Shapes/F-23B.lods', 'F-23B/Encyclopedia/Plane/F-23B.txt'}
+    replacements = {'F-23B/Shapes/F-23B.lods', 'F-23B/Encyclopedia/Plane/F-23B.txt',
+                    'F-23B/Weapons/F23B_AIM424_MALICE.lua',
+                    'F-23B/Weapons/F23B_AIM9X_BLOCKII.lua',
+                    'F-23B-Player/Cockpit/ExteriorVisuals/ExteriorVisualAdapter.lua'}
     for name, data in module_files.items():
         source_name = 'Mods/aircraft/' + name
         if name not in replacements and source_name in source_files and source_files[source_name] != data:
             raise SystemExit(f'Corresponding Lua/config differs: {name}')
     for name in replacements:
         files[name] = source_files['Mods/aircraft/' + name]
+    for name, data in source_files.items():
+        if name.startswith('Mods/aircraft/F-23B-Player/Cockpit/Weapons/'):
+            files[name[len('Mods/aircraft/'):]] = data
+    weapons = json.loads(source_files['config/releases/independent-weapons.json'])
+    helper = args.weapons_dll.read_bytes()
+    if sha(helper) != weapons['bridge_sha256']:
+        raise SystemExit('Weapon connection DLL differs from the reviewed build')
+    files['F-23B-Player/bin/F23B_Weapons.dll'] = helper
+    files['independent-weapons.json'] = source_files['config/releases/independent-weapons.json']
     removed = sorted(n for n in files if n.startswith(F35_TEXTURE_PREFIX))
     if len(removed) != 8:
         raise SystemExit('Expected the eight retired V11 cockpit texture maps')
@@ -87,8 +101,6 @@ def main():
         if sha(data) != expected['sha256']:
             raise SystemExit(f'Visual overlay hash mismatch: {name}')
         files[name] = data
-    # Setup reuses this unchanged native patcher with a bundled Python runtime.
-    files['native_patch.py'] = source_files['native_patch.py']
     for name in ['COPYING', 'LICENSE', 'LICENSE-ASSETS.md', 'THIRD_PARTY_NOTICES.md',
                  'INSTALL.md', 'LICENSES/MIT.txt', 'config/licensing/third-party-code-reuse.json',
                  'experiments/flight-feel/docs/provenance/GRINNELLI_V2_1_PERFORMANCE_REFERENCE.md']:
@@ -111,7 +123,10 @@ def main():
         f'Source archive SHA-256: `{sha(source)}`.\n'
     ).encode()
     manifest = {k: v for k, v in baseline.items() if k not in {'files', 'input_archive_sha256'}}
-    manifest.update(kind='PRIVATE_DRAFT_PREVIEW', publication_status='PRIVATE_DRAFT',
+    manifest.update(kind='EXPERIMENTAL_PREVIEW', publication_status='FRIEND_TEST_CANDIDATE',
+                    runtime_status='Accepted September 15 flight bridge retained; independent weapon integration added.',
+                    validation_limits=['Single-player preview; full engagement envelope, VR and multiplayer are not qualified.',
+                                       'Independent IR HMD cueing and post-launch datalink/LOAL are not implemented.'],
                     source_repository='https://github.com/Coaokalo/f23b-public',
                     corresponding_source_commit=commit, release_tooling_source=commit,
                     corresponding_source_archive=NAME + '-source.zip',
@@ -135,7 +150,7 @@ def main():
     checksums = ''.join(f'{sha(data)}  {name}\n' for name, data in sorted(assets.items()))
     (output / 'SHA256SUMS.txt').write_text(checksums, encoding='utf-8')
     (output / 'RELEASE_NOTES.md').write_bytes(source_files['docs/RELEASE_NOTES.md'])
-    print(f'PASS: asset corrections applied; flight code and installer unchanged; source commit {commit}')
+    print(f'PASS: independent weapons added; accepted flight DLL and other baseline bytes retained; source commit {commit}')
     print(output)
     print(checksums)
 

@@ -1,6 +1,6 @@
 -- SPDX-License-Identifier: MIT
--- F-23 exterior weapon-door sequencer. The installed Hornet remains the sole
--- owner of SMS, ammunition, launch authorization, guidance and ballistics.
+-- F-23 exterior weapon-door sequencer. Project missiles use device 201;
+-- native gun/Sparrow controls and the accepted door motion are retained.
 -- Missile selection leaves bays closed. One trigger edge queues door opening,
 -- a native firing pulse, and prompt closure. IR stations move with their doors.
 
@@ -231,10 +231,20 @@ local function forward_hornet(command, value, label)
     return true
 end
 
+local function forward_trigger(value)
+    if state.selected_weapon == "SIDEWINDER" or state.selected_weapon == "AMRAAM" then
+        local ok, failure = pcall(function()
+            GetDevice(201):SetCommand(3200, value)
+        end)
+        if not ok then note("ERROR: independent weapon trigger: " .. tostring(failure)) end
+        return ok
+    end
+    return forward_hornet(HORNET_TRIGGER_SECOND_DETENT, value, "trigger-second-detent")
+end
+
 local function end_native_trigger()
     if state.native_trigger_down then
-        if forward_hornet(HORNET_TRIGGER_SECOND_DETENT, 0.0,
-                "trigger-second-detent") then
+        if forward_trigger(0.0) then
             state.native_trigger_down = false
             state.main_bay_hold = MAIN_BAY_POST_TRIGGER_HOLD_SECONDS
             return true
@@ -289,6 +299,14 @@ function SetCommand(command, value)
             set_weapon_mode(route.mode, route.name)
         end
         forward_hornet(route.hornet, value, "select-" .. route.name)
+        if value >= PRESS_THRESHOLD then
+            local command = route.name == "SIDEWINDER" and 3201
+                or (route.name == "AMRAAM" and 3202 or 3203)
+            local ok, failure = pcall(function()
+                GetDevice(201):SetCommand(command, value)
+            end)
+            if not ok then note("ERROR: independent weapon selection: " .. tostring(failure)) end
+        end
         return
     end
     if command ~= bridge_commands.TRIGGER_SECOND_DETENT then return end
@@ -405,8 +423,7 @@ function update()
     if state.trigger_pending then
         local ready = (gun_route and state.gun_door >= 0.999)
             or (not gun_route and state.main_bay >= 0.999)
-        if ready and forward_hornet(HORNET_TRIGGER_SECOND_DETENT, 1.0,
-                "trigger-second-detent") then
+        if ready and forward_trigger(1.0) then
             state.trigger_pending = false
             state.native_trigger_down = true
             note(string.format(

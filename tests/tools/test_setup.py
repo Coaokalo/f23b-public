@@ -25,6 +25,12 @@ class SetupTests(unittest.TestCase):
             entry = self.package / module / 'entry.lua'
             entry.parent.mkdir(parents=True, exist_ok=True)
             entry.write_bytes(b'fixture aircraft')
+        self.cockpit = self.dcs / setup.COCKPIT_SCRIPT
+        self.cockpit.parent.mkdir(parents=True, exist_ok=True)
+        self.cockpit.write_bytes(b'fixture cockpit')
+        (self.package / 'independent-weapons.json').write_text(json.dumps(dict(
+            version='fixture', binaries={'Mods/aircraft/FA-18C/bin/FA18C.dll': installer.sha(b'fixture')},
+            cockpit_script_sha256=installer.sha(b'fixture cockpit'))))
         files = {p.relative_to(self.package).as_posix(): installer.sha(p.read_bytes())
                  for p in self.package.rglob('*') if p.is_file() and p.name != 'release.json'}
         (self.package / 'release.json').write_text(json.dumps(dict(files=files, corresponding_source_commit='fixture')))
@@ -49,11 +55,14 @@ class SetupTests(unittest.TestCase):
         target.write_bytes(b'damaged')
         self.setup_action('install')
         self.assertEqual(target.read_bytes(), b'fixture aircraft')
-        self.run_action('verify')
+        self.assertEqual(self.cockpit.read_bytes(), b'fixture cockpit' + setup.HOOK)
+        for kind, path in self.targets.items():
+            self.assertEqual(path.read_bytes(), self.bases[kind])
         self.setup_action('remove')
         for module in setup.MODULES:
             self.assertFalse((self.profile / 'Mods/aircraft' / module).exists())
         self.assertFalse((self.profile / setup.STATE).exists())
+        self.assertEqual(self.cockpit.read_bytes(), b'fixture cockpit')
         for kind, path in self.targets.items():
             self.assertEqual(path.read_bytes(), self.bases[kind])
         self.assertEqual((self.profile / 'Config/controls.txt').read_bytes(), b'preserved controls')
@@ -78,7 +87,7 @@ class SetupTests(unittest.TestCase):
 
     def test_remove_refusal_restores_module_folders(self):
         self.setup_action('install')
-        self.targets['ir'].write_bytes(b'updated by DCS')
+        self.cockpit.write_bytes(self.cockpit.read_bytes() + b'changed hook')
         with self.assertRaises(ValueError):
             self.setup_action('remove')
         self.assertTrue((self.profile / 'Mods/aircraft/F-23B/entry.lua').is_file())
@@ -97,6 +106,51 @@ class SetupTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'added file'):
                 self.setup_action(action)
         self.assertEqual(added.read_bytes(), b'keep me')
+
+    def test_upgrade_restores_legacy_missiles_and_replaces_receipt(self):
+        self.run_action('install')
+        self.setup_action('install')
+        record = self.profile / setup.STATE / 'receipt.json'
+        receipt = json.loads(record.read_text())
+        receipt['source_commit'] = setup.LEGACY_RELEASE
+        record.write_text(json.dumps(receipt))
+        self.run_action('install')
+        self.setup_action('install')
+        self.assertEqual(json.loads(record.read_text())['source_commit'], 'fixture')
+        for kind, path in self.targets.items():
+            self.assertEqual(path.read_bytes(), self.bases[kind])
+
+    def test_cockpit_write_failure_rolls_back_legacy_restoration_and_modules(self):
+        self.run_action('install')
+        before = {kind: path.read_bytes() for kind, path in self.targets.items()}
+        original = installer.atomic_write
+        def fail_hook(path, data):
+            if path == self.cockpit:
+                raise OSError('simulated cockpit write failure')
+            return original(path, data)
+        with patch.object(installer, 'atomic_write', fail_hook):
+            with self.assertRaisesRegex(OSError, 'simulated'):
+                self.setup_action('install')
+        for kind, path in self.targets.items():
+            self.assertEqual(path.read_bytes(), before[kind])
+        self.assertEqual(self.cockpit.read_bytes(), b'fixture cockpit')
+        self.assertFalse((self.profile / setup.STATE).exists())
+        self.assertFalse((self.profile / 'Mods/aircraft/F-23B').exists())
+
+    def test_unsupported_binary_does_not_change_game_or_modules(self):
+        (self.dcs / 'Mods/aircraft/FA-18C/bin/FA18C.dll').write_bytes(b'new version')
+        with self.assertRaisesRegex(ValueError, 'requires DCS'):
+            self.setup_action('install')
+        self.assertEqual(self.cockpit.read_bytes(), b'fixture cockpit')
+        self.assertFalse((self.profile / setup.STATE).exists())
+
+    def test_remove_after_game_update_keeps_updated_native_files(self):
+        self.setup_action('install')
+        self.cockpit.write_bytes(b'new DCS cockpit')
+        self.targets['ir'].write_bytes(b'new DCS missile')
+        self.setup_action('remove')
+        self.assertEqual(self.cockpit.read_bytes(), b'new DCS cockpit')
+        self.assertEqual(self.targets['ir'].read_bytes(), b'new DCS missile')
 
 
 if __name__ == '__main__':

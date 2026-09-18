@@ -1,0 +1,11 @@
+{
+  "version": "2.9.29.27468",
+  "binaries": {
+    "bin/CockpitBase.dll": "3a08f21ed4e1ced2c6493f92120a2a66c598c4f9f463e51434573f5d2982414f",
+    "bin/edObjects.dll": "1472f0a171c6e1344a67c8373d06aee2ad0502ca077cd74090fad8d77af554f1",
+    "bin/WorldGeneral.dll": "97668e8e04412078f923f5fd39900c557894574fa73de4d12f998c4adb575eb6",
+    "Mods/aircraft/FA-18C/bin/FA18C.dll": "85718b936091f411ef69a9372c21dbd52ff109a49fd029ac0347848864d87634"
+  },
+  "cockpit_script_sha256": "a9478b0a824415e5c381710727948781a1cec6f0739e3cbd4279a4f87775bdb9",
+  "bridge_sha256": "f51a203c2214377be220437671c5815ea48be8bb73b0ce744aa161c1f71c947a"
+}
