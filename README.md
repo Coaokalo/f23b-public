@@ -3,9 +3,11 @@
 An experimental community aircraft for DCS World: an F-23 airframe and custom
 flight model paired with the F/A-18C Hornet cockpit and avionics.
 
-**[Friend test build: download the installer](https://github.com/Coaokalo/f23b-public/releases/tag/test-2026-09-17).**
-This prerelease is available for the first testers. Start with the setup EXE;
-the source and aircraft ZIPs are not needed for installation.
+**Friend testing is on hold for a weapon integration correction.** The current
+installer replaces stock AIM-120B and AIM-9X globally; independent MALICE and
+Block II integration is not complete. Please wait for the corrected build.
+[Existing build and removal instructions](https://github.com/Coaokalo/f23b-public/releases/tag/test-2026-09-17)
+remain available for anyone who already installed it.
 
 **[Download the aircraft](https://github.com/Coaokalo/f23b-public/releases)** Â·
 [Installation & removal](INSTALL.md) Â·

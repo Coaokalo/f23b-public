@@ -1,5 +1,10 @@
 # Release staging
 
+**Friend testing is held for correction.** The published installer applies global
+missile replacements and does not meet the independent-weapon requirement.
+Do not recommend it for a new installation. Its files and restoration instructions
+remain available for existing users. A corrected version has not been released.
+
 The repository is public so invited friends can download without a GitHub account.
 The owner authorized this on September 17; no public announcement has been made.
 The September 13 draft is retained for recovery.
