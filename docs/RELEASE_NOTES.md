@@ -46,6 +46,25 @@ Keep the installer for repair and removal. Your existing Hornet controls apply.
 
 [Known issues](https://github.com/Coaokalo/f23b-public/blob/main/KNOWN_ISSUES.md) · [Report a problem](https://github.com/Coaokalo/f23b-public/issues/new?template=bug_report.yml)
 
+## Licensing and credits
+
+Different parts of this release have different licenses.
+
+| Content | License |
+| --- | --- |
+| Combined software | **GPL-3.0-or-later**. Individual source files with MIT notices retain their MIT grant. See the [software license](https://github.com/Coaokalo/f23b-public/blob/main/LICENSE). |
+| Original documentation and eligible original creative content | **CC BY-SA 4.0**, with attribution to F-23B project contributors. See the [content terms](https://github.com/Coaokalo/f23b-public/blob/main/LICENSE-ASSETS.md). |
+| Purchased models, derived textures, and third-party content | Separate license terms apply. The software license grants no additional rights to extract or redistribute these assets. |
+
+The flight-model adaptation uses source from **Grinnelli Designs F-22A**, including work by **Branden Hooper**.
+The licensed YF-23 visual model is by **SytaPastel** on CGTrader.
+F-23B project contributors provide the adaptation and original project content.
+
+The release includes a corresponding software source ZIP.
+DCS and the Hornet remain separate required products. Their proprietary files are not included in this download.
+
+[Third-party notices and source credits](https://github.com/Coaokalo/f23b-public/blob/main/THIRD_PARTY_NOTICES.md) · [Asset license details](https://github.com/Coaokalo/f23b-public/blob/main/LICENSE-ASSETS.md)
+
 <details>
 <summary>Other downloads</summary>
 
