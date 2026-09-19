@@ -2,7 +2,7 @@
 
 | Location | Purpose |
 | --- | --- |
-| `Mods/aircraft/` | Exact Lua and configuration files from the prepared preview |
+| `Mods/aircraft/` | Lua and configuration files for the aircraft release |
 | `experiments/independent-weapons/` | Version-guarded primary-cockpit weapon connection |
 | `experiments/native-force-bridge/` | Windows native bridge, callback generators, propulsion and control tests |
 | `experiments/flight-feel/` | Flight-model library, adapter, tests, and performance report |

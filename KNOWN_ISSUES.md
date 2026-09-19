@@ -1,4 +1,4 @@
-# Preview limitations
+# Known limitations
 
 - Windows and DCS 2.9.29.27468 with an installed, activated F/A-18C Hornet are required.
   The independent weapon connection uses a version-specific cockpit interface;
@@ -10,7 +10,7 @@
   launch envelopes and the full long-range engagement envelope are not qualified.
 - Independent Block II radar cueing is implemented. HMD cueing is not connected to
   the independent seeker. Post-launch datalink/LOAL is not implemented.
-- Flight behavior remains experimental; full-envelope accuracy is not established.
+- Full flight-envelope accuracy is not established.
   Reference tables derive from a community F-22 model rather than measured YF-23 data.
 - DCS repair can remove the cockpit connection. Rerun setup on a supported version;
   after a game update, wait for a compatible build. See [installation](INSTALL.md).

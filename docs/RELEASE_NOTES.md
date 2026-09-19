@@ -1,4 +1,4 @@
-An experimental F-23B aircraft for DCS World with custom flight dynamics and F/A-18C Hornet avionics.
+The F-23B Black Widow II aircraft for DCS World with custom flight dynamics and F/A-18C Hornet avionics.
 Includes internal weapon bays, AIM-424 MALICE, and project AIM-9X Block II.
 
 ## [Download the Windows installer](https://github.com/Coaokalo/f23b-public/releases/download/test-2026-09-18/F23B-preview-2026-09-18-Setup.exe)
@@ -10,11 +10,11 @@ Includes internal weapon bays, AIM-424 MALICE, and project AIM-9X Block II.
 | Operating system | Windows 64-bit |
 | DCS World | **2.9.29.27468** |
 | Required module | **DCS: F/A-18C Hornet**, installed and activated |
-| Play mode | Single-player experimental preview |
+| Play mode | Single-player |
 
 ![F-23B Black Widow II above the clouds in DCS World](https://raw.githubusercontent.com/Coaokalo/f23b-public/a25e04b/docs/images/f23b-exterior.jpg)
 
-*Development capture. Some visual details can differ from this preview.*
+*Development capture. Some visual details can differ from this release.*
 
 ## Included
 
@@ -36,9 +36,9 @@ Keep the installer for repair and removal. Your existing Hornet controls apply.
 
 [Full installation and removal guide](https://github.com/Coaokalo/f23b-public/blob/main/INSTALL.md)
 
-## Preview limits
+## Known limitations
 
-- Flight dynamics and weapon performance remain experimental. Full flight and weapon envelopes are not verified.
+- Full flight and weapon envelopes are not verified.
 - AIM-9X Block II helmet cueing and post-launch datalink/LOAL are not implemented.
 - Some weapon pages and launch-zone calculations retain Hornet behavior.
 - VR and multiplayer compatibility are unverified. The cockpit connection can affect multiplayer integrity checks.

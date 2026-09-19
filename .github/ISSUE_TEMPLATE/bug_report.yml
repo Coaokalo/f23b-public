@@ -1,13 +1,13 @@
 name: Bug report
-description: Report a problem with the F-23B preview.
+description: Report a problem with the F-23B.
 title: "[Bug] "
 body:
   - type: input
     id: build
     attributes:
-      label: Preview build
-      description: Release name or corresponding_source_commit from the download's release.json.
-      placeholder: preview-2026-09-13
+      label: Release
+      description: Use the name or date shown on the GitHub release page.
+      placeholder: September 18, 2026 (test-2026-09-18)
   - type: input
     id: dcs-version
     attributes:

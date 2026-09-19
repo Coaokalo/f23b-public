@@ -1,4 +1,4 @@
-# Install or remove the F-23B preview
+# Install or remove the F-23B
 
 Requires Windows, **DCS World 2.9.29.27468**, and an installed and activated
 **DCS: F/A-18C Hornet**. No separate Python installation is needed.
@@ -6,7 +6,7 @@ Requires Windows, **DCS World 2.9.29.27468**, and an installed and activated
 ## Install
 
 1. Download **F23B-preview-2026-09-18-Setup.exe** from
-   [Releases](https://github.com/Coaokalo/f23b-public/releases).
+   [the release page](https://github.com/Coaokalo/f23b-public/releases/tag/test-2026-09-18).
 2. Close DCS, its updater and ModelViewer. Run setup and allow its administrator prompt.
 3. Confirm your **DCS game folder** and **Saved Games DCS profile**.
 4. Click **Install / Repair**, then start an F-23B Quick Start mission.
@@ -14,7 +14,7 @@ Requires Windows, **DCS World 2.9.29.27468**, and an installed and activated
 MALICE and AIM-9X Block II are independent weapons. **Stock AIM-120B and AIM-9X
 remain unchanged.** Setup adds an F-23B-only connection to the installed Hornet
 cockpit. No Eagle Dynamics scripts or binaries are included in the download.
-This connection can affect multiplayer integrity checks; the preview targets single-player.
+This connection can affect multiplayer integrity checks. This release is intended for single-player.
 
 Your Hornet controls apply. Select AMRAAM for MALICE or Sidewinder for Block II;
 use the normal trigger with master arm on. The bay opens before release. MALICE
@@ -31,7 +31,7 @@ the stock missile files automatically and retains the previous backups.
 
 After DCS repair, run **Install / Repair** again. A newer DCS version needs a
 compatible F-23B build: setup and the weapon connection reject unknown binaries.
-Use one managed Saved Games profile per DCS installation in this preview.
+Use one managed Saved Games profile per DCS installation with this release.
 
 To remove, close DCS and use **Remove** in the same installer. It removes its
 aircraft folders and cockpit connection, preserving profile controls and missions.
