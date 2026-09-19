@@ -6,7 +6,8 @@ flight model paired with the F/A-18C Hornet cockpit and avionics.
 Includes independent AIM-424 MALICE and AIM-9X Block II weapons. Stock missiles
 retain their original behavior.
 
-**[Download the aircraft](https://github.com/Coaokalo/f23b-public/releases)** ·
+**[Download the Windows installer](https://github.com/Coaokalo/f23b-public/releases/download/test-2026-09-18/F23B-preview-2026-09-18-Setup.exe)** ·
+[Release details](https://github.com/Coaokalo/f23b-public/releases/tag/test-2026-09-18) ·
 [Installation & removal](INSTALL.md) ·
 [Report a bug](https://github.com/Coaokalo/f23b-public/issues/new?template=bug_report.yml)
 
