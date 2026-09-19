@@ -14,8 +14,7 @@
   Reference tables derive from a community F-22 model rather than measured YF-23 data.
 - DCS repair can remove the cockpit connection. Rerun setup on a supported version;
   after a game update, wait for a compatible build. See [installation](INSTALL.md).
-- The installer is unsigned. A friend's full installation and flight report remains
-  the purpose of this preview; automated checks are not that user's acceptance.
+- The installer is unsigned.
 
 [Report a bug](https://github.com/Coaokalo/f23b-public/issues/new?template=bug_report.yml)
 with the build ID, DCS version, mission, and reproduction steps.

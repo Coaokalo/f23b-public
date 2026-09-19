@@ -49,10 +49,13 @@
     "experiments/native-force-bridge/native_exports.txt": "3ac19e001f5c10919650360efdab4f3c4c594a719a6dcfa689e2faa41691f167",
     "experiments/native-force-bridge/native_loader.cpp": "939a8da65be3b4e27a828c231370494615e4b1e8fa19036b9d4286d4cac38ff6",
     "experiments/native-force-bridge/propulsion.hpp": "7d37fb693ec03b22c18f6d9271116cb782cb0128f749f1eb9e97c137aed7f46b",
-    "experiments/native-force-bridge/propulsion_tests.cpp": "f79110c676f112b4e9756dd0b4525576cf99c6049e70144001f3d22a3d955a70",
-    "Mods/aircraft/F-23B/HORNET-VISUAL-DEPENDENCY.md": "270373c04334117e5ff0c9a6c97aae6a3af3be0d45716b1bfb63084bc36bb82c"
+    "experiments/native-force-bridge/propulsion_tests.cpp": "f79110c676f112b4e9756dd0b4525576cf99c6049e70144001f3d22a3d955a70"
   },
   "modified_files": {
+    "Mods/aircraft/F-23B/HORNET-VISUAL-DEPENDENCY.md": {
+      "upstream_sha256": "270373c04334117e5ff0c9a6c97aae6a3af3be0d45716b1bfb63084bc36bb82c",
+      "reason": "Describe installed Hornet dependencies without private development wording."
+    },
     "native_patch.py": {
       "upstream_sha256": "9035ea9f5774f7f938b64c62781de31a42784070f7b0d9015f1af96f4293169b",
       "reason": "Add verified legacy restoration for the independent-weapon installer; preserve existing recovery support."

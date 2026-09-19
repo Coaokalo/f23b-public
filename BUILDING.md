@@ -37,14 +37,14 @@ The installer tests use temporary fixtures. They do not patch an installed game.
 Hosted CI runs these checks on Windows and Linux. The full native bridge and
 real SDK checks require a local Windows installation.
 
-## Private preview packaging
+## Release packaging
 
 `tools/package_preview.py` combines an exact previously prepared runtime ZIP
 with the committed source, content corrections and a private visual-model
-overlay. The input is the September 15 accepted aircraft archive, pinned in
+overlay. The input archive is pinned in
 `config/releases/preview-baseline.json`;
 the three revised models are pinned in `config/releases/asset-fixes.json`.
-It preserves the accepted flight bridge and baseline assets, verifies the committed source,
+It preserves the pinned flight bridge and assets, verifies the committed source,
 and creates aircraft/source ZIPs and SHA-256 checksums in an ignored output folder.
 Pillow renders the original menu graphics from code; no old artwork is used.
 Quick Start mission corrections update the briefing and required Core/Player

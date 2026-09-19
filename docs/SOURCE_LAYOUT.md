@@ -13,11 +13,10 @@
 | `tools/` | Source verification and draft packaging |
 | `config/licensing/` | Attribution for included third-party-derived software |
 | `config/releases/` | Exact private runtime-input inventory and hashes |
-| `docs/images/` | Two curated DCS development screenshots for the project page |
+| `docs/images/` | Project screenshots |
 
 The `experiments` paths are retained so the corresponding source can be built
-without changing the accepted runtime code. They describe the source's origin,
-not a second installation method.
+using the existing build scripts.
 
 The Git tree contains software, documentation, and the two documentation screenshots
 listed in `config/releases/documentation-images.json`. Runtime images, textures,

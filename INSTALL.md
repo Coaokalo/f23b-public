@@ -26,9 +26,8 @@ payload, not an extra installation step. The source ZIP is for developers.
 
 ## Upgrade, repair, or remove
 
-The corrected installer upgrades the September 17 setup directly. It restores
-verified original missile files from the old setup's backup before enabling the
-independent weapons. Existing backups remain available for recovery.
+Upgrading from the September 17 release: run **Install / Repair**. Setup restores
+the stock missile files automatically and retains the previous backups.
 
 After DCS repair, run **Install / Repair** again. A newer DCS version needs a
 compatible F-23B build: setup and the weapon connection reject unknown binaries.

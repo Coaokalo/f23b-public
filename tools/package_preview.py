@@ -65,6 +65,7 @@ def main():
     with zipfile.ZipFile(io.BytesIO(source)) as z:
         source_files = {n: z.read(n) for n in z.namelist() if not n.endswith('/')}
     replacements = {'F-23B/Shapes/F-23B.lods', 'F-23B/Encyclopedia/Plane/F-23B.txt',
+                    'F-23B/HORNET-VISUAL-DEPENDENCY.md',
                     'F-23B/Weapons/F23B_AIM424_MALICE.lua',
                     'F-23B/Weapons/F23B_AIM9X_BLOCKII.lua',
                     'F-23B-Player/Cockpit/ExteriorVisuals/ExteriorVisualAdapter.lua'}

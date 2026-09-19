@@ -3,8 +3,8 @@
 An experimental community aircraft for DCS World: an F-23 airframe and custom
 flight model paired with the F/A-18C Hornet cockpit and avionics.
 
-MALICE and project AIM-9X Block II are independent weapons in the corrected
-friend-test build. Stock missiles retain their original behavior.
+Includes independent AIM-424 MALICE and AIM-9X Block II weapons. Stock missiles
+retain their original behavior.
 
 **[Download the aircraft](https://github.com/Coaokalo/f23b-public/releases)** ·
 [Installation & removal](INSTALL.md) ·
@@ -31,8 +31,7 @@ DCS: F/A-18C Hornet. No separate Python installation is needed.**
 3. Start DCS and select an F-23B Quick Start mission.
 
 Setup installs an F-23B-only cockpit connection and may affect multiplayer
-integrity checks. Keep the installer for repair and removal. The September 17
-installer's verified global missile replacements are restored during upgrade.
+integrity checks. Keep the installer for repair and removal.
 See [installation and removal](INSTALL.md).
 
 ![Hornet pilot cockpit used by the F-23B above sunset clouds](docs/images/f23b-cockpit.jpg)
