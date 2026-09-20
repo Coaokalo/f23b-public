@@ -1,5 +1,8 @@
 # Contributing
 
+Follow the [code of conduct](CODE_OF_CONDUCT.md) in project discussions.
+Report security vulnerabilities privately through the [security policy](SECURITY.md).
+
 Include a description of the problem, reproduction steps, and relevant test
 results with a proposed change. [BUILDING.md](BUILDING.md) describes the local
 checks and the distinction between offline and in-game validation.
