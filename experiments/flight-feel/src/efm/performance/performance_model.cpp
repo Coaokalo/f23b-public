@@ -613,8 +613,13 @@ Output Model::step(double dt_s, const Atmosphere& atmosphere,
     const auto smooth = [](double x) { return x * x * (3.0 - 2.0 * x); };
     const double yaw_airborne_blend = smooth(airborne_yaw_time_s_ / 0.5)
         * smooth(clamp((ias_knots - 10.0) / 40.0, 0.0, 1.0));
+    // The fixed rate term is also a handling aid. At taxi speed it opposed
+    // native nosewheel turns. Keep 10 percent on the wheels and restore it
+    // between 30 and 70 KIAS, so takeoff and landing rolls keep it.
+    const double ground_rate_blend = on_ground
+        ? 0.1 + 0.9 * smooth(clamp((ias_knots - 30.0) / 40.0, 0.0, 1.0)) : 1.0;
     output_.moment_n_m.y += -(body.angular_rate_rad_s.y
-        + yaw_airborne_blend * body.sideslip_rad) * (q + 50000.0);
+        + yaw_airborne_blend * body.sideslip_rad) * (q + 50000.0 * ground_rate_blend);
 
     output_.shake_amplitude = 0.0;
     if (input.speedbrake) { output_.shake_amplitude += clamp((ref::speedbrake_drag + 1.0) * mach, 0.0, 2.0) / 6.0; }

@@ -1,10 +1,8 @@
 model = {
 	lods = {
-		{"F-23B-visual.edm", 1000.0};
-		{"F-23B-visual-medium.edm", 5000.0};
-		{"F-23B-visual-far.edm", 50000.0};
+		{"F-23B-visual.edm", 50000.0};
 	};
-	-- Distance models preserve the near model's connectors and animation.
-	-- Contact geometry is independent of visual detail selection.
+	-- Measured F-23 wheel contact and airframe collision lines.
+	-- Built by experiments/native-force-bridge/build_collision.py.
 	collision_shell = "F-23B-contact.edm";
 }

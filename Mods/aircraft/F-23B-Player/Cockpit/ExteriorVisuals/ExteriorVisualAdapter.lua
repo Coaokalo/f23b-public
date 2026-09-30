@@ -1,6 +1,6 @@
 -- SPDX-License-Identifier: MIT
--- F-23 exterior weapon-door sequencer. Project missiles use device 201;
--- native gun/Sparrow controls and the accepted door motion are retained.
+-- F-23 exterior weapon-door sequencer. The installed Hornet remains the sole
+-- owner of SMS, ammunition, launch authorization, guidance and ballistics.
 -- Missile selection leaves bays closed. One trigger edge queues door opening,
 -- a native firing pulse, and prompt closure. IR stations move with their doors.
 
@@ -52,6 +52,10 @@ local NOZZLE_CLOSE_RESPONSE_SECONDS = 0.30
 local bridge_commands = dofile(
     LockOn_Options.script_path .. "BridgeCommands.lua")
 local self = GetSelf()
+local update_radar_upgrade = dofile(LockOn_Options.script_path .. "RadarUpgrade.lua")
+-- Native Hornet seeker cue: point the Sidewinder seeker at a verified hostile radar target.
+local ir_seeker_azimuth = get_param_handle("WS_IR_MISSILE_SEEKER_DESIRED_AZIMUTH")
+local ir_seeker_elevation = get_param_handle("WS_IR_MISSILE_SEEKER_DESIRED_ELEVATION")
 self:listen_command(bridge_commands.TRIGGER_SECOND_DETENT)
 self:listen_command(bridge_commands.SELECT_SIDEWINDER)
 self:listen_command(bridge_commands.SELECT_AMRAAM)
@@ -146,6 +150,10 @@ local function update_light_blackout()
     local blackout = not ok or type(aa) ~= "number" or type(ag) ~= "number"
         or aa > 0.001 or ag > 0.001
     write_argument(LIGHT_BLACKOUT_ARGUMENT, blackout and 1.0 or 0.0)
+    -- Both lamps on can mean lamp test. Unknown/ambiguous mode must not
+    -- send an automatic HOTAS command into another native sensor mode.
+    return ok and type(aa) == "number" and type(ag) == "number"
+        and aa > 0.001 and ag <= 0.001
 end
 
 local function trim(value)
@@ -206,7 +214,7 @@ local function acquire_hotas()
     return nil
 end
 
-local function forward_hornet(command, value, label)
+local function forward_hornet(command, value, label, quiet)
     local hotas = acquire_hotas()
     if hotas == nil then
         if not state.hotas_error_noted then
@@ -226,25 +234,17 @@ local function forward_hornet(command, value, label)
             .. ": " .. tostring(failure))
         return false
     end
-    note(string.format("forwarded Hornet HOTAS: %s command=%d value=%.1f",
-        label, command, value))
-    return true
-end
-
-local function forward_trigger(value)
-    if state.selected_weapon == "SIDEWINDER" or state.selected_weapon == "AMRAAM" then
-        local ok, failure = pcall(function()
-            GetDevice(201):SetCommand(3200, value)
-        end)
-        if not ok then note("ERROR: independent weapon trigger: " .. tostring(failure)) end
-        return ok
+    if not quiet then
+        note(string.format("forwarded Hornet HOTAS: %s command=%d value=%.1f",
+            label, command, value))
     end
-    return forward_hornet(HORNET_TRIGGER_SECOND_DETENT, value, "trigger-second-detent")
+    return true
 end
 
 local function end_native_trigger()
     if state.native_trigger_down then
-        if forward_trigger(0.0) then
+        if forward_hornet(HORNET_TRIGGER_SECOND_DETENT, 0.0,
+                "trigger-second-detent") then
             state.native_trigger_down = false
             state.main_bay_hold = MAIN_BAY_POST_TRIGGER_HOLD_SECONDS
             return true
@@ -299,14 +299,6 @@ function SetCommand(command, value)
             set_weapon_mode(route.mode, route.name)
         end
         forward_hornet(route.hornet, value, "select-" .. route.name)
-        if value >= PRESS_THRESHOLD then
-            local command = route.name == "SIDEWINDER" and 3201
-                or (route.name == "AMRAAM" and 3202 or 3203)
-            local ok, failure = pcall(function()
-                GetDevice(201):SetCommand(command, value)
-            end)
-            if not ok then note("ERROR: independent weapon selection: " .. tostring(failure)) end
-        end
         return
     end
     if command ~= bridge_commands.TRIGGER_SECOND_DETENT then return end
@@ -327,6 +319,10 @@ function SetCommand(command, value)
         -- bounded native trigger pulse after the door reaches open.
     end
 end
+
+-- Restore the player pose before device post-initialization. AI keeps its livery pose.
+write_argument(IR_CARRIER_ARGUMENT, 0.0)
+note("player IR carrier pose at device load: argument1013=" .. read_aircraft_argument(IR_CARRIER_ARGUMENT))
 
 make_default_activity(UPDATE_STEP)
 
@@ -360,7 +356,7 @@ function post_initialize()
 end
 
 function update()
-    update_light_blackout()
+    local air_to_air = update_light_blackout()
     if state.delivered_main_bay ~= nil and state.delivered_gun_door ~= nil then
         local persisted_main = read_aircraft_argument(MAIN_BAY_ARGUMENT)
         local persisted_gun = read_aircraft_argument(GUN_DOOR_ARGUMENT)
@@ -401,6 +397,31 @@ function update()
 
     local gun_route = state.selected_mode == MODE_GUN
         or gun_effect or state.gun_effect_hold > 0.0
+
+    -- Exclude friendly/neutral tracks before native automatic ranking.
+    -- The gun route bypasses ranking. IR keeps native seeker acquisition.
+    local ir_weapon = state.selected_weapon == "SIDEWINDER"
+        or state.selected_weapon == "9X" or state.selected_weapon == "9M"
+    local radar_weapon = air_to_air and state.selected_mode == MODE_MISSILE
+        and not ir_weapon and not gun_route
+    local radar_target, target_side, cue_az, cue_el, cue_valid = update_radar_upgrade(
+        air_to_air and not gun_route, ir_weapon and air_to_air)
+    if ir_weapon and cue_valid and target_side == 2 then
+        ir_seeker_azimuth:set(cue_az)
+        ir_seeker_elevation:set(cue_el)
+    end
+    if radar_weapon and target_side ~= 2 then
+        if state.trigger_pending or state.native_trigger_down then
+            state.trigger_pending = false
+            state.trigger_tap_remaining = 0.0
+            end_native_trigger()
+            note("radar shot cancelled: no verified opposing target; id="
+                .. tostring(radar_target) .. " side=" .. tostring(target_side))
+            if type(print_message_to_user) == "function" then
+                print_message_to_user("F-23B: radar shot inhibited. No verified hostile target.")
+            end
+        end
+    end
     local main_route = not gun_route and (state.trigger_pending
         or state.native_trigger_down or state.main_bay_hold > 0.0)
     local main_target = main_route and 1.0 or 0.0
@@ -423,7 +444,8 @@ function update()
     if state.trigger_pending then
         local ready = (gun_route and state.gun_door >= 0.999)
             or (not gun_route and state.main_bay >= 0.999)
-        if ready and forward_trigger(1.0) then
+        if ready and forward_hornet(HORNET_TRIGGER_SECOND_DETENT, 1.0,
+                "trigger-second-detent") then
             state.trigger_pending = false
             state.native_trigger_down = true
             note(string.format(

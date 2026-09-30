@@ -27,6 +27,10 @@ int main() {
     Model damping;
     require(damping.step(.01, air, mass, body, input).moment_n_m.y < 0,
         "ground yaw damping lost");
+    // Taxi turns keep 10 percent of the fixed 50 kNm s/rad rate term.
+    Model taxi;
+    require(std::abs(taxi.step(.01, air, mass, body, input).moment_n_m.y + 500) < 1,
+        "taxi yaw damping not reduced to 10 percent");
     body.angular_rate_rad_s.y = 0;
     // A light crosswind retains small physical forces, not the old 5 kNm aid.
     body.wind_body_m_s = {-2, 0, -.2};

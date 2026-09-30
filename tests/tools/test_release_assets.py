@@ -56,14 +56,24 @@ class ContentTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'module requirements'):
             fix_mission(source.getvalue())
 
-    def test_every_distance_model_is_pinned_and_distances_increase(self):
+    def test_every_shipped_model_reference_is_pinned(self):
+        pin = json.loads((ROOT / 'config/releases/release-2026-09-29.json').read_text())
+        shipped = {n for n in pin['runtime_files'] if n not in pin['removed']}
         text = (ROOT / 'Mods/aircraft/F-23B/Shapes/F-23B.lods').read_text()
-        entries = re.findall(r'\{"([^"]+\.edm)",\s*([\d.]+)\}', text)
-        models = json.loads((ROOT / 'config/releases/asset-fixes.json').read_text())['visual_models']
-        self.assertEqual({'F-23B/Shapes/'+name for name, _ in entries}, set(models))
-        distances = [float(distance) for _, distance in entries]
-        self.assertEqual(distances, sorted(set(distances)))
-        self.assertGreaterEqual(len(entries), 3)
+        models = re.findall(r'"([^"]+\.edm)"', text)
+        self.assertTrue(models)
+        for name in models:
+            self.assertIn('F-23B/Shapes/' + name, shipped)
+
+    def test_removed_files_are_unused_by_shipped_scripts(self):
+        pin = json.loads((ROOT / 'config/releases/release-2026-09-29.json').read_text())
+        scripts = [p.read_text(encoding='utf-8', errors='replace')
+                   for p in (ROOT / 'Mods/aircraft').rglob('*') if p.is_file()]
+        for name in pin['removed']:
+            if name.endswith('.lua'):
+                self.assertFalse(any(Path(name).parent.name + '/' + Path(name).name in s for s in scripts), name)
+            if name.endswith('.png'):
+                self.assertFalse(any(Path(name).stem in s for s in scripts), name)
 
 
 if __name__ == '__main__':

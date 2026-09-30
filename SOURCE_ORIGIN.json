@@ -1,29 +1,31 @@
 {
   "schema_version": 1,
-  "description": "Curated software source with accepted September 15 aircraft registration and visual configuration. Flight bridge and weapon definitions retain the prior source bytes. No private development history imported.",
-  "runtime_source": "0eab91677b32a08bfff8022b92ff598eaa7f9dbe",
-  "flight_source": "46cc8cbf387d",
-  "source_archive_sha256": "8b1adea9247ea36e6cc542b90f0cb1db02fc3ab2aab9d012c91322535894cc81",
+  "description": "Curated software source. Aircraft scripts match the build flown on September 29, 2026; flight bridge and native radar source match private commit 2b73c7572c44. No private development history imported.",
+  "runtime_source": "2b73c7572c44e02145132925a10860cdc9f5171b",
+  "flight_source": "2b73c7572c44",
   "unchanged_files": {
     "COPYING": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
     "LICENSE": "83ecf0e27062074fface00de7fce3bfc492a15a679c4a0574a534a13f87e259c",
     "LICENSES/MIT.txt": "b2ffc91f892b8977a39d4c5e592cea65a29c43c119eb9ec88bda34ce618f7c75",
     "Mods/aircraft/F-23B-Player/Cockpit/ExteriorVisuals/BridgeCommands.lua": "8d196bf834f0c340c0265abe512cc923be00fca2da1130a0dfddc794059335b0",
-    "Mods/aircraft/F-23B-Player/Cockpit/ExteriorVisuals/BuildInfo.lua": "26327013918b0db07cfa65a6abf479017be85527aaef8025edf9e958c5b49ddd",
+    "Mods/aircraft/F-23B-Player/Cockpit/ExteriorVisuals/ExteriorVisualAdapter.lua": "f1e29e1af13b700c0de8d2f80435cfc14d3daa28a526ccd10044e0b069b25840",
+    "Mods/aircraft/F-23B-Player/Cockpit/ExteriorVisuals/RadarUpgrade.lua": "25c232745972317e80c005e25595a3025d9f3f11700ca3ce483767c8d8211c54",
     "Mods/aircraft/F-23B-Player/Cockpit/ExteriorVisuals/device_init.lua": "ea83bca0fd4c71f30d31299df4fd5fdee005f6f01821225ec6c50d566046d28a",
     "Mods/aircraft/F-23B-Player/Cockpit/ExteriorVisuals/mainpanel_init.lua": "97dfa1765db99940be84955b322d8fb286c04dfb316eb46d3a7debb81d674d18",
     "Mods/aircraft/F-23B-Player/Input/F-23B/bridge_profile.lua": "0e2c7aa30958e80b860b85b278ee4c6d154dbc8aff3c59c206fb32dce8cd8845",
     "Mods/aircraft/F-23B-Player/Input/F-23B/joystick/default.lua": "933deb376b1ef217720aedac20f2f84a783b9f2c617828f1b9d41e456c93b454",
     "Mods/aircraft/F-23B-Player/Input/F-23B/keyboard/default.lua": "454dec3b61774be95b805ac4c383bbf081b54df50d4f5f097de7c9edacadd11c",
     "Mods/aircraft/F-23B-Player/Input/F-23B/name.lua": "405c6cc3cf823c968aa675464c05326f96e5fb5ad0057ad54cf96c3429accfa3",
-    "Mods/aircraft/F-23B-Player/entry.lua": "590816711cf686e33e160f97aa090f3f6390181e1d7848ef2b953b72b2fac497",
-    "Mods/aircraft/F-23B-Player/ground_config.lua": "79b1230ec988e1ad02424d22791b50c6a2b8a5d6d21c104d5894cc64cc48589e",
+    "Mods/aircraft/F-23B-Player/entry.lua": "a7034366ca018f4cf9300605f4267cad898bf42ac5c87b3a7d934b2c6d542194",
     "Mods/aircraft/F-23B/Entry/VisualConfig.lua": "f82e70b75b1f0320e3561192746cf5fa863c5a7ee4fb655a94fd7b3e8bbd4f18",
-    "Mods/aircraft/F-23B/F-23B.lua": "d919f37eb697185ac0792b0f3eec427bdda65876ffe01740fdc5e6220f63e7fd",
-    "Mods/aircraft/F-23B/Liveries/F-23B/Standard/description.lua": "1e78e38a59b5dcd9a8ec923f338d6156946521a2fd0103266ed42465aadcfab7",
-    "Mods/aircraft/F-23B/Liveries/F-23B/USA/description.lua": "62c8c149dfa7ab62a25c90e0cd90671da481795a08cc2244d598e34460ac6074",
+    "Mods/aircraft/F-23B/F-23B.lua": "06e008ea4552ec0ba3fb484b357f6773dc0ee2ede14787385df6d38c27254c94",
+    "Mods/aircraft/F-23B/Liveries/F-23B/Standard/description.lua": "90d6497157129423de6d1df5ad0d5e7929a4e7c8100524db30d2562d2930841b",
+    "Mods/aircraft/F-23B/Liveries/F-23B/USA/description.lua": "e9c7e74af5be498c8cee916e8efbddb28e21e526e6405a4fac8d0a746ee0c244",
     "Mods/aircraft/F-23B/Missions/QuickStart/quickstart.lua": "971b42e42925c29c4b7278fb85e643305880e2fe750ba6cbfe87d415a987f342",
+    "Mods/aircraft/F-23B/Shapes/F-23B.lods": "08f98c287a79b19ce2eec9b2189320970d64e795af53b1cfab35f5a0c1e9173b",
     "Mods/aircraft/F-23B/UnitPayloads/F-23B.lua": "46b0fd00706469ad17d700d765aad1a728e7fcf0bafadf3a4a172d5106ae47e2",
+    "Mods/aircraft/F-23B/Weapons/F23B_AIM424_MALICE.lua": "90067312ccc36fc99186a652ae4e85248463955d2478cc0b5612db806c4f781c",
+    "Mods/aircraft/F-23B/Weapons/F23B_AIM9X_BLOCKII.lua": "744e402aeb2f798a1e47f4e121b011f188a20ff0f47cef93c2912bab9633d6a2",
     "Mods/aircraft/F-23B/entry.lua": "8bcdf76922f6484216679b7af5b3d1d737cf4a5116b79a97d5e3fea69c02ec2a",
     "experiments/flight-feel/CMakeLists.txt": "363acf9bc20fce1479500de89b04ae3ac123b876873452a7cf08fa4f576b0c3d",
     "experiments/flight-feel/docs/provenance/GRINNELLI_V2_1_PERFORMANCE_REFERENCE.md": "6da5da14a5658735ea7e80fca8788345667ce0f44711ffd8a839ab1b6b5ded96",
@@ -32,51 +34,69 @@
     "experiments/flight-feel/src/efm/performance/include/f23b/performance/engine_mapping.hpp": "8a4ec520763e6e4e40c1b0edf43b286dbae15d543c0b9b6ef470bc9908e9f3b3",
     "experiments/flight-feel/src/efm/performance/include/f23b/performance/grinnelli_v21_reference.hpp": "c285d05a53caf662c465752378165af6bc4c47c970c06b5c7c3654a9beecdffc",
     "experiments/flight-feel/src/efm/performance/include/f23b/performance/performance_model.hpp": "515949830fab5cae94b92ec577f07e70cee0978dd4f25a5956333c213b5c69d5",
-    "experiments/flight-feel/src/efm/performance/performance_model.cpp": "a87871360e41523ae76ad7a1f5795a1e783855c87e33cd239834ff4de2af16f2",
+    "experiments/flight-feel/src/efm/performance/performance_model.cpp": "8c5a463f8ab80edc4061b68fd4cb7a8880bce6df12dcc165ea24cfa68d86120e",
     "experiments/flight-feel/tests/native/f23b_performance_adapter_tests.cpp": "479efdb730e88ce464204d2f54501283d4975dfc3d3564e05c613bb76ca3128c",
     "experiments/flight-feel/tests/native/f23b_performance_engine_mapping_tests.cpp": "46d60fb82a1cc67ce3a75d549587dabda409d69bccb12cd5e9580efc0b8e2455",
     "experiments/flight-feel/tests/native/f23b_performance_model_tests.cpp": "1664344f84a12d90ea51c2bf10aecb271fadbc03984c928ba0ac4af618bbf6e7",
     "experiments/flight-feel/tests/native/f23b_roll_stability_tests.cpp": "6670ee212cd5b2c4567d8c2431a76bc57f15698cd114c1d5b4a0b3bfbc269cfb",
     "experiments/flight-feel/tests/stubs/FM/wHumanCustomPhysicsAPI.h": "6a92d3d0f04f382280f71e31d1c4bbfd565529d28f42b02cc1d309173ebf89ac",
     "experiments/flight-feel/tools/performance/performance_report.cpp": "e48f8b5016e3b59f85a0a2ecf956019cbf95c02c5962699cd28b10e4dacebcec",
-    "experiments/native-force-bridge/CMakeLists.txt": "e5deb491edc309bd15ccc00ac53a9c32c952262bbd18335b2aa9aac38d234edd",
-    "experiments/native-force-bridge/bridge.cpp": "7d9831768ef5d946ad223493b704e77a9264826c087cf4e5d0047af01c50b0f9",
-    "experiments/native-force-bridge/control_output_tests.cpp": "9dcc1d1644f8e49c079f62d8b2e6f2a053dc1af37bf45e3200eb3e7b535e899a",
+    "experiments/native-force-bridge/CMakeLists.txt": "22427fba5b1e5e7ab35e98e6fd6499424f5d0073d83608be0f027d1f1ea9761a",
+    "experiments/native-force-bridge/bridge.cpp": "fb8976c104559dd42dcd5c6ffae14237a10e3f00087bfea9d03ec87d027cc0f7",
+    "experiments/native-force-bridge/control_output_tests.cpp": "0d74b19e90ec7c7ef5bc849655383fb0e64a531275537d683aa342ab978d177d",
     "experiments/native-force-bridge/generate.py": "c524ceb43b9be9fe6472a8bb3201702250d2bda441c537105c06b448eb47320f",
     "experiments/native-force-bridge/generate_forwarding.py": "828893127125615d646506e115d51e7db66fd2e2369fa00fa7e11f6be06638e2",
-    "experiments/native-force-bridge/ground_config.lua": "79b1230ec988e1ad02424d22791b50c6a2b8a5d6d21c104d5894cc64cc48589e",
-    "experiments/native-force-bridge/ground_yaw_tests.cpp": "c76091da8cd1c84c9511977bd7e60ca05dfb7018e45ab00eeb5fd8a54db8fca9",
+    "experiments/native-force-bridge/ground_config.lua": "1536a0a942724278d3d63f53e428d56911f3e79d626a62371fa7bbd823fcfbf6",
+    "experiments/native-force-bridge/ground_yaw_tests.cpp": "81a18f63756ad39a75a63b97e22d723746c09743d2ae26a6e870e621170db9bb",
     "experiments/native-force-bridge/native_exports.txt": "3ac19e001f5c10919650360efdab4f3c4c594a719a6dcfa689e2faa41691f167",
-    "experiments/native-force-bridge/native_loader.cpp": "939a8da65be3b4e27a828c231370494615e4b1e8fa19036b9d4286d4cac38ff6",
+    "experiments/native-force-bridge/native_loader.cpp": "b0f0ad3faf3b7628dcacc42b4de2c283e713ef0ac2fea1bec03c2b51009e9225",
     "experiments/native-force-bridge/propulsion.hpp": "7d37fb693ec03b22c18f6d9271116cb782cb0128f749f1eb9e97c137aed7f46b",
-    "experiments/native-force-bridge/propulsion_tests.cpp": "f79110c676f112b4e9756dd0b4525576cf99c6049e70144001f3d22a3d955a70"
+    "experiments/native-force-bridge/propulsion_tests.cpp": "f79110c676f112b4e9756dd0b4525576cf99c6049e70144001f3d22a3d955a70",
+    "experiments/native-force-bridge/steering.hpp": "19dac44d26a3f33ca634762ae846d4c4b7478cfcfd9b3794bc6150e0bbbb4431",
+    "experiments/native-force-bridge/steering_tests.cpp": "793eaecf974a8bfa406dd8e5bd5ab9deedbaca69e8feb3a506e8f3998ae30e2a",
+    "experiments/native-radar/LaunchZone_test.cpp": "9f0d2d35e49d8f2871a4f0e66e7bee1ddc49b36dc6efffbbac4af5f44ec2b96e",
+    "experiments/native-radar/MaliceEnergy.h": "2102114574c4c736f02759ff4cd2a42f5079481a9c4d873817929c745f292f8e",
+    "experiments/native-radar/MaliceEnergy_test.cpp": "151b84faeafba9c06a48bc25807ef2f8344d213284a4218f9fc4d2b00341d72d",
+    "experiments/native-radar/MaliceLoftHook.h": "7c2a8efc9cb3106ae01f43c1328c9b008cfd393ecb925bd2dd7707cfbdf6638c",
+    "experiments/native-radar/MaliceRuntime.h": "22c6626290c83567286609012a6d166738a515282b931528bfb5c321b8b87f5b",
+    "experiments/native-radar/MissileProfile.h": "f3907d0db8964f331bc72392f166e195d2ae8ad017f38fe1ae9de14a8012cfac",
+    "experiments/native-radar/MissileProfile_test.cpp": "b0cc4a04be09c50ef54b4a2cd1afa0f47d3e0872eb3cfb4c97d43aa78f3dc91e",
+    "experiments/native-radar/NativeRanking.h": "92868a7cf0686d1520b7801d4fc4437b1bbee6cea381f8afe475d830d6c504ea",
+    "experiments/native-radar/NativeTarget.h": "2695f3dc9de1fa13f45c8b425cb3d9024da052e98554c6779994d00db27c6982",
+    "experiments/native-radar/PayloadAccessHook.h": "a92f4cf9757b198e1670f04084f1042a8095e9d7db254a766462983440ae15d4",
+    "experiments/native-radar/PayloadAccessHook_test.cpp": "d6b32e86998b04bad9a9cd87edc7917779fb356720e481ed6ea3e6e2b0d5807d",
+    "experiments/native-radar/PayloadAlias.h": "32c6f687c77ed55f404a5d521ff04fadfd7254e5eed067d4c4d1658e92f97734",
+    "experiments/native-radar/PayloadAlias_test.cpp": "93cc025e94ecac8acf7ddd50fa774136ac0919a702a966f57747d7f9b3dddc0d",
+    "experiments/native-radar/Radar.cpp": "8dee15d0d5a1faecaca781299fe3476edcd9149b0e341b91dd192d430c47948b",
+    "experiments/native-radar/RadarTune.h": "62cdc42d912fc296e8b61209266ae2fc98027893f447085d7007c8eab1de8cfa",
+    "experiments/native-radar/RadarTune_test.cpp": "5a125f3eef0c771bec969c4005d1335fd3e52b61174f4fbe99e30f293769d3f6",
+    "experiments/native-radar/RankingHook.h": "632803ca18230ba53a8ced8a01eac59b29843be8ebb24f6dbd785482d3985031",
+    "experiments/native-radar/SaRangeHook.h": "f880056bb3b723e9b5931f960e737fdfa5add4e9d8543aa6b9f89c2086843c68",
+    "experiments/native-radar/SaRangeHook_test.cpp": "759596c5d6678310e57881bb65c4c55b87fe7834bdfde3aed9602d4cacfcea1f",
+    "experiments/native-radar/SupportDiag.h": "a5c7f6d86f4cdf57d8369ccbfa316f887ee0d2059be9934c1e55ed29a42c77b4",
+    "experiments/native-radar/SupportDiag_test.cpp": "a118f67ccd267ecdcf7c7ca3000c911eb968a33c533bd3ebd47e15f73a553ba1",
+    "experiments/native-radar/SupportHook.h": "25bdd223e52ad3f41994b163b1c4f6496d49a944866e7dbf69c4eedc8bf6d77c",
+    "experiments/native-radar/SupportHook_test.cpp": "11b84e2612404744fae73e7aafe7e14ab70aa9bd66a80fb01d6c9de06d4fd643"
   },
   "modified_files": {
-    "Mods/aircraft/F-23B/HORNET-VISUAL-DEPENDENCY.md": {
-      "upstream_sha256": "270373c04334117e5ff0c9a6c97aae6a3af3be0d45716b1bfb63084bc36bb82c",
-      "reason": "Describe installed Hornet dependencies without private development wording."
+    "Mods/aircraft/F-23B-Player/Cockpit/ExteriorVisuals/BuildInfo.lua": {
+      "upstream_sha256": "c4759547585b4e5bbac2c11504cdfb16495663aad08c019b0b6e3679af43e159",
+      "reason": "Public release identity replaces the private build identity."
+    },
+    "Mods/aircraft/F-23B/Encyclopedia/Plane/F-23B.txt": {
+      "upstream_sha256": "df4a6aad4bf526d83f2446d48371f63c198618bf7ae1261cad87cf9853aabd80",
+      "reason": "Player encyclopedia text for this release."
+    },
+    "experiments/native-radar/build.ps1": {
+      "upstream_sha256": "5237ef77e77cffc04d8d616c5c36b7eada1d84e0bb53d4a1cda72db529fd585e",
+      "reason": "Build into build/native-radar. The check that needs a private module capture is not included."
     },
     "native_patch.py": {
       "upstream_sha256": "9035ea9f5774f7f938b64c62781de31a42784070f7b0d9015f1af96f4293169b",
       "reason": "Add verified legacy restoration for the independent-weapon installer; preserve existing recovery support."
-    },
-    "Mods/aircraft/F-23B/Shapes/F-23B.lods": {
-      "upstream_sha256": "6f0f60d1e5776f034cb6a259863061e00adf5af1b41114248e521a23959eba86",
-      "reason": "Add medium and far visual models while retaining the contact shell."
-    },
-    "Mods/aircraft/F-23B/Weapons/F23B_AIM424_MALICE.lua": {
-      "upstream_sha256": "76c55d17dd927b1bd36ac6c12c8d05507177f9e2b475423b16f0fa2f51017434",
-      "reason": "Register MALICE independently; retain accepted simulation tuning and loadout identity."
-    },
-    "Mods/aircraft/F-23B/Weapons/F23B_AIM9X_BLOCKII.lua": {
-      "upstream_sha256": "677cb4ad0253e47133de41a31c3cf0c8a7e32bc82124a6a018edcc1de46def3c",
-      "reason": "Register Block II independently; retain accepted simulation tuning and loadout identity."
-    },
-    "Mods/aircraft/F-23B-Player/Cockpit/ExteriorVisuals/ExteriorVisualAdapter.lua": {
-      "upstream_sha256": "1dace036d5e6fb7da011fe1785803081643f0183b7d91ac81b2b29b042f6f143",
-      "reason": "Route project missile selection and sequenced trigger to the primary-cockpit weapon controller; retain accepted bay and nozzle motion."
     }
   },
   "prior_runtime_source": "4c254be08a8d23ba5ad29e4a8cbf7962dc5d340b",
-  "accepted_runtime_archive_sha256": "9e46867abcd899cf4577956e017f953bb6363dfd00a1839fc5b3c0a679f80a7c"
+  "accepted_runtime_archive_sha256": "9e46867abcd899cf4577956e017f953bb6363dfd00a1839fc5b3c0a679f80a7c",
+  "prior_curated_release": "804920ad2fc51de498fed81daab072c1351aa6a7"
 }

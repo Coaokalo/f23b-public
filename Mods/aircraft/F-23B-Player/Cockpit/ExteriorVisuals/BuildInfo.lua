@@ -1,1 +1,1 @@
-return {source_commit='0eab91677b32a08bfff8022b92ff598eaa7f9dbe',build_id='native-0eab91677b32-burner-continuity',asset_lock_sha256='B316750C97D564D860FB5DF9EF1931C0603B5DE5B31DC389A36CB30E50B0DAF4'}
+return {source_commit='see-release.json',build_id='F23B-2026-09-29',asset_lock_sha256='see-release.json'}

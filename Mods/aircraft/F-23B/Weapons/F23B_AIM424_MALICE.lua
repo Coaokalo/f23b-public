@@ -1,10 +1,11 @@
 -- SPDX-License-Identifier: MIT
 -- Project-original MALICE simulation; public dimensions, project-defined flight tune.
--- Independent project weapon; stock AIM-120 definitions remain unchanged.
+-- Independent weapon registered here; every stock AIM-120 definition stays unchanged.
+-- The F-23B radar DLL presents it to the Hornet as its AMRAAM store, F-23B player only.
 -- The 680.4 kg body uses MAKO's propellant fractions and burn schedule, with
 -- higher specific impulse (280/245 versus 254/170 s). This is a gameplay
 -- benchmark, not a claim about the real MALICE motor or classified performance.
--- Target handoff uses the installed primary cockpit; guidance uses the DCS solver.
+-- Network designation and midcourse support use native Hornet MSI services.
 -- Model is a full-scale project approximation, not an official MALICE drawing.
 -- See docs/design/F23B_MALICE_BLOCKII.md for limits and verification.
 local MALICE_NAME = "F23B_AIM424_MALICE"
@@ -81,7 +82,7 @@ local F23B_AIM424_MALICE = {
 
     shape_table_data = {
         {
-            name = "F23B_AIM424_MALICE",
+            name = MALICE_NAME,
             file = MALICE_SHAPE,
             life = 1,
             fire = { 0, 1 },
@@ -91,7 +92,7 @@ local F23B_AIM424_MALICE = {
     },
     controller = {
         boost_start = 0.5,
-        march_start = 38.5,
+        march_start = 38.5, -- Fallback without the DLL. Its checked native profile delays this controller timer.
     },
 
     boost = {
@@ -231,10 +232,15 @@ local F23B_AIM424_MALICE = {
     sensor = {
         delay = 1.5,
         op_time = 600.0,
-        FOV = math.rad(140.0),
+        -- 15 degrees: the 140-degree cone admitted main-lobe clutter and blinded the beam seeker.
+        FOV = math.rad(15.0),
         max_w_LOS = math.rad(140.0),
         sens_near_dist = 100.0,
         sens_far_dist = MALICE_SENSOR_FAR_RANGE_M,
+        -- Enable the seeker's own distance trigger. Preserve native launch support.
+        -- Engine predicate verified offline; Hornet scheme binding/flight remain OPEN.
+        active_radar_lock_dist = MALICE_ACTIVE_SEARCH_RANGE_M,
+        active_dist_trig_by_default = 1,
         ccm_k0 = 0.01,
         aim_sigma = 1.5,
         height_error_k = 8.0,
@@ -306,9 +312,10 @@ local F23B_AIM424_MALICE = {
         1.0,
         2.0,
         21.0, -25.0, -3.0,
-        220000.0, 140000.0,
-        480000.0, 170000.0,
-        180000.0, 90000.0,
+        -- Provisional launch-zone anchors [49..54]; the owner has not set final ranges.
+        340000.0, 170000.0,
+        400000.0, 230000.0,
+        200000.0, 90000.0,
         5000.0,
         0.42,
         -0.014,
@@ -316,15 +323,14 @@ local F23B_AIM424_MALICE = {
     },
 }
 
--- Project drag tune: with the full physical area and matched propellant
--- fractions, this keeps zero-incidence drag deceleration no higher than MAKO
--- at each tabulated Mach point. This does not assert equal maneuvering drag.
+-- Project decision, September 29: reduce v3 drag by 20 percent for terminal energy.
+-- Keep the 340 mm body, reference area, table shapes, and Mach 5 endpoint.
+-- The multiplier is 0.84 * 0.8. Flight verification is recorded with v4.
 for _, field in ipairs({"Cx0", "CxB"}) do
     for i, value in ipairs(F23B_AIM424_MALICE.fm[field]) do
-        F23B_AIM424_MALICE.fm[field][i] = value * 0.84
+        F23B_AIM424_MALICE.fm[field][i] = value * 0.672
     end
 end
--- F23B_NATIVE_DEFINITION_END
 declare_weapon(F23B_AIM424_MALICE)
 
 declare_loadout({

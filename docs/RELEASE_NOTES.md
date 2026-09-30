@@ -1,9 +1,9 @@
 The F-23B Black Widow II aircraft for DCS World with custom flight dynamics and F/A-18C Hornet avionics.
 Includes internal weapon bays, AIM-424 MALICE, and project AIM-9X Block II.
 
-## [Download the Windows installer](https://github.com/Coaokalo/f23b-public/releases/download/test-2026-09-18/F23B-preview-2026-09-18-Setup.exe)
+## [Download the Windows installer](https://github.com/Coaokalo/f23b-public/releases/download/release-2026-09-29/F23B-2026-09-29-Setup.exe)
 
-**43.3 MB · Aircraft and custom weapons included · No separate Python installation**
+**Aircraft and weapons included · No separate Python installation**
 
 | Requirement | Supported configuration |
 | --- | --- |
@@ -16,11 +16,24 @@ Includes internal weapon bays, AIM-424 MALICE, and project AIM-9X Block II.
 
 *Development capture. Some visual details can differ from this release.*
 
+## New in this release
+
+- **No DCS game-file changes.** Setup installs only into your Saved Games profile.
+  Upgrading removes the cockpit connection that the September 18 release added.
+- **Weapons:** MALICE uses the native Hornet radar and missile support, with a
+  lofted profile and a second motor pulse. AI F-23Bs now fire MALICE and Block II.
+- **Radar:** The SA page scale now goes to 640 NM.
+- **Airframe:** The aircraft now crashes on ground and water impact.
+- **Ground handling:** Nosewheel steering turns on a Hornet-like radius. Steering
+  authority reduces with speed to prevent ground loops. A stiffer nose strut
+  prevents bottoming and gear damage in hard braking.
+- **Smaller download:** unused textures and development files are removed.
+
 ## Included
 
 - **Aircraft:** Custom F-23 flight dynamics with the F/A-18C cockpit, avionics, and controls.
 - **Weapons:** AIM-424 MALICE and project AIM-9X Block II. Stock missiles remain unchanged.
-- **Systems:** Trigger-operated weapon bays, weapon counts on the HUD and radar page, exterior lights, and afterburner effects.
+- **Systems:** Trigger-operated weapon bays, exterior lights, and afterburner effects.
 - **Missions:** Caucasus Cold Start, Hot Start, and Free Flight.
 
 ## Installation
@@ -31,6 +44,7 @@ Includes internal weapon bays, AIM-424 MALICE, and project AIM-9X Block II.
 4. Select **Install / Repair**.
 
 Start DCS after installation. Select an **F-23B Quick Start** mission.
+Upgrading from an earlier F-23B release uses the same steps.
 
 Keep the installer for repair and removal. Your existing Hornet controls apply.
 
@@ -39,9 +53,9 @@ Keep the installer for repair and removal. Your existing Hornet controls apply.
 ## Known limitations
 
 - Full flight and weapon envelopes are not verified.
-- AIM-9X Block II helmet cueing and post-launch datalink/LOAL are not implemented.
-- Some weapon pages and launch-zone calculations retain Hornet behavior.
-- VR and multiplayer compatibility are unverified. The cockpit connection can affect multiplayer integrity checks.
+- AIM-9X Block II helmet cueing and post-launch datalink/lock-on after launch are not implemented.
+- AI F-23Bs use the MALICE energy profile only when the player also flies an F-23B.
+- VR and multiplayer compatibility are unverified.
 - The installer is unsigned. DCS updates require a compatible F-23B release.
 
 [Known issues](https://github.com/Coaokalo/f23b-public/blob/main/KNOWN_ISSUES.md) · [Report a problem](https://github.com/Coaokalo/f23b-public/issues/new?template=bug_report.yml)
@@ -72,9 +86,9 @@ The Windows installer is the normal player download.
 
 | File | Purpose |
 | --- | --- |
-| [Aircraft ZIP](https://github.com/Coaokalo/f23b-public/releases/download/test-2026-09-18/F23B-preview-2026-09-18.zip) | Installer payload. The EXE already includes this file. |
-| [Source ZIP](https://github.com/Coaokalo/f23b-public/releases/download/test-2026-09-18/F23B-preview-2026-09-18-source.zip) | Software source for this release. |
-| [SHA256 checksums](https://github.com/Coaokalo/f23b-public/releases/download/test-2026-09-18/SHA256SUMS.txt) | File checksums for download verification. |
+| [Aircraft ZIP](https://github.com/Coaokalo/f23b-public/releases/download/release-2026-09-29/F23B-2026-09-29.zip) | Installer payload. The EXE already includes this file. |
+| [Source ZIP](https://github.com/Coaokalo/f23b-public/releases/download/release-2026-09-29/F23B-2026-09-29-source.zip) | Software source for this release. |
+| [SHA256 checksums](https://github.com/Coaokalo/f23b-public/releases/download/release-2026-09-29/SHA256SUMS.txt) | File checksums for download verification. |
 
 GitHub's automatic **Source code** archives are repository snapshots. They are not aircraft installation packages.
 

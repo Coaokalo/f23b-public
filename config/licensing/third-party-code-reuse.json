@@ -36,14 +36,14 @@
     },
     {
       "project_path": "experiments/flight-feel/src/efm/performance/performance_model.cpp",
-      "project_sha256": "a87871360e41523ae76ad7a1f5795a1e783855c87e33cd239834ff4de2af16f2",
+      "project_sha256": "8c5a463f8ab80edc4061b68fd4cb7a8880bce6df12dcc165ea24cfa68d86120e",
       "source_id": "GRINNELLI_F22A_V2_1_PERFORMANCE",
       "upstream_revision": "24dc1f51a8d0d9427c7bd3c368ccabd3e0ade53c",
       "upstream_path": "EFM/source/RAPTOR.cpp",
       "upstream_sha256": "9BA22D94D39DEF7B9A0C713D399301D2317B16ED4001E81BBBBA60E75D5D309B",
       "license": "GPL-3.0-or-later",
       "copyright_notice": "Copyright (C) 2025 Branden Hooper; Copyright (C) 2026 F-23B project contributors",
-      "modified_at": "2026-09-04",
+      "modified_at": "2026-09-29",
       "purpose": "Independent-throttle, fixed-force, time-based-trim experimental flight model; no thrust vectoring."
     }
   ]

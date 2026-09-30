@@ -1,12 +1,15 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
+#include <algorithm>
+#include <cmath>
 #include <cstring>
 #include <filesystem>
 #include <fstream>
 #include <iomanip>
 #include "own_adapter.hpp"
 #include "propulsion.hpp"
+#include "steering.hpp"
 
 // Only documented, typed SDK inputs are dispatched to both implementations.
 // All other native callbacks remain unchanged in the compatibility experiment.
@@ -27,6 +30,16 @@ decltype(&own_ed_fm_get_shake_amplitude) native_shake{};
 std::array<float, 3> last_native_gear_draw{};
 std::array<double, 3> contact_vertical_force{};
 
+double ground_speed() {
+    const auto& v = runtime.body.velocity_body_m_s;
+    return std::hypot(v.x, v.z);
+}
+
+double parameter(unsigned index) {
+    const double value = native_parameter(index);
+    return index == ED_FM_SUSPENSION_0_WHEEL_YAW ? f23b::bridge::nose_wheel_yaw(value, ground_speed()) : value;
+}
+
 void configure_bridge(const char* path) {
     native_configure(path);
     own_ed_fm_configure(path);
@@ -43,6 +56,13 @@ void suspension_feedback(int index, const ed_fm_suspension_info* info) {
 void draw_native(float* arguments, std::size_t count) {
     native_draw(arguments, count);
     if (arguments && count > 5) last_native_gear_draw = {arguments[0], arguments[5], arguments[3]};
+    // Argument 2 shows the nosewheel angle. Keep it equal to the steering angle
+    // that DCS receives from parameter().
+    const double native_yaw = native_parameter ? native_parameter(ED_FM_SUSPENSION_0_WHEEL_YAW) : 0.0;
+    if (arguments && count > 2 && std::abs(native_yaw) > 1e-6) {
+        const double shown = arguments[2] * f23b::bridge::nose_wheel_yaw(native_yaw, ground_speed()) / native_yaw;
+        arguments[2] = static_cast<float>(std::clamp(shown, -1.0, 1.0));
+    }
     // Read native flap input before presenting the controls that actually
     // generate the independent model's forces. Engines/gear/bays stay native.
     if (arguments && count > 10) runtime.input.landing_flaps = arguments[9] > 0.5f;
@@ -132,7 +152,10 @@ FARPROC f23b_select_callback(const char* name, FARPROC original) {
         native_suspension = reinterpret_cast<decltype(native_suspension)>(original);
         return reinterpret_cast<FARPROC>(&suspension_feedback);
     }
-    if (std::strcmp(name, "ed_fm_get_param") == 0) native_parameter = reinterpret_cast<decltype(native_parameter)>(original);
+    if (std::strcmp(name, "ed_fm_get_param") == 0) {
+        native_parameter = reinterpret_cast<decltype(native_parameter)>(original);
+        return reinterpret_cast<FARPROC>(&parameter);
+    }
     if (std::strcmp(name, "ed_fm_get_internal_fuel") == 0) native_fuel = reinterpret_cast<decltype(native_fuel)>(original);
     if (std::strcmp(name, "ed_fm_simulate") == 0) {
         native_simulate = reinterpret_cast<decltype(native_simulate)>(original);

@@ -38,6 +38,18 @@ declare_plugin(self_ID, {
 -- Use the installed Hornet files directly instead of redistributing its
 -- cockpit, FM data, communications, or binary.
 dofile(hornet_root .. "/Views.lua")
+-- The Hornet eye is 0.05 m forward and 0.10 m above the cockpit origin.
+-- Put that eye on the measured F-23 opening.
+local f23_visual = dofile(current_mod_path .. "/../F-23B/Entry/VisualConfig.lua")
+local hornet_eye = { 0.05, 0.10, 0.0 }
+ViewSettings.Cockpit[1].EyePoint = {
+    hornet_eye[1], hornet_eye[2], hornet_eye[3]
+}
+ViewSettings.Cockpit[1].CockpitLocalPoint = {
+    f23_visual.cockpit_local_point[1] - hornet_eye[1],
+    f23_visual.cockpit_local_point[2] - hornet_eye[2],
+    f23_visual.cockpit_local_point[3] - hornet_eye[3]
+}
 dofile(hornet_config)
 
 local derivative_flight_model = {}
@@ -90,8 +102,11 @@ for i, native in ipairs(FA18C.suspension) do
     leg.amortizer_basic_length = 0.12
     leg.amortizer_reduce_length = 0.06
     leg.amortizer_static_force = i == 1 and 3000.0 or 10000.0
-    leg.amortizer_spring_force_factor = i == 1 and 4e6 or 20e6
-    leg.amortizer_spring_force_factor_rate = 2.0
+    -- Nose: a quartic spring through the old static point (31 kN at 0.0837 m).
+    -- The quadratic spring reached full 0.12 m travel near 61 kN in hard braking.
+    -- This one reaches full travel near 121 kN. Ride height stays the same.
+    leg.amortizer_spring_force_factor = i == 1 and 5.7142857e8 or 20e6
+    leg.amortizer_spring_force_factor_rate = i == 1 and 4.0 or 2.0
     leg.allowable_hard_contact_length = 0.02
     derivative_flight_model.suspension[i] = leg
 end

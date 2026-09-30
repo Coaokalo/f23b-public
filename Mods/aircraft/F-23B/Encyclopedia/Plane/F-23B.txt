@@ -12,8 +12,8 @@ Installed and activated DCS: F/A-18C Hornet
 
 Cockpit and systems:
 The pilot uses the installed F/A-18C Hornet cockpit and avionics.
-The external aircraft contains cockpit geometry from the licensed YF-23 model.
-Flight forces are provided by the F-23B experimental flight bridge.
+The exterior is a licensed YF-23 model with project changes.
+Flight forces are provided by the F-23B flight bridge.
 Native systems and sound use the installed Hornet.
 
 Armament:
@@ -23,13 +23,13 @@ Three AIM-424 MALICE or AIM-120C missiles in the main bay
 Quick Start missions carry two AIM-9X Block II and three MALICE missiles.
 
 Installation:
-Both F-23B module folders and the native missile installer are required.
-The installer modifies AIM-120B and AIM-9X globally and includes rollback.
+Setup installs both F-23B module folders into the Saved Games profile.
+DCS game files are not changed.
 See the download's INSTALL.md for the complete instructions.
 
 Limitations:
-Single-player experimental preview. Full-envelope flight, VR, and multiplayer
-remain unqualified. Block II post-launch datalink/LOAL is not implemented.
+Single-player experimental preview. VR and multiplayer are not qualified.
+Block II post-launch datalink and lock-on after launch are not implemented.
 Performance is a simulator design approximation, not measured YF-23 flight data.
 
 THIS MATERIAL IS NOT MADE OR SUPPORTED BY EAGLE DYNAMICS SA.

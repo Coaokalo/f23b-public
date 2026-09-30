@@ -10,9 +10,9 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'tools'))
 from release_assets import branding
 
-baseline = json.loads((ROOT / 'config/releases/preview-baseline.json').read_text())
-expected = {n for n in baseline['files'] if n.endswith('.png') and
-            ('/Theme/' in n or '/Encyclopedia/' in n)}
+pin = json.loads((ROOT / 'config/releases/release-2026-09-29.json').read_text())
+expected = {n for n in pin['runtime_files'] if n.endswith('.png') and n not in pin['removed']
+            and ('/Theme/' in n or '/Encyclopedia/' in n)}
 graphics = branding()
 assert set(graphics) == expected
 for name, data in graphics.items():

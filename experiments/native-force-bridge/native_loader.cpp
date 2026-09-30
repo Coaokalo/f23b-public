@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
-// Compatibility proof only: forward native calls without changing any forces.
-// No native patches, injected code, import-table edits, or memory hooks.
+// Forward installed Hornet callbacks without changing native callback bodies.
+// The optional sibling weapons helper connects before aircraft initialization.
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #include <array>
@@ -26,6 +26,23 @@ void note(const std::string& text) {
     std::ofstream(std::filesystem::path(path), std::ios::app) << text << '\n';
 }
 
+// The FM resolver runs outside DllMain, before native aircraft initialization.
+// Load the optional sibling weapon connection here when entry.lua's database
+// environment cannot load native libraries. Native flight callbacks stay intact.
+void connect_weapons() {
+    HMODULE self{};
+    wchar_t module_path[32768]{};
+    if (!GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+            reinterpret_cast<LPCWSTR>(&connect_weapons), &self)
+        || !GetModuleFileNameW(self, module_path, 32768)) return;
+    const auto path = std::filesystem::path(module_path).parent_path() / L"F23B_Radar.dll";
+    const auto library = LoadLibraryExW(path.c_str(), nullptr, LOAD_WITH_ALTERED_SEARCH_PATH);
+    if (!library) { note("F23B_WEAPONS library unavailable: " + std::to_string(GetLastError())); return; }
+    const auto connect = reinterpret_cast<int(*)()>(GetProcAddress(library, "f23b_connect_weapons"));
+    if (!connect) { note("F23B_WEAPONS native initializer unavailable"); return; }
+    note("F23B_WEAPONS native early connection status=" + std::to_string(connect()));
+}
+
 void initialize() {
     wchar_t executable[2048]{};
     if (!GetModuleFileNameW(nullptr, executable, 2048)) throw std::runtime_error("DCS path unavailable");
@@ -43,6 +60,7 @@ void initialize() {
         note("native load failed: " + std::to_string(GetLastError()));
         throw std::runtime_error("Installed Hornet callback library unavailable");
     }
+    connect_weapons();
     for (std::size_t i = 0; i < count; ++i) {
         callbacks[i] = GetProcAddress(native, names[i]);
         if (!callbacks[i]) {

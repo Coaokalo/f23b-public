@@ -4,6 +4,20 @@
 -- supplies only the independent F-23 exterior, stores, effects, and identity.
 local visual = dofile(current_mod_path .. "/Entry/VisualConfig.lua")
 
+-- The old constant 00101 made every F-23B the same Link 16 participant.
+-- The Hornet cockpit ranks a distinct participant separately from a raw radar hit.
+local function link16_stn(unit)
+    local unit_id = math.floor(tonumber(unit and unit.unitId) or 1)
+    if unit_id < 1 then unit_id = 1 end
+    local value = (unit_id + 128) % 32768
+    local digits = {}
+    for place = 1, 5 do
+        digits[place] = string.char(48 + (value % 8))
+        value = math.floor(value / 8)
+    end
+    return digits[5] .. digits[4] .. digits[3] .. digits[2] .. digits[1]
+end
+
 local function hornet_nozzle(position)
     local profile = visual.engine_effects
     return {
@@ -98,9 +112,8 @@ local aircraft = {
     Ny_max_e = 7.5,
     range = 1520.0,
 
-    -- Hornet landing-gear geometry/physics. The F-23 EDM is authored on the
-    -- same standard animation arguments and the LODS uses the installed
-    -- Hornet collision shell.
+    -- Measured F-23 landing-gear geometry on the standard Hornet animation
+    -- arguments. The LODS uses F-23B-contact.edm for wheels and airframe lines.
     tand_gear_max = 3.73,
     nose_gear_pos = { 5.651507, -2.320485, -0.027196 },
     nose_gear_amortizer_direct_stroke = 0.0,
@@ -201,7 +214,8 @@ local aircraft = {
         },
         { id = "VoiceCallsignLabel", control = "editbox", label = _("Voice Callsign Label"), defValue = "FT" },
         { id = "VoiceCallsignNumber", control = "editbox", label = _("Voice Callsign Number"), defValue = "11" },
-        { id = "STN_L16", control = "editbox", label = _("STN"), defValue = "00101" }
+        { id = "STN_L16", control = "editbox", label = _("STN"),
+          getDefault = link16_stn, playerOnly = false }
     },
 
     -- Installed Hornet Mission Editor failure vocabulary. The owning Hornet
@@ -291,6 +305,8 @@ local aircraft = {
         -- physical bay location. DCS consumes attach_point_position from the
         -- store record, not from the pylon options table.
         pylon(1, 0, 3.16, -1.72, -0.88, {
+            -- Preserve the exposed zero-argument reference during native IR
+            -- initialization. The player adapter stows it after initialization.
             connector = "Pylon1", use_full_connector_position = true
         }, {
             { CLSID = "<CLEAN>" },
@@ -437,9 +453,32 @@ local aircraft = {
         }
     },
 
-    -- Hornet damage-cell vocabulary and draw-argument contract. Debris models
-    -- remain intentionally absent: the package does not redistribute ED assets.
-    Damage = verbose_to_dmg_properties({["FUSELAGE_BOTTOM"]={critical_damage=4},["WHEEL_F"]={critical_damage=3,args={135}},["WHEEL_L"]={critical_damage=3,args={137}},["WHEEL_R"]={critical_damage=3,args={136}}}),
+    -- One ED Damage.lua cell for each shell and line in F-23B-contact.edm.
+    -- Values follow the installed Hornet table. The F-23 model has no damage
+    -- arguments. Debris models remain absent: the package has no ED assets.
+    Damage = verbose_to_dmg_properties({
+        ["NOSE_CENTER"] = {critical_damage = 3},
+        ["NOSE_BOTTOM"] = {critical_damage = 3},
+        ["COCKPIT"] = {critical_damage = 8},
+        ["FUSELAGE_BOTTOM"] = {critical_damage = 4},
+        ["FUSELAGE_TOP"] = {critical_damage = 4},
+        ["TAIL_BOTTOM"] = {critical_damage = 3},
+        ["ENGINE_L"] = {critical_damage = 2},
+        ["ENGINE_R"] = {critical_damage = 2},
+        ["WING_L_IN"] = {critical_damage = 5, deps_cells = {"WING_L_CENTER", "WING_L_OUT"}},
+        ["WING_L_CENTER"] = {critical_damage = 4, deps_cells = {"WING_L_OUT"}},
+        ["WING_L_OUT"] = {critical_damage = 3},
+        ["WING_R_IN"] = {critical_damage = 5, deps_cells = {"WING_R_CENTER", "WING_R_OUT"}},
+        ["WING_R_CENTER"] = {critical_damage = 4, deps_cells = {"WING_R_OUT"}},
+        ["WING_R_OUT"] = {critical_damage = 3},
+        ["FIN_L_TOP"] = {critical_damage = 4},
+        ["FIN_L_CENTER"] = {critical_damage = 4},
+        ["FIN_R_TOP"] = {critical_damage = 4},
+        ["FIN_R_CENTER"] = {critical_damage = 4},
+        ["WHEEL_F"] = {critical_damage = 3, args = {135}},
+        ["WHEEL_L"] = {critical_damage = 3, args = {137}},
+        ["WHEEL_R"] = {critical_damage = 3, args = {136}},
+    }),
 
     mechanimations = {
         BombBay = {

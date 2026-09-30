@@ -4,9 +4,9 @@ A community aircraft for DCS World with custom F-23 flight dynamics and the
 F/A-18C Hornet cockpit and avionics.
 
 Includes independent AIM-424 MALICE and AIM-9X Block II weapons. Stock missiles
-retain their original behavior.
+retain their original behavior. Setup does not change DCS game files.
 
-**[Download and release details](https://github.com/Coaokalo/f23b-public/releases/tag/test-2026-09-18)** ·
+**[Download and release details](https://github.com/Coaokalo/f23b-public/releases/tag/release-2026-09-29)** ·
 [Installation & removal](INSTALL.md) ·
 [Known limitations](KNOWN_ISSUES.md) ·
 [Report a bug](https://github.com/Coaokalo/f23b-public/issues/new?template=bug_report.yml)
@@ -18,7 +18,7 @@ retain their original behavior.
 | Required module | **DCS: F/A-18C Hornet**, installed and activated |
 | Play mode | Single-player; multiplayer and VR remain unverified |
 
-The Windows installer includes the aircraft and custom weapons. No separate Python installation is needed.
+The Windows installer includes the aircraft and weapons. No separate Python installation is needed.
 
 ![F-23B above the clouds at sunset](docs/images/f23b-exterior.jpg)
 
@@ -26,20 +26,22 @@ The Windows installer includes the aircraft and custom weapons. No separate Pyth
 
 - Custom F-23 flight forces with the Hornet pilot cockpit, avionics, and controls.
 - Trigger-operated internal weapon bays, MALICE, and project AIM-9X Block II.
+- Native Hornet radar and SA, with a 640 NM SA scale.
+- Airframe collision on ground and water, and speed-limited nosewheel steering.
 - Exterior lighting, combat-mode light blackout, and afterburner effects.
 - Three Caucasus Quick Start missions: Cold Start, Hot Start, and Free Flight.
 
 ## Get flying
 
-1. Download **F23B-preview-2026-09-18-Setup.exe** from
-   [the release page](https://github.com/Coaokalo/f23b-public/releases/tag/test-2026-09-18).
+1. Download **F23B-2026-09-29-Setup.exe** from
+   [the release page](https://github.com/Coaokalo/f23b-public/releases/tag/release-2026-09-29).
 2. Close DCS, its updater, and ModelViewer.
 3. Run the installer and confirm your DCS game folder and Saved Games profile.
 4. Select **Install / Repair**.
 5. Start DCS and select an F-23B Quick Start mission.
 
-Setup installs an F-23B-only cockpit connection and may affect multiplayer
-integrity checks. Keep the installer for repair and removal.
+Setup installs only into your Saved Games profile. It removes the cockpit
+connection that the September 18 release added. Keep the installer for repair and removal.
 See [installation and removal](INSTALL.md).
 
 ![Hornet pilot cockpit used by the F-23B above sunset clouds](docs/images/f23b-cockpit.jpg)
@@ -49,7 +51,7 @@ See [installation and removal](INSTALL.md).
 ## Known limitations
 
 Full flight and weapon envelopes, VR, and multiplayer compatibility are not verified.
-Block II helmet cueing and post-launch datalink/LOAL are not implemented.
+Block II helmet cueing and post-launch datalink/lock-on after launch are not implemented.
 The installer is unsigned. DCS updates require a compatible F-23B release.
 See [known limitations](KNOWN_ISSUES.md).
 
@@ -73,7 +75,7 @@ and **SytaPastel** for the licensed YF-23 visual model.
 [Build and test](BUILDING.md) · [Source layout](docs/SOURCE_LAYOUT.md) ·
 [Contributing](CONTRIBUTING.md)
 
-This repository includes the flight-model source, Lua, installer, tests, and
+This repository includes the flight-model and native radar source, Lua, installer, tests, and
 documentation. Runtime models and textures are in the aircraft download under
 their respective terms. The corresponding software source ZIP is on the release page.
 

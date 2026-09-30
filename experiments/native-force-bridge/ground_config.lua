@@ -26,8 +26,11 @@ for i, native in ipairs(FA18C.suspension) do
     leg.amortizer_basic_length = 0.12
     leg.amortizer_reduce_length = 0.06
     leg.amortizer_static_force = i == 1 and 3000.0 or 10000.0
-    leg.amortizer_spring_force_factor = i == 1 and 4e6 or 20e6
-    leg.amortizer_spring_force_factor_rate = 2.0
+    -- Nose: a quartic spring through the old static point (31 kN at 0.0837 m).
+    -- The quadratic spring reached full 0.12 m travel near 61 kN in hard braking.
+    -- This one reaches full travel near 121 kN. Ride height stays the same.
+    leg.amortizer_spring_force_factor = i == 1 and 5.7142857e8 or 20e6
+    leg.amortizer_spring_force_factor_rate = i == 1 and 4.0 or 2.0
     leg.allowable_hard_contact_length = 0.02
     derivative_flight_model.suspension[i] = leg
 end

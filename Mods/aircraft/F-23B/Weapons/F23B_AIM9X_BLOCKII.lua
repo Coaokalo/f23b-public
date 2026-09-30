@@ -1,6 +1,7 @@
 -- SPDX-License-Identifier: MIT
--- Project-original, independently registered Block II approximation.
--- The stock AIM-9X definition remains unchanged.
+-- Project-original Block II approximation, registered as an independent weapon.
+-- The stock AIM-9X stays unchanged. The F-23B radar DLL presents this missile to the
+-- Hornet as its AIM-9X store, F-23B player only.
 -- F-22 v2.1 benchmark: same 84.46 kg mass, drag and 8 s / 6 kg/s burn;
 -- project thrust is 15542.1 N (+5%). Simulation values, not real motor data.
 -- IR tracking remains native. Weapon-datalink/LOAL capability is not established.
@@ -40,7 +41,6 @@ local weapon = {
         2500, 0.55, -0.01, 0.5,
     },
 }
--- F23B_NATIVE_DEFINITION_END
 declare_weapon(weapon)
 declare_loadout({
     category = CAT_AIR_TO_AIR, CLSID = "{F23B-AIM9X-BLOCKII}",

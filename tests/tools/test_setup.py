@@ -28,9 +28,8 @@ class SetupTests(unittest.TestCase):
         self.cockpit = self.dcs / setup.COCKPIT_SCRIPT
         self.cockpit.parent.mkdir(parents=True, exist_ok=True)
         self.cockpit.write_bytes(b'fixture cockpit')
-        (self.package / 'independent-weapons.json').write_text(json.dumps(dict(
-            version='fixture', binaries={'Mods/aircraft/FA-18C/bin/FA18C.dll': installer.sha(b'fixture')},
-            cockpit_script_sha256=installer.sha(b'fixture cockpit'))))
+        (self.package / 'dcs-requirements.json').write_text(json.dumps(dict(
+            version='fixture', binaries={'Mods/aircraft/FA-18C/bin/FA18C.dll': installer.sha(b'fixture')})))
         files = {p.relative_to(self.package).as_posix(): installer.sha(p.read_bytes())
                  for p in self.package.rglob('*') if p.is_file() and p.name != 'release.json'}
         (self.package / 'release.json').write_text(json.dumps(dict(files=files, corresponding_source_commit='fixture')))
@@ -55,7 +54,8 @@ class SetupTests(unittest.TestCase):
         target.write_bytes(b'damaged')
         self.setup_action('install')
         self.assertEqual(target.read_bytes(), b'fixture aircraft')
-        self.assertEqual(self.cockpit.read_bytes(), b'fixture cockpit' + setup.HOOK)
+        # This release adds nothing to the DCS game folder.
+        self.assertEqual(self.cockpit.read_bytes(), b'fixture cockpit')
         for kind, path in self.targets.items():
             self.assertEqual(path.read_bytes(), self.bases[kind])
         self.setup_action('remove')
@@ -87,7 +87,7 @@ class SetupTests(unittest.TestCase):
 
     def test_remove_refusal_restores_module_folders(self):
         self.setup_action('install')
-        self.cockpit.write_bytes(self.cockpit.read_bytes() + b'changed hook')
+        self.cockpit.write_bytes(self.cockpit.read_bytes() + setup.HOOK + b'changed hook')
         with self.assertRaises(ValueError):
             self.setup_action('remove')
         self.assertTrue((self.profile / 'Mods/aircraft/F-23B/entry.lua').is_file())
@@ -120,8 +120,41 @@ class SetupTests(unittest.TestCase):
         for kind, path in self.targets.items():
             self.assertEqual(path.read_bytes(), self.bases[kind])
 
+    def test_upgrade_from_hook_release_removes_cockpit_connection(self):
+        self.setup_action('install')
+        record = self.profile / setup.STATE / 'receipt.json'
+        receipt = json.loads(record.read_text())
+        receipt['source_commit'] = setup.HOOK_RELEASE
+        record.write_text(json.dumps(receipt))
+        self.cockpit.write_bytes(b'fixture cockpit' + setup.HOOK)
+        message = self.setup_action('install')
+        self.assertEqual(self.cockpit.read_bytes(), b'fixture cockpit')
+        self.assertIn('Earlier F-23B changes', message)
+        self.assertEqual(json.loads(record.read_text())['source_commit'], 'fixture')
+
+    def test_remove_of_hook_release_removes_cockpit_connection(self):
+        self.setup_action('install')
+        record = self.profile / setup.STATE / 'receipt.json'
+        receipt = json.loads(record.read_text())
+        receipt['source_commit'] = setup.HOOK_RELEASE
+        record.write_text(json.dumps(receipt))
+        self.cockpit.write_bytes(b'fixture cockpit' + setup.HOOK)
+        self.setup_action('remove')
+        self.assertEqual(self.cockpit.read_bytes(), b'fixture cockpit')
+        self.assertFalse((self.profile / 'Mods/aircraft/F-23B').exists())
+
+    def test_unknown_release_is_refused(self):
+        self.setup_action('install')
+        record = self.profile / setup.STATE / 'receipt.json'
+        receipt = json.loads(record.read_text())
+        receipt['source_commit'] = 'another release'
+        record.write_text(json.dumps(receipt))
+        with self.assertRaisesRegex(ValueError, 'previous release'):
+            self.setup_action('install')
+
     def test_cockpit_write_failure_rolls_back_legacy_restoration_and_modules(self):
         self.run_action('install')
+        self.cockpit.write_bytes(b'fixture cockpit' + setup.HOOK)
         before = {kind: path.read_bytes() for kind, path in self.targets.items()}
         original = installer.atomic_write
         def fail_hook(path, data):
@@ -133,7 +166,7 @@ class SetupTests(unittest.TestCase):
                 self.setup_action('install')
         for kind, path in self.targets.items():
             self.assertEqual(path.read_bytes(), before[kind])
-        self.assertEqual(self.cockpit.read_bytes(), b'fixture cockpit')
+        self.assertEqual(self.cockpit.read_bytes(), b'fixture cockpit' + setup.HOOK)
         self.assertFalse((self.profile / setup.STATE).exists())
         self.assertFalse((self.profile / 'Mods/aircraft/F-23B').exists())
 

@@ -1,0 +1,127 @@
+# SPDX-License-Identifier: MIT
+"""Package the pinned flown aircraft files with the committed source."""
+import argparse
+import hashlib
+import io
+import json
+from pathlib import Path
+import subprocess
+import zipfile
+
+from verify_source import verify
+from release_assets import branding, fix_mission
+
+ROOT = Path(__file__).resolve().parents[1]
+PIN = 'config/releases/release-2026-09-29.json'
+TEXT = ('.lua', '.lods', '.txt')
+NOTICES = ['COPYING', 'LICENSE', 'LICENSE-ASSETS.md', 'THIRD_PARTY_NOTICES.md', 'INSTALL.md',
+           'LICENSES/MIT.txt', 'config/licensing/third-party-code-reuse.json',
+           'experiments/flight-feel/docs/provenance/GRINNELLI_V2_1_PERFORMANCE_REFERENCE.md']
+
+
+def sha(data):
+    return hashlib.sha256(data).hexdigest()
+
+
+def zip_bytes(files):
+    buffer = io.BytesIO()
+    with zipfile.ZipFile(buffer, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as z:
+        for name, data in sorted(files.items()):
+            info = zipfile.ZipInfo(name, (2026, 9, 29, 0, 0, 0))
+            info.compress_type = zipfile.ZIP_DEFLATED
+            info.external_attr = 0o100644 << 16
+            z.writestr(info, data)
+    return buffer.getvalue()
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--runtime-dir', type=Path, required=True,
+                        help='Folder that contains the flown F-23B and F-23B-Player module folders')
+    args = parser.parse_args()
+    if subprocess.check_output(['git', 'status', '--porcelain'], cwd=ROOT).strip():
+        raise SystemExit('Commit the source changes before packaging')
+    verify()
+    commit = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
+    source = subprocess.check_output(['git', 'archive', '--format=zip', 'HEAD'], cwd=ROOT)
+    with zipfile.ZipFile(io.BytesIO(source)) as z:
+        source_files = {n: z.read(n) for n in z.namelist() if not n.endswith('/')}
+    pin = json.loads(source_files[PIN])
+    name = pin['name']
+
+    runtime = {p.relative_to(args.runtime_dir).as_posix(): p.read_bytes()
+               for p in args.runtime_dir.rglob('*') if p.is_file()}
+    if set(runtime) != set(pin['runtime_files']):
+        raise SystemExit('Runtime inventory differs from the pinned flown build')
+    for n, expected in pin['runtime_files'].items():
+        if sha(runtime[n]) != expected:
+            raise SystemExit(f'Runtime hash mismatch: {n}')
+
+    files = {n: b for n, b in runtime.items() if n not in pin['removed']}
+    # Every shipped script and configuration file is the committed source file.
+    committed = {n[len('Mods/aircraft/'):] for n in source_files if n.startswith('Mods/aircraft/')}
+    if committed != {n for n in files if n.endswith(TEXT)}:
+        raise SystemExit('Committed module source and shipped text files differ')
+    for n in pin['from_source']:
+        files[n] = source_files['Mods/aircraft/' + n]
+    for n in committed - set(pin['from_source']):
+        if files[n] != source_files['Mods/aircraft/' + n]:
+            raise SystemExit(f'Shipped file differs from committed source: {n}')
+    graphics = branding()
+    if not graphics.keys() <= files.keys():
+        raise SystemExit('Unexpected menu graphics inventory')
+    files.update(graphics)
+    missions = [n for n in files if n.endswith('.miz')]
+    for n in missions:
+        files[n] = fix_mission(files[n])
+
+    for n in NOTICES:
+        files[n] = source_files[n]
+    files['dcs-requirements.json'] = source_files['config/releases/dcs-requirements.json']
+    files['NOTICES.md'] = (
+        '# F-23B experimental preview\n\n'
+        'THIS MATERIAL IS NOT MADE OR SUPPORTED BY EAGLE DYNAMICS SA.\n\n'
+        'Requires an installed, activated DCS: F/A-18C Hornet. Read INSTALL.md.\n'
+        'Software: GPL-3.0-or-later with retained file-level MIT grants.\n'
+        'Visual derivatives: SytaPastel YF-23, CGTrader product 2046482.\n'
+        'See THIRD_PARTY_NOTICES.md and LICENSE-ASSETS.md for attribution and terms.\n'
+    ).encode()
+    files['SOURCE.md'] = (
+        '# Corresponding software source\n\n'
+        f'Companion archive: `{name}-source.zip`.\n\n'
+        f'Repository: https://github.com/Coaokalo/f23b-public/tree/{commit}\n\n'
+        'The companion contains source, build scripts, tests, license notices, and\n'
+        'BUILDING.md. SDK headers and licensed visual sources are external inputs.\n'
+        f'Source archive SHA-256: `{sha(source)}`.\n'
+    ).encode()
+    manifest = dict(name=name, kind='EXPERIMENTAL_PREVIEW', dcs_version=pin['dcs_version'],
+                    description=pin['description'], validation_limits=pin['validation_limits'],
+                    source_repository='https://github.com/Coaokalo/f23b-public',
+                    corresponding_source_commit=commit, release_tooling_source=commit,
+                    corresponding_source_archive=name + '-source.zip',
+                    corresponding_source_sha256=sha(source),
+                    removed_from_flown_build=sorted(pin['removed']),
+                    files={n: sha(b) for n, b in sorted(files.items())})
+    files['release.json'] = (json.dumps(manifest, indent=2) + '\n').encode()
+
+    changed = set(pin['from_source']) | graphics.keys() | set(missions)
+    assert all(files[n] == runtime[n] for n in files if n in runtime and n not in changed)
+    output = ROOT / 'dist' / name / commit[:12]
+    output.mkdir(parents=True, exist_ok=True)
+    assets = {name + '.zip': zip_bytes(files), name + '-source.zip': source}
+    for asset, data in assets.items():
+        path = output / asset
+        if path.exists() and path.read_bytes() != data:
+            raise SystemExit(f'Output already exists with different bytes: {path.name}')
+        path.write_bytes(data)
+    checksums = ''.join(f'{sha(data)}  {asset}\n' for asset, data in sorted(assets.items()))
+    (output / 'SHA256SUMS.txt').write_text(checksums, encoding='utf-8')
+    (output / 'RELEASE_NOTES.md').write_bytes(source_files['docs/RELEASE_NOTES.md'])
+    kept = sum(1 for n in files if n.startswith(('F-23B/', 'F-23B-Player/')))
+    print(f'PASS: {kept} flown module files; {len(pin["removed"])} unused files removed; source commit {commit}')
+    print(output)
+    print(checksums)
+
+
+if __name__ == '__main__':
+    main()
