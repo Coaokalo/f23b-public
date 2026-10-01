@@ -143,6 +143,26 @@ class SetupTests(unittest.TestCase):
         self.assertEqual(self.cockpit.read_bytes(), b'fixture cockpit')
         self.assertFalse((self.profile / 'Mods/aircraft/F-23B').exists())
 
+    def test_upgrade_from_september_29_release_changes_no_game_files(self):
+        self.setup_action('install')
+        record = self.profile / setup.STATE / 'receipt.json'
+        receipt = json.loads(record.read_text())
+        receipt['source_commit'] = setup.SEPTEMBER_29_RELEASE
+        record.write_text(json.dumps(receipt))
+        message = self.setup_action('install')
+        self.assertIn('No DCS game files were changed', message)
+        self.assertEqual(json.loads(record.read_text())['source_commit'], 'fixture')
+        self.assertEqual(self.cockpit.read_bytes(), b'fixture cockpit')
+
+    def test_remove_of_september_29_release(self):
+        self.setup_action('install')
+        record = self.profile / setup.STATE / 'receipt.json'
+        receipt = json.loads(record.read_text())
+        receipt['source_commit'] = setup.SEPTEMBER_29_RELEASE
+        record.write_text(json.dumps(receipt))
+        self.setup_action('remove')
+        self.assertFalse((self.profile / 'Mods/aircraft/F-23B').exists())
+
     def test_unknown_release_is_refused(self):
         self.setup_action('install')
         record = self.profile / setup.STATE / 'receipt.json'
