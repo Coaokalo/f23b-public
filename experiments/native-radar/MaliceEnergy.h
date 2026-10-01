@@ -5,9 +5,9 @@
 #include <string>
 
 namespace f23radar {
-constexpr uintptr_t guidanceVtable = 0x3b8f48, engineVtable = 0x3ab650;
-constexpr uintptr_t guidanceSimulate = 0x2cca80, engineSimulate = 0x18afc0;
-constexpr uintptr_t engineSwitch = 0x18b070, loftEntry = 0x2c68a0;
+constexpr uintptr_t guidanceVtable = 0x3ba238, engineVtable = 0x3ac840;
+constexpr uintptr_t guidanceSimulate = 0x2cd270, engineSimulate = 0x18afc0;
+constexpr uintptr_t engineSwitch = 0x18b070, loftEntry = 0x2c7090;
 constexpr double delayedMarch = 1e9;
 constexpr const char* controllerRunHash = "da67df1aa596da32af38794536bcd4eddc8840977a8d90ced0f668222d93fc19";
 

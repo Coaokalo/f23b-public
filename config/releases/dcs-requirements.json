@@ -1,13 +1,13 @@
 {
-  "version": "2.9.29.27468",
+  "version": "2.9.30.28536",
   "binaries": {
-    "Mods/aircraft/FA-18C/bin/FA18C.dll": "85718b936091f411ef69a9372c21dbd52ff109a49fd029ac0347848864d87634",
-    "bin/CockpitBase.dll": "3a08f21ed4e1ced2c6493f92120a2a66c598c4f9f463e51434573f5d2982414f",
-    "bin/WeaponBlocks.dll": "466646f4b8ebb8d38b4507f18cf52ff92cb2553536e765898d89e550b5eeeb74",
-    "bin/Weapons.dll": "70b89dd86954dcc154e33663728450810d398dfb6ec0dd487032120ac1a77cee",
-    "bin/WeaponsBase.dll": "b2747bee52d7ad446d6c99d65ac7bcbc7db93611f6c9f4ba109724b646ef423f",
-    "bin/WorldGeneral.dll": "97668e8e04412078f923f5fd39900c557894574fa73de4d12f998c4adb575eb6",
-    "bin/blocksim.dll": "0ab65113c26205a8706aeca88e2909475270927223321f4ae6210df90d5aa975",
-    "bin/edObjects.dll": "1472f0a171c6e1344a67c8373d06aee2ad0502ca077cd74090fad8d77af554f1"
+    "Mods/aircraft/FA-18C/bin/FA18C.dll": "1303ca95d67dc9b74aa849487772245e69fea242ae05bbd6868f5f639aa021de",
+    "bin/CockpitBase.dll": "d7e37621a36918c2ebb74d960178b103cb1a3c91cb3ff5d6d3b49ce604ad664f",
+    "bin/WeaponsBase.dll": "66d48df0271211a234d28e0c23b0b66b63549f28b5b69cb43a073189f2a073eb",
+    "bin/Weapons.dll": "86f8d7e4536bd473b9f8d7d0f2a666725fe3560dc653d184419be1c8b0727453",
+    "bin/WeaponBlocks.dll": "37c61b614cfbfa4d6e6f50c521d741b06f2bfcdf33d3cc5f97eaf259ed060b87",
+    "bin/edObjects.dll": "6c57309d51c08ee080a60121625f5da069402b5f3566cd806a03d8f73d3b93e0",
+    "bin/WorldGeneral.dll": "e8bd82443b0138b1562956d5d837342484db9880f0ab27e34354a28eba428eb6",
+    "bin/blocksim.dll": "673e364f16762886ec347772b46330e681c45722d4d386f5086c233cf76b52cc"
   }
 }

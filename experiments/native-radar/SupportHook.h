@@ -6,15 +6,15 @@
 
 namespace f23radar {
 // A missile asks its launcher LinkToTarget(target) each frame. The Hornet answers with
-// avLinkToTargetResponder::is_tracking (FA18C 2.9.29.27468 RVA 0x49d780). Native support
+// avLinkToTargetResponder::is_tracking (FA18C 2.9.30.28536 RVA 0x49d7b0). Native support
 // covers the L&S, designated tracks and TWS tracks that pass a fire-control-quality gate.
 // The F-23B extension keeps the native answer and the native power/operate/inhibit gates.
 // It also accepts a missile's own target while that target remains an MSI trackfile.
 // It never creates tracks, changes the L&S or locks, and only answers for the F-23B radar.
 using TrackingFunction = bool(*)(void*, unsigned, unsigned);
 constexpr uintptr_t responderOffset = 0xb8;   // radar -> avLinkToTargetResponder base
-constexpr uintptr_t trackingSlot = 0x635a98;  // responder vtable slot 1 (is_tracking)
-constexpr uintptr_t nativeTracking = 0x49d780;
+constexpr uintptr_t trackingSlot = 0x635ac8;  // responder vtable slot 1 (is_tracking)
+constexpr uintptr_t nativeTracking = 0x49d7b0;
 constexpr size_t msiTrackStride = 0x228;      // same vector as the friendly-ranking hook
 
 template<class T> T supportField(const void* p, size_t offset) {

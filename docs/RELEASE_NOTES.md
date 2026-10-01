@@ -1,14 +1,14 @@
 The F-23B Black Widow II aircraft for DCS World with custom flight dynamics and F/A-18C Hornet avionics.
 Includes internal weapon bays, AIM-424 MALICE, and project AIM-9X Block II.
 
-## [Download the Windows installer](https://github.com/Coaokalo/f23b-public/releases/download/release-2026-09-29/F23B-2026-09-29-Setup.exe)
+## [Download the Windows installer](https://github.com/Coaokalo/f23b-public/releases/download/release-2026-10-01/F23B-2026-10-01-Setup.exe)
 
 **Aircraft and weapons included · No separate Python installation**
 
 | Requirement | Supported configuration |
 | --- | --- |
 | Operating system | Windows 64-bit |
-| DCS World | **2.9.29.27468** |
+| DCS World | **2.9.30.28536** |
 | Required module | **DCS: F/A-18C Hornet**, installed and activated |
 | Play mode | Single-player |
 
@@ -17,6 +17,13 @@ Includes internal weapon bays, AIM-424 MALICE, and project AIM-9X Block II.
 *Development capture. Some visual details can differ from this release.*
 
 ## New in this release
+
+- **DCS World 2.9.30.28536 support.** MALICE, Block II, the 640 NM SA scale and the
+  friendly-track filter work again after the DCS update. The F-23B checks the exact DCS
+  binaries, so the [September 29 release](https://github.com/Coaokalo/f23b-public/releases/tag/release-2026-09-29)
+  does not connect its weapons on 2.9.30. That release still serves DCS 2.9.29.27468.
+
+Carried over from the September 29 release:
 
 - **No DCS game-file changes.** Setup installs only into your Saved Games profile.
   Upgrading removes the cockpit connection that the September 18 release added.
@@ -86,9 +93,9 @@ The Windows installer is the normal player download.
 
 | File | Purpose |
 | --- | --- |
-| [Aircraft ZIP](https://github.com/Coaokalo/f23b-public/releases/download/release-2026-09-29/F23B-2026-09-29.zip) | Installer payload. The EXE already includes this file. |
-| [Source ZIP](https://github.com/Coaokalo/f23b-public/releases/download/release-2026-09-29/F23B-2026-09-29-source.zip) | Software source for this release. |
-| [SHA256 checksums](https://github.com/Coaokalo/f23b-public/releases/download/release-2026-09-29/SHA256SUMS.txt) | File checksums for download verification. |
+| [Aircraft ZIP](https://github.com/Coaokalo/f23b-public/releases/download/release-2026-10-01/F23B-2026-10-01.zip) | Installer payload. The EXE already includes this file. |
+| [Source ZIP](https://github.com/Coaokalo/f23b-public/releases/download/release-2026-10-01/F23B-2026-10-01-source.zip) | Software source for this release. |
+| [SHA256 checksums](https://github.com/Coaokalo/f23b-public/releases/download/release-2026-10-01/SHA256SUMS.txt) | File checksums for download verification. |
 
 GitHub's automatic **Source code** archives are repository snapshots. They are not aircraft installation packages.
 

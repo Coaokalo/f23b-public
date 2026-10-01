@@ -6,7 +6,7 @@ F/A-18C Hornet cockpit and avionics.
 Includes independent AIM-424 MALICE and AIM-9X Block II weapons. Stock missiles
 retain their original behavior. Setup does not change DCS game files.
 
-**[Download and release details](https://github.com/Coaokalo/f23b-public/releases/tag/release-2026-09-29)** ·
+**[Download and release details](https://github.com/Coaokalo/f23b-public/releases/tag/release-2026-10-01)** ·
 [Installation & removal](INSTALL.md) ·
 [Known limitations](KNOWN_ISSUES.md) ·
 [Report a bug](https://github.com/Coaokalo/f23b-public/issues/new?template=bug_report.yml)
@@ -14,11 +14,13 @@ retain their original behavior. Setup does not change DCS game files.
 | Requirement | Supported configuration |
 | --- | --- |
 | Operating system | Windows 64-bit |
-| DCS World | **2.9.29.27468** |
+| DCS World | **2.9.30.28536** |
 | Required module | **DCS: F/A-18C Hornet**, installed and activated |
 | Play mode | Single-player; multiplayer and VR remain unverified |
 
 The Windows installer includes the aircraft and weapons. No separate Python installation is needed.
+Playing DCS 2.9.29.27468? Use the
+[September 29 release](https://github.com/Coaokalo/f23b-public/releases/tag/release-2026-09-29).
 
 ![F-23B above the clouds at sunset](docs/images/f23b-exterior.jpg)
 
@@ -33,8 +35,8 @@ The Windows installer includes the aircraft and weapons. No separate Python inst
 
 ## Get flying
 
-1. Download **F23B-2026-09-29-Setup.exe** from
-   [the release page](https://github.com/Coaokalo/f23b-public/releases/tag/release-2026-09-29).
+1. Download **F23B-2026-10-01-Setup.exe** from
+   [the release page](https://github.com/Coaokalo/f23b-public/releases/tag/release-2026-10-01).
 2. Close DCS, its updater, and ModelViewer.
 3. Run the installer and confirm your DCS game folder and Saved Games profile.
 4. Select **Install / Repair**.

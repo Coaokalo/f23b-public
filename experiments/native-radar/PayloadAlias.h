@@ -5,10 +5,10 @@
 #include <string>
 
 namespace f23radar {
-// Independent MALICE and Block II through the native Hornet weapon path (DCS 2.9.29.27468).
+// Independent MALICE and Block II through the native Hornet weapon path (DCS 2.9.30.28536).
 // FA18C reads each station's wsType through the human payload interface (IwHumanPayload
 // vtable +0x98 station store, +0xa0 weapon inside a container). It then accepts only listed
-// stock missiles, for example the Sidewinder set at FA18C RVA 0x31b1d9 (level4 22, 136, 143, 1007).
+// stock missiles, for example the Sidewinder set at FA18C RVA 0x31b1d9 in 2.9.29.27468 (level4 22, 136, 143, 1007).
 // The Hornet reads these types while its cockpit devices initialize, before any cockpit Lua script
 // runs. The F-23B ForceBridge loads the helper before forwarding its first native callback.
 // DLL-load notifications only record the image. Ordinary initialization installs the imports;
@@ -38,13 +38,13 @@ inline int projectWeaponKind(const char* text, size_t length) {
 constexpr uint16_t stockAim120B = 24, stockAim9X = 136;
 constexpr uintptr_t payloadStationTypeSlot = 0x98, payloadContainerTypeSlot = 0xa0;
 constexpr uintptr_t payloadStationCountSlot = 0x1b8, payloadWeaponCountSlot = 0xd0;
-// FA18C import-table slots (2.9.29.27468, loaded image) that consume a wsType.
+// FA18C import-table slots (2.9.30.28536, loaded image) that consume a wsType.
 constexpr uintptr_t importSetMissileData = 0x60ff20;      // cockpit::MissileSight::setMissileData
 constexpr uintptr_t importDescriptorByType = 0x611520;    // wGetAmmunitionDescriptorByType
 constexpr uintptr_t importSidewinderNew = 0x610380;       // cockpit::eqSidewinderNew::eqSidewinderNew
 constexpr uintptr_t importCurrentPayload = 0x60fe58;      // cockpit::c_payload, verified against live export
 constexpr uintptr_t importLaunchZone = 0x611480;           // Weapons.dll DLZ
-constexpr uintptr_t armamentVtable = 0x61eb98, amraamSelectorVtable = 0x61e7a8;
+constexpr uintptr_t armamentVtable = 0x61ebb8, amraamSelectorVtable = 0x61e7c8;
 
 // The native radar-missile launch at 0x2f3a1d uses SMS+0xda14 to select a
 // station selector at +0xded0. AMRAAM is index 2 (constructor 0x2ec2e4).

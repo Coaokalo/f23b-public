@@ -2,10 +2,10 @@
 
 The F-23B Black Widow II is available for DCS World.
 
-[Download the current release](https://github.com/Coaokalo/f23b-public/releases/tag/release-2026-09-29).
+[Download the current release](https://github.com/Coaokalo/f23b-public/releases/tag/release-2026-10-01).
 Use the setup EXE to install the aircraft and its weapons. Setup does not change DCS game files.
 
-Requires Windows, DCS World **2.9.29.27468**, and an installed, activated
+Requires Windows, DCS World **2.9.30.28536**, and an installed, activated
 **DCS: F/A-18C Hornet**. This release is intended for single-player.
 
 [Installation and removal](../INSTALL.md) | [Known issues](../KNOWN_ISSUES.md) |

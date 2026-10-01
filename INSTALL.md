@@ -1,12 +1,14 @@
 # Install or remove the F-23B
 
-Requires Windows, **DCS World 2.9.29.27468**, and an installed and activated
+Requires Windows, **DCS World 2.9.30.28536**, and an installed and activated
 **DCS: F/A-18C Hornet**. No separate Python installation is needed.
+On DCS 2.9.29.27468, use the
+[September 29 release](https://github.com/Coaokalo/f23b-public/releases/tag/release-2026-09-29).
 
 ## Install
 
-1. Download **F23B-2026-09-29-Setup.exe** from
-   [the release page](https://github.com/Coaokalo/f23b-public/releases/tag/release-2026-09-29).
+1. Download **F23B-2026-10-01-Setup.exe** from
+   [the release page](https://github.com/Coaokalo/f23b-public/releases/tag/release-2026-10-01).
 2. Close DCS, its updater and ModelViewer. Run setup and allow its administrator prompt.
 3. Confirm your **DCS game folder** and **Saved Games DCS profile**.
 4. Click **Install / Repair**, then start an F-23B Quick Start mission.

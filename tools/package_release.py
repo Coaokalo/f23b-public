@@ -12,7 +12,7 @@ from verify_source import verify
 from release_assets import branding, fix_mission
 
 ROOT = Path(__file__).resolve().parents[1]
-PIN = 'config/releases/release-2026-09-29.json'
+PIN = 'config/releases/release-2026-10-01.json'
 TEXT = ('.lua', '.lods', '.txt')
 NOTICES = ['COPYING', 'LICENSE', 'LICENSE-ASSETS.md', 'THIRD_PARTY_NOTICES.md', 'INSTALL.md',
            'LICENSES/MIT.txt', 'config/licensing/third-party-code-reuse.json',
@@ -27,7 +27,7 @@ def zip_bytes(files):
     buffer = io.BytesIO()
     with zipfile.ZipFile(buffer, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as z:
         for name, data in sorted(files.items()):
-            info = zipfile.ZipInfo(name, (2026, 9, 29, 0, 0, 0))
+            info = zipfile.ZipInfo(name, (2026, 10, 1, 0, 0, 0))
             info.compress_type = zipfile.ZIP_DEFLATED
             info.external_attr = 0o100644 << 16
             z.writestr(info, data)

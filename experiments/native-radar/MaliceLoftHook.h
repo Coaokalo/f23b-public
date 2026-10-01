@@ -8,7 +8,7 @@
 #include <initializer_list>
 
 namespace f23radar {
-// WeaponBlocks calcLoftOmega, RVA 0x2c68a0. Fixed, reviewed prologue: no decoder and no support for other native builds.
+// WeaponBlocks calcLoftOmega, RVA 0x2c7090. Fixed, reviewed prologue: no decoder and no support for other native builds.
 // Suspended threads must be outside the overwritten instruction boundaries.
 class MaliceLoftHook {
     unsigned char* entry = nullptr;
@@ -66,7 +66,7 @@ class MaliceLoftHook {
 public:
     void* trampoline() const { return relay ? relay+32 : nullptr; }
     bool prepare(uintptr_t module, void* replacementFunction) {
-        auto target = reinterpret_cast<unsigned char*>(module+0x2c68a0);
+        auto target = reinterpret_cast<unsigned char*>(module+0x2c7090);
         if (entry) return entry == target;
         if ((reinterpret_cast<uintptr_t>(target)&7) || std::memcmp(target, prologue, 13)) return false;
         SYSTEM_INFO info{}; GetSystemInfo(&info);

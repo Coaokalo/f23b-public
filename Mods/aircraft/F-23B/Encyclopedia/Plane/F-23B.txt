@@ -7,7 +7,7 @@ Type: Experimental community aircraft
 Crew: 1
 
 Requirements:
-DCS World 2.9.29.27468 on Windows
+DCS World 2.9.30.28536 on Windows
 Installed and activated DCS: F/A-18C Hornet
 
 Cockpit and systems:

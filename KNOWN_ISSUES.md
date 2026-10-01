@@ -1,6 +1,6 @@
 # Known limitations
 
-- Windows and DCS 2.9.29.27468 with an installed, activated F/A-18C Hornet are required.
+- Windows and DCS 2.9.30.28536 with an installed, activated F/A-18C Hornet are required.
   The F-23B native functions check the exact DCS binaries. Setup rejects unsupported
   versions, and the functions turn off with a logged error if the game changes.
 - Intended for single-player. VR and multiplayer compatibility are not established.

@@ -239,7 +239,7 @@ def gui(archive):
                 field.insert(0, folder)
         ttk.Button(frame, text='Browse…', command=browse).grid(row=3 + row * 2, column=1, padx=(10, 0), pady=(4, 12))
         entries.append(entry)
-    ttk.Label(frame, wraplength=550, text='Requires DCS 2.9.29.27468 and an installed, activated F/A-18C Hornet. Close DCS before continuing.\n\nInstalls the F-23B, MALICE and AIM-9X Block II into your Saved Games profile only. DCS game files are not changed. Setup restores DCS files that earlier F-23B releases changed.').grid(row=6, column=0, columnspan=2, sticky='w', pady=(0, 18))
+    ttk.Label(frame, wraplength=550, text='Requires DCS 2.9.30.28536 and an installed, activated F/A-18C Hornet. Close DCS before continuing.\n\nInstalls the F-23B, MALICE and AIM-9X Block II into your Saved Games profile only. DCS game files are not changed. Setup restores DCS files that earlier F-23B releases changed.').grid(row=6, column=0, columnspan=2, sticky='w', pady=(0, 18))
     status = tk.StringVar(value='Ready. No separate Python installation is needed.')
     ttk.Label(frame, textvariable=status, wraplength=550).grid(row=8, column=0, columnspan=2, sticky='w', pady=(16, 0))
     results = queue.Queue()
