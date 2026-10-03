@@ -73,6 +73,25 @@ int main() {
     EnergyState ramp; ramp.initialize(0, 70000, 4500);
     CHECK(ramp.loftGain == .5 && ramp.loftEnd == 47500);
 
+    // The ceiling suspends the loft while the coasting apex would pass 30 km. It does not latch.
+    EnergyState owner; owner.initialize(0, 563000, 10000);
+    CHECK(owner.loft(.02, 560000, 20000, 12.0, 2110) == .025);               // First sample sets the reference.
+    // Owner shot 1 at 12 s: 22 deg climb at 2,110 m/s from 20 km. Coasting apex is about 49 km.
+    CHECK(owner.loft(.02, 559000, 20039.5, 12.05, 2110) == 0 && owner.coastApex(20039.5, 2110) > 45000);
+    CHECK(owner.loft(.02, 558000, 20039.5, 12.06, 2110) == 0);              // Under 0.05 s keeps the last climb.
+    owner.loft(.02, 557500, 29990, 59.9, 2500);                               // Level sample after the climb.
+    CHECK(owner.loft(.02, 557000, 29990, 60, 2500) == .025 && !owner.loftStopped);  // Level below the ceiling.
+    CHECK(owner.loft(.02, 556000, 30000, 60.5, 2500) == 0 && !owner.loftStopped);   // At the ceiling.
+    CHECK(owner.loft(.02, 555000, 29990, 61, 2500) == .025);                 // Descending below it: resumes.
+    CHECK(owner.loft(.02, 40000, 29000, 200, 2000) == 0 && owner.loftStopped);
+    CHECK(owner.loft(.02, 60000, 20000, 201, 2000) == 0);                    // The range cutoff still latches.
+    // Accepted 129 km test at 10 s: 15 deg at 1,473 m/s from 9.2 km. Coasting apex about 16.6 km: loft continues.
+    EnergyState mid; mid.initialize(0, 129000, 8000);
+    mid.loft(.02, 128000, 9200, 10.0, 1473);
+    CHECK(mid.loft(.02, 127000, 9219.06, 10.05, 1473) == .025 && mid.coastApex(9219.06, 1473) < 18000);
+    EnergyState unknown; unknown.initialize(0, 563000, 10000);
+    CHECK(unknown.loft(.02, 560000, -1, 1, 1000) == .025 && unknown.climbAge < 0);
+
     const uintptr_t wb = 0x10000000, bs = 0x20000000;
     auto gp = descriptor("", wb+guidanceDescriptorVtable), boost = descriptor("boost"), march = descriptor("march");
     auto controller = descriptor("controller", bs+0x97968);

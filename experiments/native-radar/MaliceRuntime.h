@@ -177,8 +177,16 @@ static double loft(void* block, double time) {
     if (!identify(block, false) || !accessible(block, 0x230, true)) return original;
     observePhysicsThread();
     auto& value = stateFor(block, field<double>(block, 0x170));
-    const double range = field<double>(block, 0x180);
-    const double result = value.loft(original, range);
+    const double range = field<double>(block, 0x180), altitude = field<double>(block, 0x1b0);
+    const double speed = field<double>(block, 0x190);
+    const double result = value.loft(original, range, altitude, field<double>(block, 0x170), speed);
+    if (!value.loftStopped && !value.ceilingReported && value.coastApex(altitude, speed) >= f23radar::loftCeiling) {
+        value.ceilingReported = true; char line[256];
+        std::snprintf(line, sizeof(line), "MALICE loft ceiling: missile_id=%llx time=%.3f range=%.3f altitude=%.3f speed=%.1f climb_sine=%.4f",
+            static_cast<unsigned long long>(reinterpret_cast<uintptr_t>(field<void*>(block, 0x10))),
+            field<double>(block, 0x170), range, altitude, speed, value.climbSine);
+        messages.emplace_back(line);
+    }
     if (value.loftStopped) {
         const unsigned char disabled = 0; std::memcpy(static_cast<char*>(block)+0x162, &disabled, 1);
         if (!value.loftReported) {

@@ -312,9 +312,11 @@ local F23B_AIM424_MALICE = {
         1.0,
         2.0,
         21.0, -25.0, -3.0,
-        -- Provisional launch-zone anchors [49..54]; the owner has not set final ranges.
-        340000.0, 170000.0,
-        400000.0, 230000.0,
+        -- Launch-zone anchors [49..54], head-on/tail at 5, 10 and 1 km (owner decision, October 2, 2026).
+        -- The owner's reference is a 350-mile (563 km) shot. The Hornet DLZ fits a quadratic through 1/5/10 km
+        -- at altitude own + delta/2: these give about 522, 570 and 600 km head-on at 10, 12.5 and 15 km.
+        372000.0, 186000.0,
+        522000.0, 300000.0,
         200000.0, 90000.0,
         5000.0,
         0.42,

@@ -40,7 +40,7 @@ aircraft renders. Font files are not distributed. These graphics carry the
 project's CC BY-SA 4.0 content license, with F-23B project contributors credited.
 
 The visual and contact models remain derivatives of the licensed YF-23. Exact
-hashes of every shipped file are recorded in `config/releases/release-2026-10-01.json`
+hashes of every shipped file are recorded in `config/releases/release-2026-10-03.json`
 in the source companion and in the download's `release.json`.
 
 Eagle Dynamics game resources and SDK headers are external dependencies. No

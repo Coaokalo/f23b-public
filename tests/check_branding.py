@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'tools'))
 from release_assets import branding
 
-pin = json.loads((ROOT / 'config/releases/release-2026-10-01.json').read_text())
+pin = json.loads((ROOT / 'config/releases/release-2026-10-03.json').read_text())
 expected = {n for n in pin['runtime_files'] if n.endswith('.png') and n not in pin['removed']
             and ('/Theme/' in n or '/Encyclopedia/' in n)}
 graphics = branding()

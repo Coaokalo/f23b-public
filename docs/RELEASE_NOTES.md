@@ -1,7 +1,7 @@
 The F-23B Black Widow II aircraft for DCS World with custom flight dynamics and F/A-18C Hornet avionics.
 Includes internal weapon bays, AIM-424 MALICE, and project AIM-9X Block II.
 
-## [Download the Windows installer](https://github.com/Coaokalo/f23b-public/releases/download/release-2026-10-01/F23B-2026-10-01-Setup.exe)
+## [Download the Windows installer](https://github.com/Coaokalo/f23b-public/releases/download/release-2026-10-03/F23B-2026-10-03-Setup.exe)
 
 **Aircraft and weapons included · No separate Python installation**
 
@@ -18,10 +18,21 @@ Includes internal weapon bays, AIM-424 MALICE, and project AIM-9X Block II.
 
 ## New in this release
 
-- **DCS World 2.9.30.28536 support.** MALICE, Block II, the 640 NM SA scale and the
-  friendly-track filter work again after the DCS update. The F-23B checks the exact DCS
-  binaries, so the [September 29 release](https://github.com/Coaokalo/f23b-public/releases/tag/release-2026-09-29)
-  does not connect its weapons on 2.9.30. That release still serves DCS 2.9.29.27468.
+- **MALICE long-range loft control.** Extra loft pauses when the estimated coasting
+  apex reaches 98,400 feet. A single-player flight confirmed an A-50 kill from
+  336.4 statute miles with continuing target updates, plus a Tu-95MS kill from 76.2 miles.
+  Exact 350-mile shots and the full engagement envelope remain unverified.
+- **Updated MALICE launch-zone indications.** The displayed launch envelope now
+  uses the revised long-range anchors. Second pulse timing is unchanged: seeker search after boost burnout.
+- **Installer upgrades.** Install / Repair accepts an installed October 1 release and preserves the DCS game files.
+
+The coasting estimate is not a hard altitude cap. The successful long shot reached about 158,000 feet.
+Launch conditions and continued target support affect the result.
+
+Carried over from the October 1 release:
+
+- **DCS World 2.9.30.28536 support.** MALICE, Block II, the 640 NM SA scale and the friendly-track filter remain connected.
+  On DCS 2.9.29.27468, use the [September 29 release](https://github.com/Coaokalo/f23b-public/releases/tag/release-2026-09-29).
 
 Carried over from the September 29 release:
 
@@ -59,6 +70,7 @@ Keep the installer for repair and removal. Your existing Hornet controls apply.
 
 ## Known limitations
 
+- MALICE's coasting-apex threshold is not a hard altitude cap. Exact 350-mile shots are unverified.
 - Full flight and weapon envelopes are not verified.
 - AIM-9X Block II helmet cueing and post-launch datalink/lock-on after launch are not implemented.
 - AI F-23Bs use the MALICE energy profile only when the player also flies an F-23B.
@@ -93,9 +105,9 @@ The Windows installer is the normal player download.
 
 | File | Purpose |
 | --- | --- |
-| [Aircraft ZIP](https://github.com/Coaokalo/f23b-public/releases/download/release-2026-10-01/F23B-2026-10-01.zip) | Installer payload. The EXE already includes this file. |
-| [Source ZIP](https://github.com/Coaokalo/f23b-public/releases/download/release-2026-10-01/F23B-2026-10-01-source.zip) | Software source for this release. |
-| [SHA256 checksums](https://github.com/Coaokalo/f23b-public/releases/download/release-2026-10-01/SHA256SUMS.txt) | File checksums for download verification. |
+| [Aircraft ZIP](https://github.com/Coaokalo/f23b-public/releases/download/release-2026-10-03/F23B-2026-10-03.zip) | Installer payload. The EXE already includes this file. |
+| [Source ZIP](https://github.com/Coaokalo/f23b-public/releases/download/release-2026-10-03/F23B-2026-10-03-source.zip) | Software source for this release. |
+| [SHA256 checksums](https://github.com/Coaokalo/f23b-public/releases/download/release-2026-10-03/SHA256SUMS.txt) | File checksums for download verification. |
 
 GitHub's automatic **Source code** archives are repository snapshots. They are not aircraft installation packages.
 

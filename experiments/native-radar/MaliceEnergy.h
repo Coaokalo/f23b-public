@@ -66,9 +66,16 @@ void* sibling(void* block, const EnergyIdentity& id, void* descriptor, uintptr_t
     return found;
 }
 
+// Project decision (October 2, 2026): suspend the loft while the coasting apex would pass the ceiling.
+// The owner's 384 and 524 km shots climbed 17-23 degrees and reached 57 and 97 km.
+// Accepted 80-130 km shots climbed 9-15 degrees to 13-17 km and stay below this limit.
+// The 30 km threshold is a coasting estimate. Remaining boost can carry the actual apex above it.
+constexpr double loftCeiling = 30000, gravity = 9.80665;
+
 struct EnergyState {
     double lastAge = -1, seekerAge = -1, loftEnd = 0, loftGain = 0;
-    bool fired = false, loftPlanned = false, loftStopped = false, loftReported = false;
+    double climbAge = -1, climbAltitude = 0, climbSine = 0;
+    bool fired = false, loftPlanned = false, loftStopped = false, loftReported = false, ceilingReported = false;
     bool initialize(double age, double launchRange, double targetAltitude) {
         // The first simulate call can precede the native launch-range initialization.
         // Preserve native loft until readInputData supplies the launch geometry.
@@ -90,9 +97,22 @@ struct EnergyState {
         fired = true;
         return true;
     }
-    double loft(double nativeOmega, double range) {
+    double coastApex(double altitude, double speed) const {
+        const double climb = std::max(0.0, climbSine*speed);
+        return altitude + climb*climb/(2*gravity);
+    }
+    // altitude < 0 skips the ceiling limit. The limit suspends the loft; it does not latch it.
+    double loft(double nativeOmega, double range, double altitude = -1, double age = -1, double speed = 0) {
         if (!loftPlanned) return nativeOmega;
         if (loftStopped || loftGain == 0 || range <= loftEnd) { loftStopped = true; return 0; }
+        if (altitude >= 0 && age >= 0) {
+            if (climbAge < 0 || age < climbAge) { climbAge = age; climbAltitude = altitude; }
+            else if (age-climbAge >= 0.05 && speed > 1) {
+                climbSine = (altitude-climbAltitude)/((age-climbAge)*speed);
+                climbAge = age; climbAltitude = altitude;
+            }
+            if (coastApex(altitude, speed) >= loftCeiling) return 0;
+        }
         const double x = std::clamp((range-loftEnd)/15000, 0.0, 1.0);
         return nativeOmega*loftGain*x*x*(3-2*x);
     }

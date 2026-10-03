@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "description": "Curated software source. Aircraft scripts match the build flown on October 1, 2026; flight bridge and native radar source match private commit 931b267fb7d3. No private development history imported.",
-  "runtime_source": "931b267fb7d3069dc026aa0e51798d5b4f0e25df",
+  "description": "Curated software source. Aircraft scripts match the October 2, 2026 owner-flown build. Flight bridge source remains at private commit 931b267fb7d3; native radar source matches private commit 9ada987c176f. No private development history imported.",
+  "runtime_source": "9ada987c176f562bfd28cbe74a1346c73f4bf9a2",
   "flight_source": "931b267fb7d3",
   "unchanged_files": {
     "COPYING": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
@@ -24,7 +24,7 @@
     "Mods/aircraft/F-23B/Missions/QuickStart/quickstart.lua": "971b42e42925c29c4b7278fb85e643305880e2fe750ba6cbfe87d415a987f342",
     "Mods/aircraft/F-23B/Shapes/F-23B.lods": "08f98c287a79b19ce2eec9b2189320970d64e795af53b1cfab35f5a0c1e9173b",
     "Mods/aircraft/F-23B/UnitPayloads/F-23B.lua": "46b0fd00706469ad17d700d765aad1a728e7fcf0bafadf3a4a172d5106ae47e2",
-    "Mods/aircraft/F-23B/Weapons/F23B_AIM424_MALICE.lua": "90067312ccc36fc99186a652ae4e85248463955d2478cc0b5612db806c4f781c",
+    "Mods/aircraft/F-23B/Weapons/F23B_AIM424_MALICE.lua": "4f9d07af7153efa867fd20d6118b2907d0d80842eedd4bdb0a01d4789c320de7",
     "Mods/aircraft/F-23B/Weapons/F23B_AIM9X_BLOCKII.lua": "744e402aeb2f798a1e47f4e121b011f188a20ff0f47cef93c2912bab9633d6a2",
     "Mods/aircraft/F-23B/entry.lua": "8bcdf76922f6484216679b7af5b3d1d737cf4a5116b79a97d5e3fea69c02ec2a",
     "experiments/flight-feel/CMakeLists.txt": "363acf9bc20fce1479500de89b04ae3ac123b876873452a7cf08fa4f576b0c3d",
@@ -55,10 +55,10 @@
     "experiments/native-force-bridge/steering.hpp": "19dac44d26a3f33ca634762ae846d4c4b7478cfcfd9b3794bc6150e0bbbb4431",
     "experiments/native-force-bridge/steering_tests.cpp": "793eaecf974a8bfa406dd8e5bd5ab9deedbaca69e8feb3a506e8f3998ae30e2a",
     "experiments/native-radar/LaunchZone_test.cpp": "9f0d2d35e49d8f2871a4f0e66e7bee1ddc49b36dc6efffbbac4af5f44ec2b96e",
-    "experiments/native-radar/MaliceEnergy.h": "d1fccf7cfecdd038317d658684d0ead53524db430884b85478ad69abf4b501f7",
-    "experiments/native-radar/MaliceEnergy_test.cpp": "151b84faeafba9c06a48bc25807ef2f8344d213284a4218f9fc4d2b00341d72d",
+    "experiments/native-radar/MaliceEnergy.h": "32477d081bf3bf82be706d28dd5a0e58299796a0a3c950e342163953a1242646",
+    "experiments/native-radar/MaliceEnergy_test.cpp": "61b7460d7744cb253dda132f43adf073f953d87bfcbcc9f3120b8867fd97eb76",
     "experiments/native-radar/MaliceLoftHook.h": "966f9ab173efb602b861375140a906f53e21e9c80ac0a9a1296c6ffa74d2f919",
-    "experiments/native-radar/MaliceRuntime.h": "22c6626290c83567286609012a6d166738a515282b931528bfb5c321b8b87f5b",
+    "experiments/native-radar/MaliceRuntime.h": "ea492a3a12fbf5b95771e9901e9673985c3b2eb9c8ee99c87becd1ea23b244cb",
     "experiments/native-radar/MissileProfile.h": "139b91d748c20118e8d99d2304473a0640ea60d7c03f410fbe932a060a349c8e",
     "experiments/native-radar/MissileProfile_test.cpp": "b0cc4a04be09c50ef54b4a2cd1afa0f47d3e0872eb3cfb4c97d43aa78f3dc91e",
     "experiments/native-radar/NativeRanking.h": "0cc935f5b38d6aeb7896bac06b6fccdc19a2d7445ae84e6a1e69fb273b821413",
@@ -98,5 +98,6 @@
   },
   "prior_runtime_source": "4c254be08a8d23ba5ad29e4a8cbf7962dc5d340b",
   "accepted_runtime_archive_sha256": "9e46867abcd899cf4577956e017f953bb6363dfd00a1839fc5b3c0a679f80a7c",
-  "prior_curated_release": "804920ad2fc51de498fed81daab072c1351aa6a7"
+  "prior_curated_release": "804920ad2fc51de498fed81daab072c1351aa6a7",
+  "native_radar_source": "9ada987c176f562bfd28cbe74a1346c73f4bf9a2"
 }

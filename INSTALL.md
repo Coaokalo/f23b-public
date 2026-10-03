@@ -7,8 +7,8 @@ On DCS 2.9.29.27468, use the
 
 ## Install
 
-1. Download **F23B-2026-10-01-Setup.exe** from
-   [the release page](https://github.com/Coaokalo/f23b-public/releases/tag/release-2026-10-01).
+1. Download **F23B-2026-10-03-Setup.exe** from
+   [the release page](https://github.com/Coaokalo/f23b-public/releases/tag/release-2026-10-03).
 2. Close DCS, its updater and ModelViewer. Run setup and allow its administrator prompt.
 3. Confirm your **DCS game folder** and **Saved Games DCS profile**.
 4. Click **Install / Repair**, then start an F-23B Quick Start mission.

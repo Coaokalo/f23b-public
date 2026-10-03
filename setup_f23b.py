@@ -22,6 +22,8 @@ LEGACY_RELEASE = '35a471ede1df312a8af8ca10283a7cd7cf7ba95f'
 HOOK_RELEASE = '804920ad2fc51de498fed81daab072c1351aa6a7'
 # The September 29 release changed no DCS game files. Setup replaces its modules.
 SEPTEMBER_29_RELEASE = '6f9f317c2752a1973ffa33491b1358ffdbd95ab5'
+# The October 1 release used the same installation layout on DCS 2.9.30.
+OCTOBER_1_RELEASE = '570e13658115bd2baab097cd8161c4672efc958e'
 COCKPIT_SCRIPT = 'Mods/aircraft/FA-18C/Cockpit/Scripts/device_init.lua'
 HOOK = b'''
 -- BEGIN F23B INDEPENDENT WEAPONS
@@ -132,7 +134,7 @@ def perform(action, dcs, profile, archive):
         package.mkdir()
         release = unpack(archive, package)
         if receipt and receipt['source_commit'] not in (release['corresponding_source_commit'], LEGACY_RELEASE,
-                                                         HOOK_RELEASE, SEPTEMBER_29_RELEASE):
+                                                         HOOK_RELEASE, SEPTEMBER_29_RELEASE, OCTOBER_1_RELEASE):
             raise ValueError('Remove the previous release with its original installer before changing releases')
         if action == 'install':
             check_dcs(dcs, json.loads((package / 'dcs-requirements.json').read_text()))

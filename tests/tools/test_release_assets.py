@@ -57,7 +57,7 @@ class ContentTests(unittest.TestCase):
             fix_mission(source.getvalue())
 
     def test_every_shipped_model_reference_is_pinned(self):
-        pin = json.loads((ROOT / 'config/releases/release-2026-10-01.json').read_text())
+        pin = json.loads((ROOT / 'config/releases/release-2026-10-03.json').read_text())
         shipped = {n for n in pin['runtime_files'] if n not in pin['removed']}
         text = (ROOT / 'Mods/aircraft/F-23B/Shapes/F-23B.lods').read_text()
         models = re.findall(r'"([^"]+\.edm)"', text)
@@ -66,7 +66,7 @@ class ContentTests(unittest.TestCase):
             self.assertIn('F-23B/Shapes/' + name, shipped)
 
     def test_removed_files_are_unused_by_shipped_scripts(self):
-        pin = json.loads((ROOT / 'config/releases/release-2026-10-01.json').read_text())
+        pin = json.loads((ROOT / 'config/releases/release-2026-10-03.json').read_text())
         scripts = [p.read_text(encoding='utf-8', errors='replace')
                    for p in (ROOT / 'Mods/aircraft').rglob('*') if p.is_file()]
         for name in pin['removed']:

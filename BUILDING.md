@@ -57,7 +57,7 @@ The script runs the native test groups and writes the DLL to `build/native-radar
 ## Release packaging
 
 `tools/package_release.py` packages the aircraft module files of the flown
-build. `config/releases/release-2026-10-01.json` pins every flown file by
+build. `config/releases/release-2026-10-03.json` pins every flown file by
 SHA-256 and lists the unused files that the release removes, with reasons.
 Every shipped script and configuration file must equal the committed source.
 Pillow renders the original menu graphics from code; no old artwork is used.
@@ -84,7 +84,7 @@ After committing the source and packaging the aircraft as above:
 ```powershell
 python -m venv .venv
 .venv/Scripts/python.exe -m pip install -r requirements-setup.txt
-.venv/Scripts/python.exe tools/build_setup.py --aircraft-zip "PATH/TO/F23B-2026-10-01.zip"
+.venv/Scripts/python.exe tools/build_setup.py --aircraft-zip "PATH/TO/F23B-2026-10-03.zip"
 ```
 
 The build uses [PyInstaller](https://pyinstaller.org/en/stable/usage.html) to bundle

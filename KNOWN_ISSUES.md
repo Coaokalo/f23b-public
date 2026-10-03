@@ -5,6 +5,9 @@
   versions, and the functions turn off with a logged error if the game changes.
 - Intended for single-player. VR and multiplayer compatibility are not established.
 - AI F-23Bs use the MALICE energy profile only when the player also flies an F-23B.
+- MALICE's 98,400-foot coasting-apex threshold is not a hard altitude cap.
+  A supported A-50 intercept was observed from 336.4 statute miles, with an apex near 158,000 feet.
+  Exact 350-mile shots and the full engagement envelope remain unverified.
 - The Hornet's remaining SMS pages keep donor labels. MALICE uses the AMRAAM
   selection and Block II uses the Sidewinder selection.
 - Block II helmet cueing and post-launch datalink/lock-on after launch are not implemented.
