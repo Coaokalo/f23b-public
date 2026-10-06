@@ -63,8 +63,6 @@ The coasting-apex estimate is not a hard altitude cap; the recorded long shot re
 
 ![Afterburner at dusk](https://raw.githubusercontent.com/Coaokalo/f23b-public/v1.4/docs/images/f23b-afterburner.jpg)
 
-[Bay doors and MALICE launch — short DCS clip](https://github.com/Coaokalo/f23b-public/releases/latest/download/F-23B-v1.4-Bay-Launch.mp4)
-
 Block II helmet cueing and post-launch datalink/lock-on after launch are not implemented.
 AI uses the extended MALICE energy profile when the player also flies an F-23B.
 On a mismatched DCS build, custom weapons, radar upgrades and SA 640 are unavailable.

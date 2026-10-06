@@ -43,8 +43,6 @@ def main():
                         help='Folder that contains the flown F-23B and F-23B-Player module folders')
     parser.add_argument('--liveries-dir', type=Path, required=True,
                         help='Folder containing the ten pinned F23B livery folders')
-    parser.add_argument('--bay-clip', type=Path, required=True,
-                        help='The pinned DCS bay-door and MALICE launch recording')
     args = parser.parse_args()
     if subprocess.check_output(['git', 'status', '--porcelain'], cwd=ROOT).strip():
         raise SystemExit('Commit the source changes before packaging')
@@ -131,11 +129,6 @@ def main():
     output.mkdir(parents=True, exist_ok=True)
     assets = {name + '.zip': zip_bytes(files), name + '-source.zip': source,
               name + '-Pilot-Guide.html': source_files['docs/PILOT_GUIDE.html']}
-    clip = args.bay_clip.read_bytes()
-    media = json.loads(source_files['config/releases/documentation-media.json'])
-    if sha(clip) != media['files'][name + '-Bay-Launch.mp4']:
-        raise SystemExit('Launch recording differs from the reviewed DCS capture')
-    assets[name + '-Bay-Launch.mp4'] = clip
     for asset, data in assets.items():
         path = output / asset
         if path.exists() and path.read_bytes() != data:

@@ -58,8 +58,6 @@ Start an **F-23B Quick Start** mission. Your first flight uses the Langley liver
 
 ![Ten included liveries](docs/images/f23b-liveries.jpg)
 
-[Bay doors and MALICE launch — short DCS clip](https://github.com/Coaokalo/f23b-public/releases/latest/download/F-23B-v1.4-Bay-Launch.mp4)
-
 ![Afterburner at dusk](docs/images/f23b-afterburner.jpg)
 
 ## FAQ

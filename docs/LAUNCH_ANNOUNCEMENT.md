@@ -4,8 +4,6 @@
 
 ![Afterburner at dusk](https://raw.githubusercontent.com/Coaokalo/f23b-public/v1.4/docs/images/f23b-afterburner.jpg)
 
-[Bay doors and MALICE launch — short DCS clip](https://github.com/Coaokalo/f23b-public/releases/latest/download/F-23B-v1.4-Bay-Launch.mp4)
-
 Hi everyone, v1.4 is up. Quite a bit has changed since my September 19 post, so this brings everything together.
 
 The aircraft now leaves the DCS game files alone. The weapon connection runs in memory while you fly the F-23B.
