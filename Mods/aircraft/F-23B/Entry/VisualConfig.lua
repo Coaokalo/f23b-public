@@ -3,7 +3,7 @@
 -- compiled assets remain ignored; build and packaging fail closed if absent.
 return {
     content_class = "PRIVATE_LICENSED_DEVELOPMENT_REQUIRED",
-    package_version = "0.9.0-alpha.dev",
+    package_version = "1.4",
     display_name = "F-23B Black Widow II",
     exterior_shape = "F-23B",
     cockpit_shape = "F-23B-cockpit",
@@ -20,30 +20,27 @@ return {
     },
 
     -- Presentation only. The installed Hornet owns engine state and sounds.
-    -- Native plume meets the short recessed collar inside the measured channel.
+    -- Native plume starts at the project-owned nozzle exit.
     -- Positions use DCS {X,Z,Y}; dimensions are fitted to the F-23B aperture.
     engine_effects_enabled = true,
     engine_effects = {
         profile = "F23B_LICENSED_ENGINE_NATIVE_EFFECTS",
         origins = {
-            { -6.03, -0.328308940, -1.307693511 },
-            { -6.03, -0.328309045,  1.314346552 }
+            { -6.90, -0.328308940, -1.307693511 },
+            { -6.90, -0.328309045,  1.314346552 }
         },
         elevation = -1.5,
-        -- Diameter is fitted to the measured channel gap (~0.508 m), not Hornet 0.765 m.
-        -- The recessed source sits well forward of the channel exit. Give the
-        -- Hornet plume enough length to remain visible beyond the exhaust trough.
-        diameter = 0.50,
-        exhaust_length_ab = 6.5,
-        exhaust_length_ab_K = 1.0,
+        -- These dimensions retain the accepted September 4 plume proportions.
+        -- A longer plume enlarges the game's per-frame ring jump on this small nozzle.
+        diameter = 0.5106,
+        exhaust_length_ab = 2.67,
+        exhaust_length_ab_K = 0.707,
         smokiness_level = 0.05,
         -- Installed Hornet flame and shock artwork; the model references
         -- F18C_afterburn for its staged source. No stock texture is bundled.
         afterburner_effect_texture = "afterburner_f-18c",
-        afterburner_circles_count = 8,
-        -- White native light on both outlets floods this pale enclosed trough.
-        -- Explicit zeros suppress DCS's default point light; BANO owns the core.
-        afterburner_light_color = { 0.0, 0.0, 0.0 }
+        -- Unset applies a strong orange default that floods this airframe. Keep a dim orange light.
+        afterburner_light_color = { 0.18, 0.07, 0.02 }
     },
 
     crew_position = { 6.4446, -0.333522, 0.001605 },

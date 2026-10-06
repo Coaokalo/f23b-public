@@ -57,16 +57,16 @@ The script runs the native test groups and writes the DLL to `build/native-radar
 ## Release packaging
 
 `tools/package_release.py` packages the aircraft module files of the flown
-build. `config/releases/release-2026-10-03.json` pins every flown file by
+build. `config/releases/release-v1.4.json` pins every flown file by
 SHA-256 and lists the unused files that the release removes, with reasons.
 Every shipped script and configuration file must equal the committed source.
 Pillow renders the original menu graphics from code; no old artwork is used.
 Quick Start mission corrections update the briefing and required Core/Player
-plugin identities while preserving the payloads, triggers and other mission data.
+plugin identities and assign the Langley livery. Payloads, triggers and other mission data are preserved.
 
 ```powershell
 python -m pip install -r requirements-release.txt
-python -B tools/package_release.py --runtime-dir "PATH/TO/FLOWN/Mods/aircraft"
+python -B tools/package_release.py --runtime-dir "PATH/TO/FLOWN/Mods/aircraft" --liveries-dir "PATH/TO/PACK/Liveries/F-23B"
 ```
 
 The flown module folders are a private release input and are not downloaded by CI.
@@ -84,18 +84,32 @@ After committing the source and packaging the aircraft as above:
 ```powershell
 python -m venv .venv
 .venv/Scripts/python.exe -m pip install -r requirements-setup.txt
-.venv/Scripts/python.exe tools/build_setup.py --aircraft-zip "PATH/TO/F23B-2026-10-03.zip"
+.venv/Scripts/python.exe tools/build_setup.py --aircraft-zip "PATH/TO/F-23B-v1.4.zip"
 ```
 
 The build uses [PyInstaller](https://pyinstaller.org/en/stable/usage.html) to bundle
 Python, Tk, setup and the exact aircraft ZIP into one setup EXE.
 Only builders install these dependencies. The EXE and its checksum are placed
 beside the aircraft/source archives. The payload must match the committed source.
-The GUI requests administrator access so that it can restore game files that
-earlier releases changed. Command-line fixture runs can operate without
+The GUI requests administrator access only when verified earlier game-file changes need restoration. Command-line fixture runs can operate without
 elevation in temporary folders. Setup never downloads code at runtime.
 The executable is unsigned unless a release maintainer signs it separately.
 
 Setup installs only into the Saved Games profile. It adds nothing to the DCS
 game folder. It removes the September 18 cockpit connection and restores the
 September 17 missile files when they are present.
+
+## ZIP/setup parity
+
+Extract the ZIP into a clean profile fixture. Install the compiled EXE into a second
+clean fixture with an empty Config directory. Compare both with this command:
+
+```powershell
+python tools/verify_installation.py --aircraft-zip "PATH/F-23B-v1.4.zip" --profile "PATH/TO/FIXTURE"
+```
+
+The check compares every file path and SHA-256, including documentation and liveries.
+Setup receipts remain outside the profile so both methods install identical files.
+Repeat against the actual compiled EXE for fresh install, repair, removal, historical
+upgrades, matching manual adoption, modified manual refusal, and a mismatched DCS fixture.
+Load the extracted ZIP aircraft in DCS and verify the slot, weapons, SA 640 and all liveries.

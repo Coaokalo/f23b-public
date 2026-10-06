@@ -6,7 +6,7 @@
 
 namespace f23radar {
 // A missile asks its launcher LinkToTarget(target) each frame. The Hornet answers with
-// avLinkToTargetResponder::is_tracking (FA18C 2.9.30.28536 RVA 0x49d7b0). Native support
+// avLinkToTargetResponder::is_tracking (FA18C 2.9.30.28738 RVA 0x49d7b0). Native support
 // covers the L&S, designated tracks and TWS tracks that pass a fire-control-quality gate.
 // The F-23B extension keeps the native answer and the native power/operate/inhibit gates.
 // It also accepts a missile's own target while that target remains an MSI trackfile.

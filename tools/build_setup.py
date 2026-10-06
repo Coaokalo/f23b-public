@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: MIT
-"""Bundle a committed preview ZIP and Python/Tk into a single Windows setup EXE."""
+"""Bundle the committed aircraft ZIP and Python/Tk into one Windows setup EXE."""
 import argparse
 import hashlib
 import importlib.metadata
@@ -25,7 +25,7 @@ def main():
     commit = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
     archive = args.aircraft_zip.resolve(strict=True)
     with zipfile.ZipFile(archive) as z:
-        release = json.loads(z.read('release.json'))
+        release = json.loads(z.read('F-23B-docs/release.json'))
     if release['corresponding_source_commit'] != commit:
         parser.error('Repackage the aircraft from the current source commit first')
     work = ROOT / 'build/setup' / commit[:12]

@@ -8,28 +8,48 @@ local ranking_failed = false
 local support_reported, support_target, profile_reported, alias_reported
 local alias_ticks = 0
 local energy_reported, sa_range_reported
-local function report(message, failed)
+local connection_off = "F-23B weapon and radar connection OFF. MALICE, Block II, radar upgrades and SA 640 are unavailable. "
+    .. "Flight, the native Hornet cockpit and radar, bays, lights and liveries remain available. "
+    .. "Get a compatible F-23B release: github.com/Coaokalo/f23b-public/releases/latest"
+local function report(message, failed, player_message)
     if type(log) == "table" and type(log.write) == "function" then
         log.write("F23B_RADAR", failed and log.ERROR or log.INFO, message)
     end
     if failed and type(print_message_to_user) == "function" then
-        print_message_to_user("F-23B radar upgrade unavailable. See dcs.log.")
+        print_message_to_user(player_message or ("F-23B: " .. message .. ". See dcs.log."))
     end
+end
+local function connection_failed(message)
+    report(message, true, connection_off)
+end
+local function check_old_connection()
+    -- Read only. A slow DCS repair restores the stock file; the ZIP cannot do so.
+    if type(io) ~= "table" or type(io.open) ~= "function" then return end
+    pcall(function()
+        local f = io.open("Mods/aircraft/FA-18C/Cockpit/Scripts/device_init.lua", "r")
+        if not f then return end
+        local content = f:read(262144); f:close()
+        if content and content:find("-- BEGIN F23B INDEPENDENT WEAPONS", 1, true) then
+            report("Earlier F-23B cockpit connection found", true,
+                "Old F-23B cockpit connection found. Close DCS. Run Repair with 'Check all files (slow)' once, then reinstall F-23B. See INSTALL.md.")
+        end
+    end)
 end
 return function(ranking_scope, cue_ir)
     if not attempted then
         attempted = true
+        check_old_connection()
         local path = LockOn_Options.script_path .. "../../bin/F23B_Radar.dll"
         if type(package) ~= "table" or type(package.loadlib) ~= "function" then
-            report("Native library loading is unavailable", true); return
+            connection_failed("Native library loading is unavailable"); return
         end
         local loaded, loader, reason = pcall(package.loadlib, path, "luaopen_f23b_radar")
         if not loaded or not loader then
-            report("Load failed: " .. tostring(reason or loader), true); return
+            connection_failed("Load failed: " .. tostring(reason or loader)); return
         end
         local ok, result = pcall(loader)
         if not ok or type(result) ~= "function" then
-            report("Initialization failed: " .. tostring(result), true); return
+            connection_failed("Initialization failed: " .. tostring(result)); return
         end
         native_update = result
     end
@@ -39,15 +59,15 @@ return function(ranking_scope, cue_ir)
         sa_range_status = pcall(
         native_update, ranking_scope == true, cue_ir == true)
     if not ok then
-        report("Update failed: " .. tostring(status), true)
+        connection_failed("Update failed: " .. tostring(status))
         native_update = nil
         return
     end
     if status ~= last_status then
         if status == 1 then
-            report("Candidate active: RWS/TWS scan 130 deg/s; detector gate 16 ms; signal margin +3 dB", false)
+            report("Radar upgrade active: RWS/TWS scan 130 deg/s; detector gate 16 ms; signal margin +3 dB", false)
         elseif status < 0 then
-            report("Compatibility or native-state check failed: " .. tostring(status), true)
+            connection_failed("Compatibility or native-state check failed: " .. tostring(status))
             native_update = nil
             return nil, -1
         elseif last_status == 1 then

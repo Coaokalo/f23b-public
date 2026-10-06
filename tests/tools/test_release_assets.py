@@ -10,7 +10,7 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / 'tools'))
 from release_assets import (fix_mission, MISSION_TEXT_OLD, MISSION_TEXT_NEW,
-                            MISSION_MODULES_OLD, MISSION_MODULES_NEW)
+                            MISSION_MODULES_OLD, MISSION_MODULES_NEW, MISSION_LIVERY)
 
 
 class ContentTests(unittest.TestCase):
@@ -18,7 +18,7 @@ class ContentTests(unittest.TestCase):
         original = ('mission = {descriptionText="' + MISSION_TEXT_OLD + '",'
                     'descriptionBlueTask="' + MISSION_TEXT_OLD + '",'
                     + MISSION_MODULES_OLD + ','
-                    'payload="{F23B-AIM424-MALICE}",triggers={1,2,3}}').encode()
+                    '["type"] = "F-23B",payload="{F23B-AIM424-MALICE}",triggers={1,2,3}}').encode()
         members = {'mission': original, 'options': b'options = {}',
                    'l10n/DEFAULT/mapResource': b'mapResource = {}'}
         source = io.BytesIO()
@@ -36,6 +36,8 @@ class ContentTests(unittest.TestCase):
             self.assertEqual(set(re.findall(r'=\s*"([^"]+)"', requirements.decode())), plugin_ids)
             restored = corrected.replace(MISSION_TEXT_NEW.encode(), MISSION_TEXT_OLD.encode())
             restored = restored.replace(MISSION_MODULES_NEW.encode(), MISSION_MODULES_OLD.encode())
+            self.assertIn(MISSION_LIVERY.encode(), corrected)
+            restored = restored.replace(MISSION_LIVERY.encode(), b'')
             self.assertEqual(restored, original)
             for n in members.keys() - {'mission'}:
                 self.assertEqual(z.read(n), members[n])
@@ -57,7 +59,7 @@ class ContentTests(unittest.TestCase):
             fix_mission(source.getvalue())
 
     def test_every_shipped_model_reference_is_pinned(self):
-        pin = json.loads((ROOT / 'config/releases/release-2026-10-03.json').read_text())
+        pin = json.loads((ROOT / 'config/releases/release-v1.4.json').read_text())
         shipped = {n for n in pin['runtime_files'] if n not in pin['removed']}
         text = (ROOT / 'Mods/aircraft/F-23B/Shapes/F-23B.lods').read_text()
         models = re.findall(r'"([^"]+\.edm)"', text)
@@ -66,7 +68,7 @@ class ContentTests(unittest.TestCase):
             self.assertIn('F-23B/Shapes/' + name, shipped)
 
     def test_removed_files_are_unused_by_shipped_scripts(self):
-        pin = json.loads((ROOT / 'config/releases/release-2026-10-03.json').read_text())
+        pin = json.loads((ROOT / 'config/releases/release-v1.4.json').read_text())
         scripts = [p.read_text(encoding='utf-8', errors='replace')
                    for p in (ROOT / 'Mods/aircraft').rglob('*') if p.is_file()]
         for name in pin['removed']:

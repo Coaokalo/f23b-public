@@ -90,19 +90,19 @@ for index = 1, 2 do
     local nozzle = nozzles[index]
     local label = "nozzle " .. index .. ": "
     check(nozzle.afterburner_effect_texture == "afterburner_f-18c", label .. "does not use the installed Hornet volume texture")
-    check(near(nozzle.diameter, 0.50), label .. "does not use the channel-fitted plume diameter")
+    check(near(nozzle.diameter, 0.5106), label .. "does not use the September 4 plume diameter")
     check(near(nozzle.elevation, -1.5), label .. "does not use the Hornet elevation")
-    check(near(nozzle.exhaust_length_ab, 6.5), label .. "must carry the Hornet plume beyond the long exhaust channel")
-    check(near(nozzle.pos[1], -6.03), label .. "plume must meet the recessed source")
-    check(near(nozzle.exhaust_length_ab_K, 1.0), label .. "does not use the selected F-22-style AB gain")
+    check(near(nozzle.exhaust_length_ab, 2.67), label .. "must retain the September 4 plume length")
+    check(near(nozzle.pos[1], -6.90), label .. "plume must start at the new nozzle exit")
+    check(near(nozzle.exhaust_length_ab_K, 0.707), label .. "does not use the September 4 AB gain")
     check(near(nozzle.smokiness_level, 0.05), label .. "does not use the Hornet smoke level")
-    check(nozzle.afterburner_circles_count == 8,
-        label .. "must use eight native shock rings")
+    check(nozzle.afterburner_circles_count == nil,
+        label .. "must use the default native shock rings")
     check(type(nozzle.afterburner_light_color) == "table"
-        and near(nozzle.afterburner_light_color[1], 0)
-        and near(nozzle.afterburner_light_color[2], 0)
-        and near(nozzle.afterburner_light_color[3], 0),
-        label .. "must suppress native trough flood light")
+        and near(nozzle.afterburner_light_color[1], 0.18)
+        and near(nozzle.afterburner_light_color[2], 0.07)
+        and near(nozzle.afterburner_light_color[3], 0.02),
+        label .. "must use the accepted dim orange light that does not flood the airframe")
     check(near(nozzle.pos[1], effects.origins[index][1]), label .. "origin x not applied")
     check(near(nozzle.pos[2], effects.origins[index][2]), label .. "origin y not applied")
     check(near(nozzle.pos[3], effects.origins[index][3]), label .. "origin z not applied")

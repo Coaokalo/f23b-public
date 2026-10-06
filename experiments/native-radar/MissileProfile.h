@@ -6,7 +6,7 @@
 #include <initializer_list>
 
 namespace f23radar {
-// MALICE INS and seeker profile for WeaponBlocks 37c61b61... / WeaponsBase 66d48df0... (DCS 2.9.30.28536).
+// MALICE INS and seeker profile for WeaponBlocks 37c61b61... / WeaponsBase 66d48df0... (DCS 2.9.30.28738).
 // A missile's wSimulationSystem uses the scheme embedded in its ammunition descriptor
 // (+0xd8, or +0xcc8 for the network variant). The scheme holds one descriptor pointer per block.
 // wINS_Strapdown::refineTargetData discards every datalink message once INS +0x108 (time since

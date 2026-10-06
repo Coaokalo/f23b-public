@@ -3,11 +3,11 @@ F-23B/F-23B.png
 F-23B
 
 Name: F-23B Black Widow II
-Type: Experimental community aircraft
+Type: Community aircraft
 Crew: 1
 
 Requirements:
-DCS World 2.9.30.28536 on Windows
+DCS World 2.9.30.28738 on Windows
 Installed and activated DCS: F/A-18C Hornet
 
 Cockpit and systems:
@@ -23,12 +23,12 @@ Three AIM-424 MALICE or AIM-120C missiles in the main bay
 Quick Start missions carry two AIM-9X Block II and three MALICE missiles.
 
 Installation:
-Setup installs both F-23B module folders into the Saved Games profile.
+Copy the ZIP contents into Saved Games/DCS, or use setup for the same files.
 DCS game files are not changed.
-See the download's INSTALL.md for the complete instructions.
+See the download's F-23B-docs/INSTALL.md for the complete instructions.
 
 Limitations:
-Single-player experimental preview. VR and multiplayer are not qualified.
+Single-player. VR and multiplayer are not yet tested.
 Block II post-launch datalink and lock-on after launch are not implemented.
 Performance is a simulator design approximation, not measured YF-23 flight data.
 

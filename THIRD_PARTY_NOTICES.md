@@ -21,7 +21,7 @@ Exact upstream hashes, included derived files, and modification records are in
 describes the adaptation and its limitations. No upstream aircraft models,
 textures, audio, or compiled binaries are bundled in this source tree.
 
-## Purchased visual content in the preview
+## Purchased visual content
 
 - SytaPastel: Northrop YF-23 Black Widow II, CGTrader product 2046482.
 
@@ -29,9 +29,10 @@ These assets retain their external licenses. They are separate from the GPL
 software and absent from the Git source tree. See
 [LICENSE-ASSETS.md](LICENSE-ASSETS.md) for the applicable asset terms.
 
-The external cockpit, control panels and displays are from the same licensed
-YF-23 source. The F-35-derived exterior insert and its textures are no longer
-shipped. The Hornet supplies the pilot cockpit from the user's installation.
+The exterior has no separate cockpit insert. The Hornet supplies the pilot cockpit
+from the user's installation. The removed F-35 insert and its textures are not shipped.
+The ten liveries derive from the purchased YF-23 paint source. Exact file records
+are in [the livery manifest](config/licensing/liveries-v1.4.json).
 
 ## Eagle Dynamics / DCS World
 
@@ -40,9 +41,9 @@ The native bridge uses the user's installed Hornet, and builds require the user'
 installed SDK headers. The small test stub is project-authored and is not the
 real SDK.
 
-The current installer adds an F-23B-only connection to the installed Hornet cockpit script.
-Stock missile definitions remain unchanged. The installer keeps backups for rollback.
-For an upgrade from the September 17 installer, setup restores its verified global missile replacements to stock.
+The current aircraft connects its weapons and radar upgrades in memory.
+Current installs change no DCS game files. Setup removes verified September 17/18
+game-file changes during an upgrade. Manual users first run a full DCS repair.
 No Eagle Dynamics scripts or binaries are included in the download.
 
 THIS MATERIAL IS NOT MADE OR SUPPORTED BY EAGLE DYNAMICS SA.

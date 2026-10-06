@@ -1,0 +1,106 @@
+{
+  "review_date": "2026-10-06",
+  "creator": "SytaPastel",
+  "product": "CGTrader 2046482, Northrop YF-23 Black Widow II",
+  "license": "CGTrader Royalty Free; Incorporated Product distribution only",
+  "terms": "https://www.cgtrader.com/pages/terms-and-conditions",
+  "source_hashes": {
+    "YF23_BlackWidow2Livery.jpg": "7343eee5e9d1cc14a1f50adcdbd4edcd73e300b9b9cd807e73f7d71a2711662e",
+    "YF23_GrayGhostLivery.jpg": "2510860224e64c0e589e91dcf8ce3c3489e4f176b0f1f401a6c20dd99a94fc3b",
+    "YF23_Liveries.psd": "3172f64a69ccc8c49158354af01e5b76ff1aefd6687e6a38fc26ab5f1c1d1ec8"
+  },
+  "model_sha256": "243004dc86830b0207e0ddce22b944edc9b05d284c5c3ef8d37aeed7805a2b52",
+  "distribution": "Included only in the complete F-23B DCS aircraft. Compiled BC7 maps target the licensed proprietary EDM. Vendor scenes, paint sources and editable composites are excluded. Asset terms remain separate from the software license.",
+  "schemes": [
+    {
+      "name": "F-23B | USAF Langley - 1st FW",
+      "source": "YF23_Liveries.psd",
+      "files": {
+        "F23B-01-usaf-langley/description.lua": "757c6b84f8c919cde4a888f965f16a1fc4fcfceb7e8db62f6593ef93f847c11d",
+        "F23B-01-usaf-langley/f23b_01_usaf_langley.dds": "0b2ae1d87b315f777f25d4122a78ac6f85ccdede54c506ddcb9ac44bb3e8b77a",
+        "F23B-01-usaf-langley/f23b_01_usaf_langley_roughmet.dds": "d8550ab8d57818259e2399eb5a51e5863b235204ba3ad91aefeea59590d41864"
+      }
+    },
+    {
+      "name": "F-23B | USAF Alaska - 3rd Wing",
+      "source": "YF23_Liveries.psd",
+      "files": {
+        "F23B-02-usaf-alaska/description.lua": "d42a878e561fe15a3211ff2b1574530634d3706ae49c48e6b7a2ca97f22c9843",
+        "F23B-02-usaf-alaska/f23b_02_usaf_alaska.dds": "33a4cf93f6a73d52ba87fde9851d756c158a51de5fe77bc2caa7e4f2e8dd2eaf",
+        "F23B-02-usaf-alaska/f23b_02_usaf_alaska_roughmet.dds": "d8550ab8d57818259e2399eb5a51e5863b235204ba3ad91aefeea59590d41864"
+      }
+    },
+    {
+      "name": "F-23B | USAF Hawaii - 154th Wing",
+      "source": "YF23_Liveries.psd",
+      "files": {
+        "F23B-03-usaf-hawaii/description.lua": "40f28fc41574e1d4fbb9d724ab9cede318dd5f2607a6c9d05f64eec07af5fb06",
+        "F23B-03-usaf-hawaii/f23b_03_usaf_hawaii.dds": "0cb97c91614054a0db51e3991c9dd040d94d44ba965257707df1523e908ec939",
+        "F23B-03-usaf-hawaii/f23b_03_usaf_hawaii_roughmet.dds": "d8550ab8d57818259e2399eb5a51e5863b235204ba3ad91aefeea59590d41864"
+      }
+    },
+    {
+      "name": "F-23B | USAF Tyndall - 325th FW",
+      "source": "YF23_Liveries.psd",
+      "files": {
+        "F23B-04-usaf-tyndall/description.lua": "daddfbc91e066f7b9884ea453e5aef8249fb20f08dc8aacb7669707b4890cc4f",
+        "F23B-04-usaf-tyndall/f23b_04_usaf_tyndall.dds": "cefff4404415640b0e38930be1b5095a8d5c931b6e5d121a279e8ca44767eb4c",
+        "F23B-04-usaf-tyndall/f23b_04_usaf_tyndall_roughmet.dds": "d8550ab8d57818259e2399eb5a51e5863b235204ba3ad91aefeea59590d41864"
+      }
+    },
+    {
+      "name": "F-23B | Black Widow Heritage",
+      "source": "YF23_BlackWidow2Livery.jpg",
+      "files": {
+        "F23B-05-black-widow-heritage/description.lua": "963e77843d05e9e8fbfb18140861c61a98e225024daaa8358bdbc13dcd264f7d",
+        "F23B-05-black-widow-heritage/f23b_05_black_widow_heritage.dds": "22f7f48a48ffe61e5f24ddb0ce66f441e51a07b0a0fb4796be7d3cc526346eec",
+        "F23B-05-black-widow-heritage/f23b_05_black_widow_heritage_roughmet.dds": "d8550ab8d57818259e2399eb5a51e5863b235204ba3ad91aefeea59590d41864"
+      }
+    },
+    {
+      "name": "F-23B | Gray Prototype Heritage",
+      "source": "YF23_GrayGhostLivery.jpg",
+      "files": {
+        "F23B-06-gray-prototype-heritage/description.lua": "abf08abd927b7a0a9c11ce4a8055378531bad0d964abc4796ca4f1c9e76ab5e1",
+        "F23B-06-gray-prototype-heritage/f23b_06_gray_prototype_heritage.dds": "9d11588128ad28fcc346ba9bf6567357ae3bb25750cbf9c67d2950ec979c45cb",
+        "F23B-06-gray-prototype-heritage/f23b_06_gray_prototype_heritage_roughmet.dds": "d8550ab8d57818259e2399eb5a51e5863b235204ba3ad91aefeea59590d41864"
+      }
+    },
+    {
+      "name": "F-23B | Crimson Widow",
+      "source": "YF23_Liveries.psd",
+      "files": {
+        "F23B-07-crimson-widow/description.lua": "8778bbebd710de3c551ecf01027386dc1226a3a5910c0fbd88669686a6e2d0ad",
+        "F23B-07-crimson-widow/f23b_07_crimson_widow.dds": "fa53109710f029ef7ba82411cbc9a58e0f8f707b6c6915227b24f5097e8a00ad",
+        "F23B-07-crimson-widow/f23b_07_crimson_widow_roughmet.dds": "425b066983477edcd7b8dd6dec7eddc0a410ffad9becef0c2051bf7b94080cd5"
+      }
+    },
+    {
+      "name": "F-23B | Arctic Splinter",
+      "source": "YF23_Liveries.psd",
+      "files": {
+        "F23B-08-arctic-splinter/description.lua": "2fe92325481647992493c5470788afd6fd3425849f58d19ac74109789c451d48",
+        "F23B-08-arctic-splinter/f23b_08_arctic_splinter.dds": "37c792bae58db38849118a42721c903845f6929138a4d562a31332e35ba520a0",
+        "F23B-08-arctic-splinter/f23b_08_arctic_splinter_roughmet.dds": "d8550ab8d57818259e2399eb5a51e5863b235204ba3ad91aefeea59590d41864"
+      }
+    },
+    {
+      "name": "F-23B | Desert Aggressor",
+      "source": "YF23_Liveries.psd",
+      "files": {
+        "F23B-09-desert-aggressor/description.lua": "4792c5be2cd2848d12cf1246af37a565f17326ae254e858292bd1d23806f8388",
+        "F23B-09-desert-aggressor/f23b_09_desert_aggressor.dds": "4ff7bdaccb44f7b2bc08102149161d381916d0c76f9587395df848d5b8e830dd",
+        "F23B-09-desert-aggressor/f23b_09_desert_aggressor_roughmet.dds": "d8550ab8d57818259e2399eb5a51e5863b235204ba3ad91aefeea59590d41864"
+      }
+    },
+    {
+      "name": "F-23B | NASA Research",
+      "source": "YF23_Liveries.psd",
+      "files": {
+        "F23B-10-nasa-research/description.lua": "26b7ca8ab8ea0f49a0a2176b92b226793659ef79310d1a6d5a7442e6117090a4",
+        "F23B-10-nasa-research/f23b_10_nasa_research.dds": "f705d913c1d84f3474c75f39d0f7ad08181c175c90b7262ba094d34dfacf80c5",
+        "F23B-10-nasa-research/f23b_10_nasa_research_roughmet.dds": "2c5a9bfc7516e49c7cccb033ca1b98e03b925375fb42921d805c5e9802674ea6"
+      }
+    }
+  ]
+}

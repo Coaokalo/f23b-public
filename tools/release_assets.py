@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: MIT
-"""Deterministic preview content fixes and original menu graphics."""
+"""Deterministic release content fixes and original menu graphics."""
 import io
 import zipfile
 
@@ -9,6 +9,8 @@ MISSION_TEXT_NEW = 'Bay load: 2x AIM-9X Block II, 3x AIM-424 MALICE'
 MISSION_MODULES_OLD = '["requiredModules"] = { ["F-23B"] = "F-23B" }'
 MISSION_MODULES_NEW = ('["requiredModules"] = { ["F-23B Core"] = "F-23B Core", '
                        '["F-23B Player"] = "F-23B Player" }')
+MISSION_AIRCRAFT = '["type"] = "F-23B",'
+MISSION_LIVERY = '["livery_id"] = "F23B-01-usaf-langley", '
 
 
 def fix_mission(data):
@@ -22,6 +24,9 @@ def fix_mission(data):
             raise ValueError('Unexpected Quick Start module requirements')
         text = text.replace(MISSION_TEXT_OLD, MISSION_TEXT_NEW)
         text = text.replace(MISSION_MODULES_OLD, MISSION_MODULES_NEW)
+        if text.count(MISSION_AIRCRAFT) != 1:
+            raise ValueError('Unexpected Quick Start player aircraft')
+        text = text.replace(MISSION_AIRCRAFT, MISSION_LIVERY + MISSION_AIRCRAFT)
         with zipfile.ZipFile(output, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as target:
             for item in source.infolist():
                 target.writestr(item, text.encode('utf-8') if item.filename == 'mission'
@@ -59,7 +64,7 @@ def branding():
                       font=ImageFont.load_default(size=int(height*.12)), fill=gold)
             draw.text((left,height*.50), 'BLACK WIDOW II',
                       font=ImageFont.load_default(size=int(height*.040)), fill='#e7edf0')
-            draw.text((left,height*.80), 'EXPERIMENTAL COMMUNITY AIRCRAFT',
+            draw.text((left,height*.80), 'COMMUNITY AIRCRAFT / v1.4',
                       font=ImageFont.load_default(size=int(height*.019)), fill='#91a3ad')
             draw.text((left,height*.84), 'DCS WORLD / F/A-18C REQUIRED',
                       font=ImageFont.load_default(size=int(height*.016)), fill='#91a3ad')

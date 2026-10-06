@@ -3,8 +3,9 @@ local root = os.getenv("F23B_RUNTIME_ROOT") or "Mods/aircraft"
 LockOn_Options = {script_path = root .. "/F-23B-Player/Cockpit/ExteriorVisuals/"}
 local path = LockOn_Options.script_path .. "RadarUpgrade.lua"
 local calls, notices, logs = 0, 0, {}
+local messages = {}
 log = {INFO=1, ERROR=2, write=function(_, _, message) logs[#logs+1]=message end}
-print_message_to_user = function() notices=notices+1 end
+print_message_to_user = function(message) notices=notices+1; messages[#messages+1]=message end
 local original = package.loadlib
 local result = 0
 local scope
@@ -116,5 +117,26 @@ count = #logs; tick(); assert(#logs == count, "SA status repeated")
 sa_status = -50; tick()
 assert(logs[#logs]:find("code -50", 1, true) and levels[#levels] == log.ERROR)
 sa_status = 0; count = #logs; tick(); assert(#logs == count, "inactive SA status logged")
+-- A manual installation on an unknown DCS build must give an actionable message.
+package.loadlib = function() return function() return function() return -1 end end end
+tick = dofile(path); tick(); tick()
+assert(messages[#messages]:find("connection OFF", 1, true))
+assert(messages[#messages]:find("MALICE, Block II", 1, true))
+assert(messages[#messages]:find("native Hornet cockpit", 1, true))
+assert(messages[#messages]:find("releases/latest", 1, true))
+-- Detect the old cockpit edit once, without writing to the DCS installation.
+local original_io = io
+local closed = false
+io = {open=function(name, mode)
+    assert(name == "Mods/aircraft/FA-18C/Cockpit/Scripts/device_init.lua" and mode == "r")
+    return {read=function() return "-- BEGIN F23B INDEPENDENT WEAPONS" end,
+            close=function() closed=true end}
+end}
+package.loadlib = function() return function() return function() return 0 end end end
+local before = #messages
+tick = dofile(path); tick(); tick()
+assert(closed and #messages == before + 1)
+assert(messages[#messages]:find("Check all files (slow)", 1, true))
+io = original_io
 package.loadlib = original
-print("PASS: radar loader success, state transitions, missing library, bounded failures, support, profile and diagnostic reports")
+print("PASS: radar loader, bounded failures, native reports, manual-install warning and read-only legacy detection")

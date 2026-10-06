@@ -9,15 +9,12 @@
     "LICENSES/MIT.txt": "b2ffc91f892b8977a39d4c5e592cea65a29c43c119eb9ec88bda34ce618f7c75",
     "Mods/aircraft/F-23B-Player/Cockpit/ExteriorVisuals/BridgeCommands.lua": "8d196bf834f0c340c0265abe512cc923be00fca2da1130a0dfddc794059335b0",
     "Mods/aircraft/F-23B-Player/Cockpit/ExteriorVisuals/ExteriorVisualAdapter.lua": "f1e29e1af13b700c0de8d2f80435cfc14d3daa28a526ccd10044e0b069b25840",
-    "Mods/aircraft/F-23B-Player/Cockpit/ExteriorVisuals/RadarUpgrade.lua": "25c232745972317e80c005e25595a3025d9f3f11700ca3ce483767c8d8211c54",
     "Mods/aircraft/F-23B-Player/Cockpit/ExteriorVisuals/device_init.lua": "ea83bca0fd4c71f30d31299df4fd5fdee005f6f01821225ec6c50d566046d28a",
     "Mods/aircraft/F-23B-Player/Cockpit/ExteriorVisuals/mainpanel_init.lua": "97dfa1765db99940be84955b322d8fb286c04dfb316eb46d3a7debb81d674d18",
     "Mods/aircraft/F-23B-Player/Input/F-23B/bridge_profile.lua": "0e2c7aa30958e80b860b85b278ee4c6d154dbc8aff3c59c206fb32dce8cd8845",
     "Mods/aircraft/F-23B-Player/Input/F-23B/joystick/default.lua": "933deb376b1ef217720aedac20f2f84a783b9f2c617828f1b9d41e456c93b454",
     "Mods/aircraft/F-23B-Player/Input/F-23B/keyboard/default.lua": "454dec3b61774be95b805ac4c383bbf081b54df50d4f5f097de7c9edacadd11c",
     "Mods/aircraft/F-23B-Player/Input/F-23B/name.lua": "405c6cc3cf823c968aa675464c05326f96e5fb5ad0057ad54cf96c3429accfa3",
-    "Mods/aircraft/F-23B-Player/entry.lua": "a7034366ca018f4cf9300605f4267cad898bf42ac5c87b3a7d934b2c6d542194",
-    "Mods/aircraft/F-23B/Entry/VisualConfig.lua": "f82e70b75b1f0320e3561192746cf5fa863c5a7ee4fb655a94fd7b3e8bbd4f18",
     "Mods/aircraft/F-23B/F-23B.lua": "06e008ea4552ec0ba3fb484b357f6773dc0ee2ede14787385df6d38c27254c94",
     "Mods/aircraft/F-23B/Liveries/F-23B/Standard/description.lua": "90d6497157129423de6d1df5ad0d5e7929a4e7c8100524db30d2562d2930841b",
     "Mods/aircraft/F-23B/Liveries/F-23B/USA/description.lua": "e9c7e74af5be498c8cee916e8efbddb28e21e526e6405a4fac8d0a746ee0c244",
@@ -59,23 +56,17 @@
     "experiments/native-radar/MaliceEnergy_test.cpp": "61b7460d7744cb253dda132f43adf073f953d87bfcbcc9f3120b8867fd97eb76",
     "experiments/native-radar/MaliceLoftHook.h": "966f9ab173efb602b861375140a906f53e21e9c80ac0a9a1296c6ffa74d2f919",
     "experiments/native-radar/MaliceRuntime.h": "ea492a3a12fbf5b95771e9901e9673985c3b2eb9c8ee99c87becd1ea23b244cb",
-    "experiments/native-radar/MissileProfile.h": "139b91d748c20118e8d99d2304473a0640ea60d7c03f410fbe932a060a349c8e",
     "experiments/native-radar/MissileProfile_test.cpp": "b0cc4a04be09c50ef54b4a2cd1afa0f47d3e0872eb3cfb4c97d43aa78f3dc91e",
-    "experiments/native-radar/NativeRanking.h": "0cc935f5b38d6aeb7896bac06b6fccdc19a2d7445ae84e6a1e69fb273b821413",
     "experiments/native-radar/NativeTarget.h": "2695f3dc9de1fa13f45c8b425cb3d9024da052e98554c6779994d00db27c6982",
     "experiments/native-radar/PayloadAccessHook.h": "a92f4cf9757b198e1670f04084f1042a8095e9d7db254a766462983440ae15d4",
     "experiments/native-radar/PayloadAccessHook_test.cpp": "d6b32e86998b04bad9a9cd87edc7917779fb356720e481ed6ea3e6e2b0d5807d",
-    "experiments/native-radar/PayloadAlias.h": "7d8ad6dba269397a3f04339b6ec992ac9e6574c05854b3fd04460cfdbba633af",
     "experiments/native-radar/PayloadAlias_test.cpp": "93cc025e94ecac8acf7ddd50fa774136ac0919a702a966f57747d7f9b3dddc0d",
-    "experiments/native-radar/Radar.cpp": "2ebba32955ad723113ddc82bd3a91d2c0af2a16461a6785bc121a61a4c3b552c",
     "experiments/native-radar/RadarTune.h": "62cdc42d912fc296e8b61209266ae2fc98027893f447085d7007c8eab1de8cfa",
     "experiments/native-radar/RadarTune_test.cpp": "5a125f3eef0c771bec969c4005d1335fd3e52b61174f4fbe99e30f293769d3f6",
     "experiments/native-radar/RankingHook.h": "86ea7474004580543a4bf33e36c165ec7bc98d0a7beb4fd6510ddf49ef94a219",
     "experiments/native-radar/SaRangeHook.h": "ee31eef97df3fcb8c160f4b9c054fab8c7d8047bda981bcf692cd4ed27a717b4",
     "experiments/native-radar/SaRangeHook_test.cpp": "759596c5d6678310e57881bb65c4c55b87fe7834bdfde3aed9602d4cacfcea1f",
-    "experiments/native-radar/SupportDiag.h": "f4e7fc32b4d0d6b3b23b5089cf12196667402800ee5708a56bc40080d9aedb55",
     "experiments/native-radar/SupportDiag_test.cpp": "a118f67ccd267ecdcf7c7ca3000c911eb968a33c533bd3ebd47e15f73a553ba1",
-    "experiments/native-radar/SupportHook.h": "5f41d8a73504d54e69e015c03643f1043342d4bbf8f81fe96d57299f5f9b4ecf",
     "experiments/native-radar/SupportHook_test.cpp": "11b84e2612404744fae73e7aafe7e14ab70aa9bd66a80fb01d6c9de06d4fd643"
   },
   "modified_files": {
@@ -99,5 +90,43 @@
   "prior_runtime_source": "4c254be08a8d23ba5ad29e4a8cbf7962dc5d340b",
   "accepted_runtime_archive_sha256": "9e46867abcd899cf4577956e017f953bb6363dfd00a1839fc5b3c0a679f80a7c",
   "prior_curated_release": "804920ad2fc51de498fed81daab072c1351aa6a7",
-  "native_radar_source": "9ada987c176f562bfd28cbe74a1346c73f4bf9a2"
+  "native_radar_source": "9ada987c176f562bfd28cbe74a1346c73f4bf9a2",
+  "public_v1_4_changes": {
+    "Mods/aircraft/F-23B-Player/Cockpit/ExteriorVisuals/RadarUpgrade.lua": {
+      "inherited_sha256": "25c232745972317e80c005e25595a3025d9f3f11700ca3ce483767c8d8211c54",
+      "reason": "Current DCS pins, release identity, accepted afterburner configuration, or connection diagnostics; see Git history."
+    },
+    "Mods/aircraft/F-23B-Player/entry.lua": {
+      "inherited_sha256": "a7034366ca018f4cf9300605f4267cad898bf42ac5c87b3a7d934b2c6d542194",
+      "reason": "Current DCS pins, release identity, accepted afterburner configuration, or connection diagnostics; see Git history."
+    },
+    "Mods/aircraft/F-23B/Entry/VisualConfig.lua": {
+      "inherited_sha256": "f82e70b75b1f0320e3561192746cf5fa863c5a7ee4fb655a94fd7b3e8bbd4f18",
+      "reason": "Current DCS pins, release identity, accepted afterburner configuration, or connection diagnostics; see Git history."
+    },
+    "experiments/native-radar/MissileProfile.h": {
+      "inherited_sha256": "139b91d748c20118e8d99d2304473a0640ea60d7c03f410fbe932a060a349c8e",
+      "reason": "Current DCS pins, release identity, accepted afterburner configuration, or connection diagnostics; see Git history."
+    },
+    "experiments/native-radar/NativeRanking.h": {
+      "inherited_sha256": "0cc935f5b38d6aeb7896bac06b6fccdc19a2d7445ae84e6a1e69fb273b821413",
+      "reason": "Current DCS pins, release identity, accepted afterburner configuration, or connection diagnostics; see Git history."
+    },
+    "experiments/native-radar/PayloadAlias.h": {
+      "inherited_sha256": "7d8ad6dba269397a3f04339b6ec992ac9e6574c05854b3fd04460cfdbba633af",
+      "reason": "Current DCS pins, release identity, accepted afterburner configuration, or connection diagnostics; see Git history."
+    },
+    "experiments/native-radar/Radar.cpp": {
+      "inherited_sha256": "2ebba32955ad723113ddc82bd3a91d2c0af2a16461a6785bc121a61a4c3b552c",
+      "reason": "Current DCS pins, release identity, accepted afterburner configuration, or connection diagnostics; see Git history."
+    },
+    "experiments/native-radar/SupportDiag.h": {
+      "inherited_sha256": "f4e7fc32b4d0d6b3b23b5089cf12196667402800ee5708a56bc40080d9aedb55",
+      "reason": "Current DCS pins, release identity, accepted afterburner configuration, or connection diagnostics; see Git history."
+    },
+    "experiments/native-radar/SupportHook.h": {
+      "inherited_sha256": "5f41d8a73504d54e69e015c03643f1043342d4bbf8f81fe96d57299f5f9b4ecf",
+      "reason": "Current DCS pins, release identity, accepted afterburner configuration, or connection diagnostics; see Git history."
+    }
+  }
 }

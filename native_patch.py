@@ -82,7 +82,7 @@ def transact(changes):
         raise
 
 
-def legacy_changes(dcs):
+def legacy_changes(dcs, allow_newer=False):
     """Restore verified old global replacements before independent weapons load.
 
     A clean installation needs no backup and causes no game-file writes. Keep
@@ -95,6 +95,8 @@ def legacy_changes(dcs):
     changes = []
     for kind, (family, _, stock_hash, _, _) in SPECS.items():
         target = dcs / 'CoreMods/aircraft/AircraftWeaponPack' / family
+        if allow_newer and not target.exists():
+            continue
         if target.resolve(strict=True) != target:
             raise ValueError('Native files must not be redirected: ' + family)
         current = target.read_bytes()
@@ -104,8 +106,13 @@ def legacy_changes(dcs):
             raise ValueError('Backup directory must not be a link')
         receipt_path = backup / 'receipt.json'
         if not receipt_path.is_file():
+            if allow_newer and b'F23B' not in current:
+                continue
             raise ValueError('Unsupported or modified DCS missile file: ' + family)
         receipt = json.loads(receipt_path.read_text())
+        if (allow_newer and sha(current) != receipt['files'][kind]['patched_sha256']
+                and b'F23B' not in current):
+            continue
         original_path = backup / family
         if original_path.resolve(strict=True) != original_path:
             raise ValueError('Backup file must not be a link: ' + family)

@@ -1,62 +1,94 @@
-# Install or remove the F-23B
+# Install or remove F-23B v1.4
 
-Requires Windows, **DCS World 2.9.30.28536**, and an installed and activated
-**DCS: F/A-18C Hornet**. No separate Python installation is needed.
-On DCS 2.9.29.27468, use the
-[September 29 release](https://github.com/Coaokalo/f23b-public/releases/tag/release-2026-09-29).
+Requires Windows and an installed, activated **DCS: F/A-18C Hornet**.
+The weapon and radar connection supports **DCS 2.9.30.28738**.
+Both options install the same aircraft, weapons, ten liveries and documentation.
 
-## Install
+| Method | Download |
+| --- | --- |
+| Copy and paste | [F-23B-v1.4.zip](https://github.com/Coaokalo/f23b-public/releases/latest/download/F-23B-v1.4.zip) |
+| Installer | [F-23B-v1.4-Setup.exe](https://github.com/Coaokalo/f23b-public/releases/latest/download/F-23B-v1.4-Setup.exe), which does the same thing for you |
 
-1. Download **F23B-2026-10-03-Setup.exe** from
-   [the release page](https://github.com/Coaokalo/f23b-public/releases/tag/release-2026-10-03).
-2. Close DCS, its updater and ModelViewer. Run setup and allow its administrator prompt.
-3. Confirm your **DCS game folder** and **Saved Games DCS profile**.
-4. Click **Install / Repair**, then start an F-23B Quick Start mission.
+## One-time step for September 17 or 18 users
 
-Setup puts the `F-23B` and `F-23B-Player` folders in `Saved Games/DCS/Mods/aircraft`.
-**It does not add or change files in the DCS game folder.** Stock missiles stay unchanged.
-The F-23B connects its weapons and radar functions in memory only while you fly it.
-No Eagle Dynamics scripts or binaries are included in the download.
+Those releases changed DCS game files. Copying the ZIP cannot undo those changes.
+Before your first manual upgrade, close DCS and run **Repair** from the DCS launcher.
+Select **Check all files (slow)** and let it finish, including the installed Hornet module.
+Then follow **Upgrade** below. Do not restore the old mod's game-file backups afterward.
 
-## Fly
+The changes were in three stock files: `aim120_family.lua`, `aim9_family.lua`, and the Hornet's `device_init.lua`.
+A full repair restores those files. The old backup folder does not execute and can remain unused.
+This conclusion follows the old installer code and [ED's repair documentation](https://www.digitalcombatsimulator.com/en/support/faq/709/).
+A separate cleanup is unnecessary for these three stock-file changes.
+Alternatively, use this release's setup to remove verified old changes automatically.
 
-Your Hornet controls apply. Put MASTER ARM to ARM. Select AMRAAM for MALICE or
-Sidewinder for Block II, then use the normal trigger. The bay opens before release.
-MALICE requires a designated radar target. Block II requires IR cooling and seeker lock.
-The SA page SCL button now also selects 640 NM.
+## Copy and paste
 
-Loadouts: 3x AIM-424 MALICE + 2x AIM-9X Block II, or 3x AIM-120C + 2x Block II.
-The Quick Start missions carry MALICE and Block II.
+Extract the ZIP first. Its root contains `Mods`, `Liveries`, and `F-23B-docs`.
+Use the Saved Games profile DCS actually uses, such as `Saved Games\DCS` or `Saved Games\DCS.openbeta`.
+Do not copy the outer ZIP folder. This profile-relative layout also works with OvGME and Open Mod Manager.
+Set the mod manager's target to that Saved Games profile, and disable an older package before enabling this one.
 
-## Upgrade, repair, or remove
+**Install**
 
-**Upgrading from an earlier F-23B release:** run **Install / Repair**. Setup
-removes the cockpit connection that the September 18 release added to the Hornet
-cockpit script. It also restores missile files that the September 17 release changed.
-Your DCS game folder then has no F-23B changes.
+- Close DCS.
+- Drag the extracted contents into `Saved Games\DCS`.
 
-After DCS repair, run **Install / Repair** again. A newer DCS version needs a
-compatible F-23B build: setup and the F-23B native functions reject unknown binaries.
-Use one managed Saved Games profile per DCS installation with this release.
+**Upgrade**
 
-To remove, close DCS and use **Remove** in the same installer. It removes both
-aircraft folders and keeps your controls and missions.
-Setup refuses unmanaged aircraft folders and development links.
-Move added liveries or edited module files to a backup before removal.
+- Close DCS and delete `Mods\aircraft\F-23B` and `Mods\aircraft\F-23B-Player` first.
+- Copy the extracted contents into the same profile.
 
-Keep the installer for repair and removal. The aircraft ZIP is the installer's
-payload, not an extra installation step. The source ZIP is for developers.
+**Remove**
 
-## Help
+- Close DCS and delete those two aircraft folders.
+- Delete the supplied `F23B-01-...` through `F23B-10-...` folders in `Liveries\F-23B`.
+- Delete `F-23B-docs` if you no longer need it.
 
-Confirm the selected profile is the one DCS uses and the Hornet is activated.
-For an unsupported or modified game file, restore conflicting mods or repair DCS,
-then check that your DCS version is supported. Build details are kept in
-`.f23b-install` within your profile.
+Keep any personal files before deleting an aircraft folder. Other aircraft and unrelated liveries can stay.
+Licences, notices and corresponding-source details are together in `F-23B-docs`.
 
-[Known limitations](KNOWN_ISSUES.md) |
-[Report a bug](https://github.com/Coaokalo/f23b-public/issues/new?template=bug_report.yml).
-Include the release name, DCS version, mission, and reproduction steps. Remove account
-information and personal paths from logs before sharing them.
+## Installer
+
+1. Close DCS, its updater and ModelViewer.
+2. Run **F-23B-v1.4-Setup.exe**.
+3. Confirm the DCS game folder and Saved Games profile.
+4. Select **Install / Repair**.
+
+No separate Python installation is needed. Administrator permission is requested only to remove earlier F-23B game-file changes.
+Use **Remove** in setup to remove the aircraft, supplied liveries and documentation.
+Setup keeps your controls, missions and unrelated liveries.
+
+## Switching methods
+
+Setup adopts an unchanged manual install when its complete file set matches a known release.
+Known releases are September 29, October 1, October 3, and v1.4.
+If files differ, setup preserves them and displays one instruction:
+
+> Move the existing F-23B aircraft, supplied livery and F-23B-docs folders to a backup location, then run setup again.
+
+To switch from setup to manual installation, use setup's **Remove**, then follow **Install** above.
+Setup keeps its receipt outside the DCS profile, under `%LOCALAPPDATA%\F-23B\installs`.
+Development directory links are not supported by setup.
+
+## DCS updates
+
+Both methods allow installation on other DCS builds. The ZIP has no installation-time version check.
+The aircraft checks the connection in game and shows **weapon and radar connection OFF** when it cannot connect.
+MALICE, Block II, radar upgrades and the 640 NM SA scale are then unavailable.
+Flight, the native Hornet cockpit and radar, bays, lights and liveries remain available.
+Get a compatible build from [the latest release](https://github.com/Coaokalo/f23b-public/releases/latest).
+DCS 2.9.29.27468 users can retain the [September 29 release](https://github.com/Coaokalo/f23b-public/releases/tag/release-2026-09-29).
+
+## First flight and help
+
+Start DCS and select an **F-23B Quick Start** mission. It uses the Langley livery.
+Your Hornet controls apply. Read the [pilot guide](https://github.com/Coaokalo/f23b-public/blob/main/docs/PILOT_GUIDE.md).
+Choose any supplied `F-23B |` livery in the mission editor or rearming menu.
+
+**Windows warns about the unsigned installer:** use the ZIP.
+
+[Feedback and questions](https://github.com/Coaokalo/f23b-public/discussions) ·
+[Report a bug](https://github.com/Coaokalo/f23b-public/issues/new?template=bug_report.yml)
 
 THIS MATERIAL IS NOT MADE OR SUPPORTED BY EAGLE DYNAMICS SA.
