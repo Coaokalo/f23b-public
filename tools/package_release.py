@@ -18,7 +18,8 @@ TEXT = ('.lua', '.lods', '.txt')
 NOTICES = ['COPYING', 'LICENSE', 'LICENSE-ASSETS.md', 'THIRD_PARTY_NOTICES.md', 'INSTALL.md',
            'LICENSES/MIT.txt', 'config/licensing/third-party-code-reuse.json',
            'experiments/flight-feel/docs/provenance/GRINNELLI_V2_1_PERFORMANCE_REFERENCE.md',
-           'config/licensing/liveries-v1.4.json']
+           'config/licensing/liveries-v1.4.json', 'LICENSES/Python-3.12.txt',
+           'LICENSES/Tcl.txt', 'LICENSES/Tk.txt', 'LICENSES/PyInstaller.txt', 'docs/PILOT_GUIDE.html']
 
 
 def sha(data):
@@ -42,6 +43,8 @@ def main():
                         help='Folder that contains the flown F-23B and F-23B-Player module folders')
     parser.add_argument('--liveries-dir', type=Path, required=True,
                         help='Folder containing the ten pinned F23B livery folders')
+    parser.add_argument('--bay-clip', type=Path, required=True,
+                        help='The pinned DCS bay-door and MALICE launch recording')
     args = parser.parse_args()
     if subprocess.check_output(['git', 'status', '--porcelain'], cwd=ROOT).strip():
         raise SystemExit('Commit the source changes before packaging')
@@ -126,7 +129,13 @@ def main():
                for n in runtime if n not in pin['removed'] and n not in changed)
     output = ROOT / 'dist' / name / commit[:12]
     output.mkdir(parents=True, exist_ok=True)
-    assets = {name + '.zip': zip_bytes(files), name + '-source.zip': source}
+    assets = {name + '.zip': zip_bytes(files), name + '-source.zip': source,
+              name + '-Pilot-Guide.html': source_files['docs/PILOT_GUIDE.html']}
+    clip = args.bay_clip.read_bytes()
+    media = json.loads(source_files['config/releases/documentation-media.json'])
+    if sha(clip) != media['files'][name + '-Bay-Launch.mp4']:
+        raise SystemExit('Launch recording differs from the reviewed DCS capture')
+    assets[name + '-Bay-Launch.mp4'] = clip
     for asset, data in assets.items():
         path = output / asset
         if path.exists() and path.read_bytes() != data:

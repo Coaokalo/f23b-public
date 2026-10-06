@@ -24,3 +24,7 @@ __pycache__/
 # Curated documentation screenshots only; runtime imagery stays excluded.
 !/docs/images/f23b-exterior.jpg
 !/docs/images/f23b-cockpit.jpg
+!/docs/images/f23b-liveries.jpg
+!/docs/images/f23b-afterburner.jpg
+!/docs/images/f23b-bays.jpg
+!/docs/images/f23b-social.jpg

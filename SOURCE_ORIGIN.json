@@ -25,7 +25,6 @@
     "Mods/aircraft/F-23B/Weapons/F23B_AIM9X_BLOCKII.lua": "744e402aeb2f798a1e47f4e121b011f188a20ff0f47cef93c2912bab9633d6a2",
     "Mods/aircraft/F-23B/entry.lua": "8bcdf76922f6484216679b7af5b3d1d737cf4a5116b79a97d5e3fea69c02ec2a",
     "experiments/flight-feel/CMakeLists.txt": "363acf9bc20fce1479500de89b04ae3ac123b876873452a7cf08fa4f576b0c3d",
-    "experiments/flight-feel/docs/provenance/GRINNELLI_V2_1_PERFORMANCE_REFERENCE.md": "6da5da14a5658735ea7e80fca8788345667ce0f44711ffd8a839ab1b6b5ded96",
     "experiments/flight-feel/src/efm/performance/dcs_adapter/performance_adapter.cpp": "a9688dc04da52eb879348cd90b3155e4750796a9f563a3698c3708ee58a20a7d",
     "experiments/flight-feel/src/efm/performance/engine_mapping.cpp": "7a301129f461df71eb6fe2ccdbe4c2880a6349bdbbe12efaf92fffa4bce6e816",
     "experiments/flight-feel/src/efm/performance/include/f23b/performance/engine_mapping.hpp": "8a4ec520763e6e4e40c1b0edf43b286dbae15d543c0b9b6ef470bc9908e9f3b3",
@@ -127,6 +126,10 @@
     "experiments/native-radar/SupportHook.h": {
       "inherited_sha256": "5f41d8a73504d54e69e015c03643f1043342d4bbf8f81fe96d57299f5f9b4ecf",
       "reason": "Current DCS pins, release identity, accepted afterburner configuration, or connection diagnostics; see Git history."
+    },
+    "experiments/flight-feel/docs/provenance/GRINNELLI_V2_1_PERFORMANCE_REFERENCE.md": {
+      "inherited_sha256": "6da5da14a5658735ea7e80fca8788345667ce0f44711ffd8a839ab1b6b5ded96",
+      "reason": "Remove obsolete product status wording while retaining source attribution."
     }
   }
 }

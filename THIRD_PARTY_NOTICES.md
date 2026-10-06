@@ -47,3 +47,9 @@ game-file changes during an upgrade. Manual users first run a full DCS repair.
 No Eagle Dynamics scripts or binaries are included in the download.
 
 THIS MATERIAL IS NOT MADE OR SUPPORTED BY EAGLE DYNAMICS SA.
+
+## Installer runtime
+
+The Windows EXE bundles Python 3.12, Tcl/Tk, and the PyInstaller bootloader.
+Their licences are included in `LICENSES` here and in the installed `F-23B-docs/LICENSES` folder.
+The ZIP contains the same documentation and installation files.

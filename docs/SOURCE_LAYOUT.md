@@ -3,6 +3,7 @@
 | Location | Purpose |
 | --- | --- |
 | `Mods/aircraft/` | Lua and configuration files for the aircraft release |
+| `Liveries/F-23B/` | Livery bindings; runtime paint maps remain in the aircraft ZIP |
 | `experiments/native-radar/` | Version-guarded weapon, radar and SA connection loaded in memory by the aircraft |
 | `experiments/native-force-bridge/` | Windows native bridge, callback generators, steering, propulsion and control tests |
 | `experiments/flight-feel/` | Flight-model library, adapter, tests, and performance report |
@@ -18,7 +19,7 @@
 The `experiments` paths are retained so the corresponding source can be built
 using the existing build scripts.
 
-The Git tree contains software, documentation, and the two documentation screenshots
+The Git tree contains software, documentation, and the documentation captures
 listed in `config/releases/documentation-images.json`. Runtime images, textures,
 models, missions, and the DLLs belong to the separately prepared aircraft ZIP.
 Development history, private working assets, old releases, and agent instruction

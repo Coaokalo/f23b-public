@@ -32,7 +32,7 @@
       "license": "GPL-3.0-or-later",
       "copyright_notice": "Copyright (C) 2025 Branden Hooper; Copyright (C) 2026 F-23B project contributors",
       "modified_at": "2026-09-04",
-      "purpose": "Independent-throttle, fixed-force, time-based-trim experimental flight model; no thrust vectoring."
+      "purpose": "Independent-throttle, fixed-force, time-based-trim flight model; no thrust vectoring."
     },
     {
       "project_path": "experiments/flight-feel/src/efm/performance/performance_model.cpp",
@@ -44,7 +44,7 @@
       "license": "GPL-3.0-or-later",
       "copyright_notice": "Copyright (C) 2025 Branden Hooper; Copyright (C) 2026 F-23B project contributors",
       "modified_at": "2026-09-29",
-      "purpose": "Independent-throttle, fixed-force, time-based-trim experimental flight model; no thrust vectoring."
+      "purpose": "Independent-throttle, fixed-force, time-based-trim flight model; no thrust vectoring."
     }
   ]
 }

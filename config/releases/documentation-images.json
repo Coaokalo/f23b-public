@@ -1,7 +1,12 @@
 {
-  "description": "Unchanged frames from project DCS development footage, for documentation. Depicted third-party content retains its own terms.",
+  "description": "DCS 2.9.30.28738 captures of the v1.4 ZIP aircraft; resized or arranged for documentation. Rendered game and asset content retains its own terms.",
+  "model_sha256": "243004dc86830b0207e0ddce22b944edc9b05d284c5c3ef8d37aeed7805a2b52",
   "files": {
-    "docs/images/f23b-cockpit.jpg": "a54c536c5beac597d92d8ba962e61927bae0092673d7b08ec266aeb0abdbd8b7",
-    "docs/images/f23b-exterior.jpg": "6e1fda80147ecc367619621b05b5d903850d3e2970cf93d3ea62f5890fa7fe42"
+    "docs/images/f23b-afterburner.jpg": "ecea2740c68693f0c4f8e193d75e8209041b6c5ca749410ff7dc696c672267f0",
+    "docs/images/f23b-bays.jpg": "5ab293bf59a678476fc1d6ef71c2edd4221d68b79691f5f7530107014454c5c2",
+    "docs/images/f23b-cockpit.jpg": "8347a6a2ab81ac935453a729debed467789308fc1b6f65ef94c6a7e7717216a4",
+    "docs/images/f23b-exterior.jpg": "98212ba809d57b42ff7d8a6958fea5f34673440a1736a7d48154897a9fddc4c2",
+    "docs/images/f23b-liveries.jpg": "42aa4543d3c19a0c99cd1e93a911fe3514adb1b82add440c0e21e0b5175262f1",
+    "docs/images/f23b-social.jpg": "4a34b6c0193ff263251c22bdbb6138a30295867066a0ba9d5f4203b68c4107cf"
   }
 }

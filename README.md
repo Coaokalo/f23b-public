@@ -51,10 +51,16 @@ Start an **F-23B Quick Start** mission. Your first flight uses the Langley liver
 - Sequenced internal bays, AIM-424 MALICE with loft control and a second motor pulse, and project AIM-9X Block II.
 - Friendly-track selection protection and AI weapon use.
 - Ground and water collision, speed-limited nosewheel steering, and a stiffer nose strut.
-- One canopy frame in the pilot view, exterior lights, and the accepted new afterburner visuals.
+- One canopy frame in the pilot view, exterior lights, and new afterburner visuals.
 - Ten liveries: four USAF schemes, two heritage schemes, Crimson Widow, Arctic Splinter, Desert Aggressor and NASA Research.
 
 ![F-23B pilot cockpit](docs/images/f23b-cockpit.jpg)
+
+![Ten included liveries](docs/images/f23b-liveries.jpg)
+
+[Bay doors and MALICE launch — short DCS clip](https://github.com/Coaokalo/f23b-public/releases/latest/download/F-23B-v1.4-Bay-Launch.mp4)
+
+![Afterburner at dusk](docs/images/f23b-afterburner.jpg)
 
 ## FAQ
 

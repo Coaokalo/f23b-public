@@ -66,7 +66,7 @@ plugin identities and assign the Langley livery. Payloads, triggers and other mi
 
 ```powershell
 python -m pip install -r requirements-release.txt
-python -B tools/package_release.py --runtime-dir "PATH/TO/FLOWN/Mods/aircraft" --liveries-dir "PATH/TO/PACK/Liveries/F-23B"
+python -B tools/package_release.py --runtime-dir "PATH/TO/FLOWN/Mods/aircraft" --liveries-dir "PATH/TO/PACK/Liveries/F-23B" --bay-clip "PATH/TO/bay-launch.mp4"
 ```
 
 The flown module folders are a private release input and are not downloaded by CI.

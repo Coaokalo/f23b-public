@@ -1,118 +1,90 @@
-The F-23B Black Widow II aircraft for DCS World with custom flight dynamics and F/A-18C Hornet avionics.
-Includes internal weapon bays, AIM-424 MALICE, and project AIM-9X Block II.
+# F-23B v1.4
 
-## [Download the Windows installer](https://github.com/Coaokalo/f23b-public/releases/download/release-2026-10-03/F23B-2026-10-03-Setup.exe)
+Native Hornet radar, datalink and SA in a stealth airframe, with sequenced internal bays, MALICE and project AIM-9X Block II.
+Current installs change no DCS game files.
 
-**Aircraft and weapons included · No separate Python installation**
+![F-23B v1.4 in DCS](https://raw.githubusercontent.com/Coaokalo/f23b-public/v1.4/docs/images/f23b-exterior.jpg)
 
-| Requirement | Supported configuration |
+## Two equal install options
+
+| Method | Download |
 | --- | --- |
-| Operating system | Windows 64-bit |
-| DCS World | **2.9.30.28536** |
-| Required module | **DCS: F/A-18C Hornet**, installed and activated |
-| Play mode | Single-player |
+| Copy and paste | [F-23B-v1.4.zip](https://github.com/Coaokalo/f23b-public/releases/latest/download/F-23B-v1.4.zip) |
+| Installer | [F-23B-v1.4-Setup.exe](https://github.com/Coaokalo/f23b-public/releases/latest/download/F-23B-v1.4-Setup.exe), which does the same thing for you |
 
-![F-23B Black Widow II above the clouds in DCS World](https://raw.githubusercontent.com/Coaokalo/f23b-public/a25e04b/docs/images/f23b-exterior.jpg)
+Both contain identical aircraft, weapons, ten liveries and documentation. No separate Python installation is needed.
+Requires Windows and an installed, activated **DCS: F/A-18C Hornet**.
+Weapon and radar connection: **DCS 2.9.30.28738**. Single-player; VR and multiplayer not yet tested.
 
-*Development capture. Some visual details can differ from this release.*
+**Manual install**
 
-## New in this release
+- Close DCS.
+- Extract the ZIP and drag its contents into `Saved Games\DCS`.
 
-- **MALICE long-range loft control.** Extra loft pauses when the estimated coasting
-  apex reaches 98,400 feet. A single-player flight confirmed an A-50 kill from
-  336.4 statute miles with continuing target updates, plus a Tu-95MS kill from 76.2 miles.
-  Exact 350-mile shots and the full engagement envelope remain unverified.
-- **Updated MALICE launch-zone indications.** The displayed launch envelope now
-  uses the revised long-range anchors. Second pulse timing is unchanged: seeker search after boost burnout.
-- **Installer upgrades.** Install / Repair accepts an installed October 1 release and preserves the DCS game files.
+**Manual upgrade**
 
-The coasting estimate is not a hard altitude cap. The successful long shot reached about 158,000 feet.
-Launch conditions and continued target support affect the result.
+- Close DCS and delete `Mods\aircraft\F-23B` and `Mods\aircraft\F-23B-Player` first.
+- Copy the extracted contents into the same profile.
 
-Carried over from the October 1 release:
+**Manual removal**
 
-- **DCS World 2.9.30.28536 support.** MALICE, Block II, the 640 NM SA scale and the friendly-track filter remain connected.
-  On DCS 2.9.29.27468, use the [September 29 release](https://github.com/Coaokalo/f23b-public/releases/tag/release-2026-09-29).
+- Close DCS and delete those two aircraft folders.
+- Delete the supplied `F23B-...` folders in `Liveries\F-23B` and, optionally, `F-23B-docs`.
 
-Carried over from the September 29 release:
+**September 17/18 users:** run DCS Repair with **Check all files (slow)** once before your first manual upgrade.
+Copying the ZIP cannot undo their game-file changes. Setup can remove verified old changes automatically.
+[Full instructions, mod managers and switching methods](https://github.com/Coaokalo/f23b-public/blob/main/INSTALL.md).
 
-- **No DCS game-file changes.** Setup installs only into your Saved Games profile.
-  Upgrading removes the cockpit connection that the September 18 release added.
-- **Weapons:** MALICE uses the native Hornet radar and missile support, with a
-  lofted profile and a second motor pulse. AI F-23Bs now fire MALICE and Block II.
-- **Radar:** The SA page scale now goes to 640 NM.
-- **Airframe:** The aircraft now crashes on ground and water impact.
-- **Ground handling:** Nosewheel steering turns on a Hornet-like radius. Steering
-  authority reduces with speed to prevent ground loops. A stiffer nose strut
-  prevents bottoming and gear damage in hard braking.
-- **Smaller download:** unused textures and development files are removed.
+For setup, close DCS, run the EXE, confirm both folders, then select **Install / Repair**.
+Windows warns about the unsigned installer? Use the ZIP.
 
-## Included
+## New in v1.4
 
-- **Aircraft:** Custom F-23 flight dynamics with the F/A-18C cockpit, avionics, and controls.
-- **Weapons:** AIM-424 MALICE and project AIM-9X Block II. Stock missiles remain unchanged.
-- **Systems:** Trigger-operated weapon bays, exterior lights, and afterburner effects.
-- **Missions:** Caucasus Cold Start, Hot Start, and Free Flight.
+- Current DCS support, with the existing flight and weapon tuning retained.
+- New afterburner visuals and ten liveries. Quick Start missions use the Langley scheme.
+- Equal ZIP and setup options. Setup adopts unchanged, known manual installations.
+- Installation on other DCS builds, with a clear in-game **connection OFF** message when the native connection cannot start.
+- Administrator permission only for removal of earlier F-23B game-file changes.
+- A [one-page illustrated pilot guide](https://github.com/Coaokalo/f23b-public/blob/main/docs/PILOT_GUIDE.md) and [Discussions for feedback](https://github.com/Coaokalo/f23b-public/discussions).
 
-## Installation
+## Since the September 18 release
 
-1. Close DCS, its updater, and ModelViewer.
-2. Run the Windows installer.
-3. Confirm your DCS game folder and Saved Games profile.
-4. Select **Install / Repair**.
+The in-memory connection replaced the old DCS game-file edits.
+MALICE gained loft, a second motor pulse, and long-range loft control. An owner flight recorded a **336-mile A-50 kill** with continuing support.
+AI F-23Bs fire both custom weapons. Friendly aircraft are excluded from automatic target ranking, and SA extends to **640 NM**.
+Ground and water collision, Hornet-radius speed-limited steering, a stiffer nose strut, and a single pilot-view canopy frame are retained.
 
-Start DCS after installation. Select an **F-23B Quick Start** mission.
-Upgrading from an earlier F-23B release uses the same steps.
+The 336-mile result is one supported flight, not a guaranteed range. Exact 350-mile shots remain unverified.
+The coasting-apex estimate is not a hard altitude cap; the recorded long shot reached about 158,000 feet.
 
-Keep the installer for repair and removal. Your existing Hornet controls apply.
+## Limits and help
 
-[Full installation and removal guide](https://github.com/Coaokalo/f23b-public/blob/main/INSTALL.md)
+![Ten included liveries](https://raw.githubusercontent.com/Coaokalo/f23b-public/v1.4/docs/images/f23b-liveries.jpg)
 
-## Known limitations
+![Afterburner at dusk](https://raw.githubusercontent.com/Coaokalo/f23b-public/v1.4/docs/images/f23b-afterburner.jpg)
 
-- MALICE's coasting-apex threshold is not a hard altitude cap. Exact 350-mile shots are unverified.
-- Full flight and weapon envelopes are not verified.
-- AIM-9X Block II helmet cueing and post-launch datalink/lock-on after launch are not implemented.
-- AI F-23Bs use the MALICE energy profile only when the player also flies an F-23B.
-- VR and multiplayer compatibility are unverified.
-- The installer is unsigned. DCS updates require a compatible F-23B release.
+[Bay doors and MALICE launch — short DCS clip](https://github.com/Coaokalo/f23b-public/releases/latest/download/F-23B-v1.4-Bay-Launch.mp4)
 
-[Known issues](https://github.com/Coaokalo/f23b-public/blob/main/KNOWN_ISSUES.md) · [Report a problem](https://github.com/Coaokalo/f23b-public/issues/new?template=bug_report.yml)
+Block II helmet cueing and post-launch datalink/lock-on after launch are not implemented.
+AI uses the extended MALICE energy profile when the player also flies an F-23B.
+On a mismatched DCS build, custom weapons, radar upgrades and SA 640 are unavailable.
+Flight, the native cockpit and radar, bays, lights and liveries remain available.
 
-## Licensing and credits
+[Known limits](https://github.com/Coaokalo/f23b-public/blob/main/KNOWN_ISSUES.md) ·
+[Feedback](https://github.com/Coaokalo/f23b-public/discussions) ·
+[Report a bug](https://github.com/Coaokalo/f23b-public/issues/new?template=bug_report.yml)
 
-Different parts of this release have different licenses.
+For DCS 2.9.29.27468, keep the [September 29 / v1.1 release](https://github.com/Coaokalo/f23b-public/releases/tag/release-2026-09-29).
 
-| Content | License |
-| --- | --- |
-| Combined software | **GPL-3.0-or-later**. Individual source files with MIT notices retain their MIT grant. See the [software license](https://github.com/Coaokalo/f23b-public/blob/main/LICENSE). |
-| Original documentation and eligible original creative content | **CC BY-SA 4.0**, with attribution to F-23B project contributors. See the [content terms](https://github.com/Coaokalo/f23b-public/blob/main/LICENSE-ASSETS.md). |
-| Purchased models, derived textures, and third-party content | Separate license terms apply. The software license grants no additional rights to extract or redistribute these assets. |
+## Source and licences
 
-The flight-model adaptation uses source from **Grinnelli Designs F-22A**, including work by **Branden Hooper**.
-The licensed YF-23 visual model is by **SytaPastel** on CGTrader.
-F-23B project contributors provide the adaptation and original project content.
+[Corresponding software source](https://github.com/Coaokalo/f23b-public/releases/download/v1.4/F-23B-v1.4-source.zip) ·
+[SHA-256 checksums](https://github.com/Coaokalo/f23b-public/releases/download/v1.4/SHA256SUMS.txt)
 
-The release includes a corresponding software source ZIP.
-DCS and the Hornet remain separate required products. Their proprietary files are not included in this download.
-
-[Third-party notices and source credits](https://github.com/Coaokalo/f23b-public/blob/main/THIRD_PARTY_NOTICES.md) · [Asset license details](https://github.com/Coaokalo/f23b-public/blob/main/LICENSE-ASSETS.md)
-
-<details>
-<summary>Other downloads</summary>
-
-The Windows installer is the normal player download.
-
-| File | Purpose |
-| --- | --- |
-| [Aircraft ZIP](https://github.com/Coaokalo/f23b-public/releases/download/release-2026-10-03/F23B-2026-10-03.zip) | Installer payload. The EXE already includes this file. |
-| [Source ZIP](https://github.com/Coaokalo/f23b-public/releases/download/release-2026-10-03/F23B-2026-10-03-source.zip) | Software source for this release. |
-| [SHA256 checksums](https://github.com/Coaokalo/f23b-public/releases/download/release-2026-10-03/SHA256SUMS.txt) | File checksums for download verification. |
-
-GitHub's automatic **Source code** archives are repository snapshots. They are not aircraft installation packages.
-
-</details>
-
----
+Software: GPL-3.0-or-later, with retained file-level MIT grants. Eligible original documentation/content: CC BY-SA 4.0.
+Purchased models and derived textures retain separate terms. Editable vendor sources are not included.
+Credits include Grinnelli Designs and Branden Hooper for flight-model source, and SytaPastel for the licensed YF-23 visuals.
+[Full notices](https://github.com/Coaokalo/f23b-public/blob/main/THIRD_PARTY_NOTICES.md) ·
+[Asset terms](https://github.com/Coaokalo/f23b-public/blob/main/LICENSE-ASSETS.md)
 
 THIS MATERIAL IS NOT MADE OR SUPPORTED BY EAGLE DYNAMICS SA.

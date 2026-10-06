@@ -1,34 +1,61 @@
-# F-23B Black Widow II for DCS World
+![F-23B v1.4 in DCS](https://raw.githubusercontent.com/Coaokalo/f23b-public/v1.4/docs/images/f23b-exterior.jpg)
 
-The F-23B brings the Black Widow airframe to DCS with a custom flight model,
-the F/A-18C Hornet cockpit and avionics, and internal weapon bays carrying
-MALICE and project AIM-9X Block II. The release includes exterior lighting,
-afterburner effects, and three Caucasus Quick Start missions to get flying.
+![Ten included liveries](https://raw.githubusercontent.com/Coaokalo/f23b-public/v1.4/docs/images/f23b-liveries.jpg)
 
-![F-23B above the clouds](images/f23b-exterior.jpg)
+![Afterburner at dusk](https://raw.githubusercontent.com/Coaokalo/f23b-public/v1.4/docs/images/f23b-afterburner.jpg)
 
-**Requires Windows, DCS 2.9.29.27468, an installed and activated F/A-18C Hornet,
-with no separate Python installation needed.** Run setup to install the aircraft
-and custom weapons together.
-MALICE and project AIM-9X Block II are independent weapons. Stock missiles remain unchanged.
-The F-23B cockpit connection can affect multiplayer integrity checks. Repair and removal instructions are included.
+[Bay doors and MALICE launch — short DCS clip](https://github.com/Coaokalo/f23b-public/releases/latest/download/F-23B-v1.4-Bay-Launch.mp4)
 
-This release is intended for single-player use. Multiplayer and VR compatibility remain unverified.
-Feedback and reproducible
-bug reports will help shape the next update.
+Hi everyone, v1.4 is up. Quite a bit has changed since my September 19 post, so this brings everything together.
 
-**[Download and release details](https://github.com/Coaokalo/f23b-public/releases/tag/test-2026-09-18)** ·
-[Install & remove](https://github.com/Coaokalo/f23b-public/blob/main/INSTALL.md) ·
-[Known limitations](https://github.com/Coaokalo/f23b-public/blob/main/KNOWN_ISSUES.md) ·
-[Report a bug](https://github.com/Coaokalo/f23b-public/issues/new?template=bug_report.yml)
+The aircraft now leaves the DCS game files alone. The weapon connection runs in memory while you fly the F-23B.
+MALICE has loft, a second motor pulse, and long-range loft control. An owner flight recorded a 336-mile A-50 kill with continuing target support.
+That is one supported flight, not a promised range for every shot.
 
-![F-23B's Hornet pilot cockpit](images/f23b-cockpit.jpg)
+- AI F-23Bs fire MALICE and Block II. Friendly aircraft no longer enter automatic target ranking, and SA now reaches 640 NM.
+- Ground and water collisions work. Steering uses a Hornet-like radius and reduces with speed. The nose strut is stiffer under braking.
+- The pilot view has one canopy frame. This release adds the new afterburner visuals and all ten liveries.
+- The weapon and radar connection supports DCS 2.9.30.28738. There is a simpler setup and an illustrated pilot guide.
 
-*DCS development captures. Some visual details can differ from this release.*
+Requires an installed, activated F/A-18C Hornet. Single-player; VR and multiplayer not yet tested.
 
-The combined software uses GPL-3.0-or-later. Original content and third-party assets have separate terms.
-Corresponding software source is available on the release page.
+Two equal ways to install, both with the same aircraft, weapons, liveries and documentation:
 
-[Licensing and credits](https://github.com/Coaokalo/f23b-public#licensing-and-credits)
+| Method | Download from the current release |
+| --- | --- |
+| Copy and paste | [F-23B-v1.4.zip](https://github.com/Coaokalo/f23b-public/releases/latest) |
+| Installer | [F-23B-v1.4-Setup.exe](https://github.com/Coaokalo/f23b-public/releases/latest), which does the same thing for you |
 
-THIS MATERIAL IS NOT MADE OR SUPPORTED BY EAGLE DYNAMICS SA.
+**Manual install**
+
+- Close DCS.
+- Extract the ZIP and drag its contents into `Saved Games\DCS`.
+
+**Manual upgrade**
+
+- Close DCS and delete `Mods\aircraft\F-23B` and `Mods\aircraft\F-23B-Player` first.
+- Copy the extracted contents into the same profile.
+
+**Manual removal**
+
+- Close DCS and delete those two aircraft folders.
+- Delete the supplied `F23B-...` folders in `Liveries\F-23B` and, optionally, `F-23B-docs`.
+
+If you used September 17 or 18, run DCS Repair with **Check all files (slow)** once before your first manual upgrade.
+Those versions changed stock game files; copying the ZIP cannot undo that. Setup can remove verified old changes automatically.
+It asks for administrator permission only when that cleanup is needed.
+
+Setup also accepts an unchanged manual install from a known release. If the files differ, it tells you what to back up first.
+The ZIP layout works with OvGME and Open Mod Manager when their target is your Saved Games DCS profile.
+Windows warns about the unsigned installer? Use the ZIP.
+
+After a DCS update, both methods still install. If the weapon and radar connection is off, the aircraft says so in game.
+Custom weapons, radar upgrades and SA 640 are then unavailable. Flight, the native cockpit and radar, bays, lights and liveries remain available.
+Use a compatible release before firing the custom weapons.
+
+Start an F-23B Quick Start mission to fly the Langley livery, or choose any supplied `F-23B |` scheme.
+The [pilot guide](https://github.com/Coaokalo/f23b-public/blob/main/docs/PILOT_GUIDE.md) covers arming, bays, both weapons, SA and ground handling.
+[Installation details](https://github.com/Coaokalo/f23b-public/blob/main/INSTALL.md) are included too.
+
+Feedback is welcome here or in [GitHub Discussions](https://github.com/Coaokalo/f23b-public/discussions).
+Please include the F-23B version and DCS version when reporting a problem.

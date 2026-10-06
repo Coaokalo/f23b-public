@@ -1,4 +1,4 @@
-# Experimental Grinnelli performance reference
+# Grinnelli performance reference
 
 The source is https://github.com/grinnellidesigns/f-22a at tag v2.1.0, commit
 `24dc1f51a8d0d9427c7bd3c368ccabd3e0ade53c`. Individual pinned raw files were downloaded read-only
@@ -9,7 +9,7 @@ Exact hashes and derived-file records are in the repository
 RAPTOR.h and RAPTOR.cpp carry Branden Hooper's GPL-3.0-or-later notice.
 The EFM directory's MIT notice does not replace those file-specific notices.
 See root COPYING and THIRD_PARTY_NOTICES.md, included with corresponding source
-in experimental packages. No upstream binary or content asset is distributed.
+in aircraft packages. No upstream binary or content asset is distributed.
 
 The model adapts Mach-indexed aerodynamic/thrust schedules, nonlinear input
 shaping, damping, soft G/AoA limiting, spool and burner timing, and trim.

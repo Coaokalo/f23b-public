@@ -1,5 +1,8 @@
 # F-23B v1.4 — pilot guide
 
+[Download the one-page printable guide](https://github.com/Coaokalo/f23b-public/releases/latest/download/F-23B-v1.4-Pilot-Guide.html).
+Open it in a browser and select Print.
+
 ![The Hornet cockpit used by the F-23B](images/f23b-cockpit.jpg)
 
 | Step | Action |
